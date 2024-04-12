@@ -1,6 +1,5 @@
 # source - tableau:
 # https://stackoverflow.com/questions/75294027/why-is-my-tkinter-treeview-not-changing-colors
-
 import requests
 import tkinter as tk
 from tkinter import ttk
@@ -8,31 +7,28 @@ from tkinter.messagebox import showinfo
 
 class Tableau_patients(tk.Toplevel):
     
-    def __init__(self, fenetre, url):
+    def __init__(self, fenetre):
         tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenêtre Toplevel avec 'fenetre' comme parent.
-        self.title = ("Personnes")
+        self.title("Students")
         self.geometry("700x400")  # Dimensions de la fenêtrefenetre_application("Fenêtre Secondaire")
-        self.url = url
         self.liste_personnes = {}
+        self.id_selectionne = None  # permet de récupéer l'ID sélectionnée par cli sur la ligne
         ## Tableau Triview
         # définir les colonnes du tableau
-        columns = ('first_name', 'surname', 'age')
+        columns = ('id','first_name', 'surname', 'age')
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.grid(row=0, column=0, sticky='nsew')
-        self.recuperation_donnees()
-        self.affichage_tableau()
-        self.habillage_tableau()
         # sélection d'un enregistrement
         self.tree.bind('<<TreeviewSelect>>', self.item_selected)
         self.numero_ligne=0
         
-    def recuperation_donnees(self):
+    def recuperation_donnees(self, url):
 
         # L'URL du serveur d'où récupérer les données JSON
-        #self.url = 'http://127.0.0.1:5000/personnes'
+        #self.url = 'http://127.0.0.1:5000/students'
 
         # Envoyer la requête GET
-        reponse = requests.get(self.url)
+        reponse = requests.get(url)
 
         # Vérifier si la requête a réussi
         if reponse.status_code == 200:
@@ -52,25 +48,27 @@ class Tableau_patients(tk.Toplevel):
         self.tree.heading('first_name', text='First_name')
         self.tree.heading('surname', text='Surname')
         self.tree.heading('age', text='Age')
+        self.tree.heading('id', text='Id')
         s.configure('Treeview.Heading', background="lightblue")
 
         # generate sample data
         contacts = []
-        for personne in self.liste_personnes: # c'est une liste de dictionnaire!
-            contacts.append(f"{personne['first_name']}, {personne['surname']}, {personne['age']}")
-        # add data to the treeview AND tag the row color
         i = 1
-        for contact in contacts:
+        for personne in self.liste_personnes:  # Directement itérer sur la liste des dictionnaires
+            row_values = (personne['id'], personne['first_name'], personne['surname'], personne['age'])
             i += 1
-            if i%2:
-                self.tree.insert('', tk.END, values=contact, tags = ('oddrow',))
+            if i % 2:
+                
+                self.tree.insert('', tk.END, values=row_values, tags=('oddrow',))
             else:
-                self.tree.insert('', tk.END, values=contact, tags = ('evenrow',))
+                self.tree.insert('', tk.END, values=row_values, tags=('evenrow',))
             
     def item_selected(self, event):
-        selected_item = self.tree.selection()[0]  # Récupère l'ID de l'élément sélectionné
-        self.numero_ligne = self.tree.index(selected_item)  # Récupère l'index de l'élément sélectionné dans le Treeview
-        print("Numéro de ligne sélectionné :", self.numero_ligne+1)  # Affiche le numéro de ligne 
+        selected_items = self.tree.selection()  # Récupère la liste des éléments sélectionnés dans le Treeview.
+        selected_item = selected_items[0]  # Prend uniquement le premier élément sélectionné.
+        item_id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
+        print(item_id)  # Affiche l'ID de l'élément sélectionné.
+        self.id_selectionne = item_id  # Stocke l'ID de l'élément sélectionné dans une variable
 
     def habillage_tableau(self):
        # Création et configuration de la Scrollbar
@@ -86,5 +84,8 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title("fenêtre principale")
     root.resizable(width=False,height=False)
-    tableau = Tableau_patients(root, 'http://127.0.0.1:5000/personnes')
+    tableau = Tableau_patients(root)
+    tableau.recuperation_donnees('http://127.0.0.1:5000/students')
+    tableau.affichage_tableau()
+    tableau.habillage_tableau()
     root.mainloop()

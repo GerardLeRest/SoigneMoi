@@ -34,7 +34,11 @@ class Interface_graphique (tk.Tk):
         print("sorties")
         
     def entrees(self):
-        tableau = Tableau_patients(self,'http://127.0.0.1:5000/personnes')
+        tableau = Tableau_patients(self)
+        tableau.recuperation_donnees('http://localhost:5000/students')
+        tableau.affichage_tableau()
+        tableau.habillage_tableau()
+        
         
     def afficher_heure_courante(self):
         # obtenir la date du jour
