@@ -1,9 +1,8 @@
 import tkinter as tk
 from tkinter import ttk ## bibliothèque de widgets plus modernes tk
-import pandas as pd # affichage du tableau
-import matplotlib.pyplot as plt # affichage du tableau
 from datetime import datetime
 import Frame_canevas
+from Tableau import Tableau_patients
 
 class Interface_graphique (tk.Tk):
 
@@ -24,7 +23,7 @@ class Interface_graphique (tk.Tk):
         self.label_date = ttk.Label(self.frame_boutons)
         self.label_date.pack(padx=10,pady=8)
         self.afficher_heure_courante()
-        # Frame du canvas partie intérieure de l'application
+        # Framee du canvas partie intérieure de l'application
         self.frame_canvas = Frame_canevas.Frame_canevas(self)
         self.frame_canvas.grid(row=1,column=0)
        
@@ -35,7 +34,7 @@ class Interface_graphique (tk.Tk):
         print("sorties")
         
     def entrees(self):
-        print("entrées")
+        tableau = Tableau_patients(self,'http://127.0.0.1:5000/personnes')
         
     def afficher_heure_courante(self):
         # obtenir la date du jour
