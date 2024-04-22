@@ -35,7 +35,7 @@ class Interface_graphique (tk.Tk):
         
     def entrees(self):
         tableau = Tableau_patients(self)
-        tableau.recuperation_donnees('http://localhost:5000/students')
+        tableau.recuperation_donnees('http://localhost:8082/tableau')
         tableau.affichage_tableau()
         tableau.habillage_tableau()
         

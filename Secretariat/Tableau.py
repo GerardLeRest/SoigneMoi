@@ -9,23 +9,23 @@ class Tableau_patients(tk.Toplevel):
     
     def __init__(self, fenetre):
         tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenêtre Toplevel avec 'fenetre' comme parent.
-        self.title("Students")
+        self.title("Patients")
         self.geometry("700x400")  # Dimensions de la fenêtrefenetre_application("Fenêtre Secondaire")
-        self.liste_personnes = {}
+        self.liste_patients = {}
         self.id_selectionne = None  # permet de récupéer l'ID sélectionnée par cli sur la ligne
         ## Tableau Triview
         # définir les colonnes du tableau
-        columns = ('id','first_name', 'surname', 'age')
+        columns = ('id','prenom', 'nom', 'adressePostale')
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.grid(row=0, column=0, sticky='nsew')
         # sélection d'un enregistrement
-        self.tree.bind('<<TreeviewSelect>>', self.item_selected)
+        self.tree.bind('<<TreeviewSelect>>', self.select_id)
         self.numero_ligne=0
         
     def recuperation_donnees(self, url):
 
         # L'URL du serveur d'où récupérer les données JSON
-        #self.url = 'http://127.0.0.1:5000/students'
+        #self.url = 'http://127.0.0.1:8082/tableau'
 
         # Envoyer la requête GET
         reponse = requests.get(url)
@@ -33,8 +33,13 @@ class Tableau_patients(tk.Toplevel):
         # Vérifier si la requête a réussi
         if reponse.status_code == 200:
             # Transformer le format json en listes
-            self.liste_personnes = reponse.json()
-            print(self.liste_personnes)
+            donnees = reponse.json()
+            print(donnees)
+            if isinstance(donnees, dict):
+                self.liste_patients = [donnees]  # transforme un dictionnaire (1 patient) en liste de 1 dictionnaire
+                print(self.liste_patients)
+            else:
+                self.liste_patients = donnees
         else:
             print(f"Erreur lors de la récupération des données: {reponse.status_code}")
     
@@ -44,18 +49,24 @@ class Tableau_patients(tk.Toplevel):
         s = ttk.Style()
         s.theme_use('clam')
         
-        # define headings
-        self.tree.heading('first_name', text='First_name')
-        self.tree.heading('surname', text='Surname')
-        self.tree.heading('age', text='Age')
-        self.tree.heading('id', text='Id')
+        # definir les titres
+        self.tree.heading('id', text='Id', anchor=tk.W)
+        self.tree.heading('prenom', text='Prenom', anchor=tk.W)
+        self.tree.heading('nom', text='Nom', anchor=tk.W)
+        self.tree.heading('adressePostale', text='Adresse_Postale', anchor=tk.W)
         s.configure('Treeview.Heading', background="lightblue")
 
-        # generate sample data
+         #definir les colonnes
+        self.tree.column('id', width=60, anchor=tk.W) # colonne de largeur 30 px et id à gauche (West)
+        self.tree.column('prenom', width=150, anchor=tk.W)  
+        self.tree.column('nom', width=150, anchor=tk.W)  
+        self.tree.column('adressePostale', width=1000, anchor=tk.W)  
+
+        # rentrer les données
         contacts = []
         i = 1
-        for personne in self.liste_personnes:  # Directement itérer sur la liste des dictionnaires
-            row_values = (personne['id'], personne['first_name'], personne['surname'], personne['age'])
+        for patient in self.liste_patients:  # C'est une liste de dictionnaire
+            row_values = (patient['idPatient'], patient['prenom'], patient['nom'], patient['adressePostale'])
             i += 1
             if i % 2:
                 
@@ -63,7 +74,7 @@ class Tableau_patients(tk.Toplevel):
             else:
                 self.tree.insert('', tk.END, values=row_values, tags=('evenrow',))
             
-    def item_selected(self, event):
+    def select_id(self, event):
         selected_items = self.tree.selection()  # Récupère la liste des éléments sélectionnés dans le Treeview.
         selected_item = selected_items[0]  # Prend uniquement le premier élément sélectionné.
         item_id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
@@ -76,7 +87,7 @@ class Tableau_patients(tk.Toplevel):
         self.tree.configure(yscroll=scrollbar.set)
         scrollbar.grid(row=0, column=1, sticky='ns')
 
-        # style row colors
+        # couleur des lignes
         self.tree.tag_configure('oddrow', background='lightgrey')
         self.tree.tag_configure('evenrow', background='white')
 

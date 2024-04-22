@@ -1,11 +1,12 @@
 README.md
  
  ------------------------------------------------
-1 - lancer Serveur_Flask.py. Le serveur accède à la base de données "students" (first_name, surname, age)
+1 - lancer le programme le programme slim-secretariat après avoir lancé le serveur PHP:
+php -S localhost:8082
 2 - lancer le fichier Interface_graphique. 
 - Une action sur le bouton "tous" affiche "tous" sur le terminal
 - Une action sur le bouton "sorties" affiche sur le terminal
-- une action sur le bouton "Entrees" affiche dans un tableau les valeurs de la base de données à (url "http://localhost:5000/students)
+- une action sur le bouton "Entrees" affiche dans un tableau les valeurs de la base de données à (url "http://localhost:8082/tableau)
 - una action sur l'une des lignes du tableau renvoie le numéro de la ligne et stocke la valeur dans une variable self.numero_ligne
 
 source - tableau:
