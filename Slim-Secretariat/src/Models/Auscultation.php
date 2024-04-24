@@ -19,7 +19,7 @@ class Auscultation
     private Medecin $medecin;
 
     #[Id]
-    #[ManyToOne(targetEntity: "Patient")]
+    #[ManyToOne(targetEntity: "Patient", inversedBy: "auscultations")]
     #[JoinColumn(name: "idPatient", referencedColumnName: "idPatient")]
     private Patient $patient;
 
