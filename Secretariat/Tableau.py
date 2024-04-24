@@ -5,11 +5,11 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
 
-class Tableau_patients(tk.Toplevel):
+class Tableau(tk.Toplevel):
     
-    def __init__(self, fenetre):
-        tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenêtre Toplevel avec 'fenetre' comme parent.
-        self.title("Patients")
+    def __init__(self, fenetre, titre_fenetre): # self: fenêtre tkToplevel - fenetre: fenetre mère - titre de la fenêtre)
+        tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenetrte parente
+        self.title(titre_fenetre)
         self.geometry("700x400")  # Dimensions de la fenêtrefenetre_application("Fenêtre Secondaire")
         self.liste_patients = {}
         self.id_selectionne = None  # permet de récupéer l'ID sélectionnée par cli sur la ligne
@@ -25,17 +25,16 @@ class Tableau_patients(tk.Toplevel):
     def recuperation_donnees(self, url):
 
         # L'URL du serveur d'où récupérer les données JSON
-        #self.url = 'http://127.0.0.1:8082/tableau'
+        #self.url = 'http://127.0.0.1:5000/students'
 
         # Envoyer la requête GET
         reponse = requests.get(url)
 
-        # Vérifier si la requête a réussi
         if reponse.status_code == 200:
             # Transformer le format json en listes
             donnees = reponse.json()
             print(donnees)
-            if isinstance(donnees, dict):
+            if isinstance(donnees, dict): # pour 1 patient
                 self.liste_patients = [donnees]  # transforme un dictionnaire (1 patient) en liste de 1 dictionnaire
                 print(self.liste_patients)
             else:
@@ -77,10 +76,12 @@ class Tableau_patients(tk.Toplevel):
     def select_id(self, event):
         selected_items = self.tree.selection()  # Récupère la liste des éléments sélectionnés dans le Treeview.
         selected_item = selected_items[0]  # Prend uniquement le premier élément sélectionné.
-        item_id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
-        print(item_id)  # Affiche l'ID de l'élément sélectionné.
-        self.id_selectionne = item_id  # Stocke l'ID de l'élément sélectionné dans une variable
-
+        id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
+        print(id)  # Affiche l'ID de l'élément sélectionné.
+        self.id_selectionne = id  # Stocke l'ID de l'élément sélectionné dans une variable
+        #detail = Details(self, self.id_selectionne)
+        
+        
     def habillage_tableau(self):
        # Création et configuration de la Scrollbar
         scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.tree.yview)
@@ -95,8 +96,16 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title("fenêtre principale")
     root.resizable(width=False,height=False)
-    tableau = Tableau_patients(root)
-    tableau.recuperation_donnees('http://127.0.0.1:5000/students')
+    tableau = Tableau(root, "fenêtre")
+    tableau.recuperation_donnees('http://127.0.0.1:8082/tous')
     tableau.affichage_tableau()
     tableau.habillage_tableau()
     root.mainloop()
+    
+    
+    # Serveur Python Flask
+    # adresse du serveur: http://127.0.0.1:5000/
+    
+    # libération du port 5000
+    # lsof -i:5000
+    # kill -9 PID 

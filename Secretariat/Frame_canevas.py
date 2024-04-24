@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 class Frame_canevas(ttk.Frame):
     
     def __init__(self, master):
-        ttk.Frame.__init__(self, master) # Initialisation de la classe parente avec le master # initialisation de la classe parente
+        ttk.Frame.__init__(self, master) # initialisation de la classe parente
         self.canvas = tk.Canvas(self, width=600, height=400, bg="white")
         self.canvas.pack()
         self.master = master

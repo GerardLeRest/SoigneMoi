@@ -1,8 +1,9 @@
+from struct import pack
 import tkinter as tk
 from tkinter import ttk ## bibliothèque de widgets plus modernes tk
 from datetime import datetime
 import Frame_canevas
-from Tableau import Tableau_patients
+from Tableau import Tableau
 
 class Interface_graphique (tk.Tk):
 
@@ -11,7 +12,7 @@ class Interface_graphique (tk.Tk):
         tk.Tk.__init__(self)   # constructeur de la classe parente
         # Frame des boutons en haut - position 0,0
         self.frame_boutons = ttk.Frame(self)
-        self.frame_boutons.grid(row=0, column=0)
+        self.frame_boutons.pack(side="top")
         # afficher les trois boutons en haut à gauche
         bouton_tous = ttk.Button(self.frame_boutons, text="Tous", command=self.tous)
         bouton_tous.pack(side="left", padx = 4, pady = 4 )
@@ -25,20 +26,26 @@ class Interface_graphique (tk.Tk):
         self.afficher_heure_courante()
         # Framee du canvas partie intérieure de l'application
         self.frame_canvas = Frame_canevas.Frame_canevas(self)
-        self.frame_canvas.grid(row=1,column=0)
+        self.frame_canvas.pack(side ="top")
+        # Tbaleau d'affichage
        
     def tous(self):
-        print ("tous")
+        self.tableau = Tableau(self, "Tous")
+        self.tableau.recuperation_donnees('http://localhost:8082/tous')
+        self.tableau.affichage_tableau()
+        self.tableau.habillage_tableau()
         
     def sorties(self):
-        print("sorties")
+        self.tableau = Tableau(self, "Sorties")
+        self.tableau.recuperation_donnees('http://localhost:8082/sorties')
+        self.tableau.affichage_tableau()
+        self.tableau.habillage_tableau()
         
     def entrees(self):
-        tableau = Tableau_patients(self)
-        tableau.recuperation_donnees('http://localhost:8082/tableau')
-        tableau.affichage_tableau()
-        tableau.habillage_tableau()
-        
+        self.tableau = Tableau(self, "Entrées")
+        self.tableau.recuperation_donnees('http://localhost:8082/entrees')
+        self.tableau.affichage_tableau()
+        self.tableau.habillage_tableau()
         
     def afficher_heure_courante(self):
         # obtenir la date du jour
