@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk ## bibliothèque de widgets plus modernes tk
 from datetime import datetime
 import Frame_canevas
-from Tableau import Tableau
+from Tableau import Tableau # importer la classe Tableau du fichiet Tableau.py
 
 class Interface_graphique (tk.Tk):
 
@@ -13,6 +13,7 @@ class Interface_graphique (tk.Tk):
         # Frame des boutons en haut - position 0,0
         self.frame_boutons = ttk.Frame(self)
         self.frame_boutons.pack(side="top")
+        self.frame_boutons.grid(row=0, column=0)
         # afficher les trois boutons en haut à gauche
         bouton_tous = ttk.Button(self.frame_boutons, text="Tous", command=self.tous)
         bouton_tous.pack(side="left", padx = 4, pady = 4 )
@@ -26,8 +27,7 @@ class Interface_graphique (tk.Tk):
         self.afficher_heure_courante()
         # Framee du canvas partie intérieure de l'application
         self.frame_canvas = Frame_canevas.Frame_canevas(self)
-        self.frame_canvas.pack(side ="top")
-        # Tbaleau d'affichage
+        self.frame_canvas.grid(row=1,column=0)
        
     def tous(self):
         self.tableau = Tableau(self, "Tous")

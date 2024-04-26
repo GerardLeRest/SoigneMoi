@@ -4,6 +4,8 @@ import requests
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+from Details import Details
+
 
 class Tableau(tk.Toplevel):
     
@@ -11,8 +13,8 @@ class Tableau(tk.Toplevel):
         tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenetrte parente
         self.title(titre_fenetre)
         self.geometry("700x400")  # Dimensions de la fenêtrefenetre_application("Fenêtre Secondaire")
-        self.liste_patients = {}
-        self.id_selectionne = None  # permet de récupéer l'ID sélectionnée par cli sur la ligne
+        self.liste_patients = []
+        self.id_selectionne = None  # permet de récupéer l'ID sélectionnée au clic sur la ligne
         ## Tableau Triview
         # définir les colonnes du tableau
         columns = ('id','prenom', 'nom', 'adressePostale')
@@ -25,20 +27,15 @@ class Tableau(tk.Toplevel):
     def recuperation_donnees(self, url):
 
         # L'URL du serveur d'où récupérer les données JSON
-        #self.url = 'http://127.0.0.1:5000/students'
+        #self.url = 'http://127.0.0.1:5000/students' - table students - university
 
         # Envoyer la requête GET
         reponse = requests.get(url)
 
         if reponse.status_code == 200:
             # Transformer le format json en listes
-            donnees = reponse.json()
-            print(donnees)
-            if isinstance(donnees, dict): # pour 1 patient
-                self.liste_patients = [donnees]  # transforme un dictionnaire (1 patient) en liste de 1 dictionnaire
-                print(self.liste_patients)
-            else:
-                self.liste_patients = donnees
+            self.liste_patients = reponse.json()
+            #print(self.liste_patients)
         else:
             print(f"Erreur lors de la récupération des données: {reponse.status_code}")
     
@@ -77,10 +74,9 @@ class Tableau(tk.Toplevel):
         selected_items = self.tree.selection()  # Récupère la liste des éléments sélectionnés dans le Treeview.
         selected_item = selected_items[0]  # Prend uniquement le premier élément sélectionné.
         id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
-        print(id)  # Affiche l'ID de l'élément sélectionné.
-        self.id_selectionne = id  # Stocke l'ID de l'élément sélectionné dans une variable
-        #detail = Details(self, self.id_selectionne)
-        
+        ##print(id)  # Affiche l'ID de l'élément sélectionné.
+        # ouverture de la fenêtre "Détails"
+        details = Details(self, id)
         
     def habillage_tableau(self):
        # Création et configuration de la Scrollbar
@@ -105,7 +101,9 @@ if __name__ == '__main__':
     
     # Serveur Python Flask
     # adresse du serveur: http://127.0.0.1:5000/
-    
     # libération du port 5000
     # lsof -i:5000
     # kill -9 PID 
+    
+    # serveur php
+    # adresse du serveur: http://127.0.0.1:/
