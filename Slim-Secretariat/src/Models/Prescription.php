@@ -27,14 +27,18 @@ class Prescription
     private string $posologie;
 
     #[Column(type: "date")]
-    private DateTime $dateDebut;
+    private DateTime $dateDeDebut;
 
     #[Column(type: "date", nullable : true)]
-    private DateTime $dateFin;
+    private DateTime $dateDeFin;
 
     #[ManyToOne (targetEntity: Medecin::class)]
     #[JoinColumn(name: "idMedecin", referencedColumnName: "idMedecin")]
     private Medecin $medecin;
+
+    #[ManyToOne(targetEntity: Patient::class)]
+    #[JoinColumn(name: "idPatient", referencedColumnName: "idPatient")]
+    private Patient $patient;
 
     public function getIdPrescription(): int
     {
@@ -63,17 +67,22 @@ class Prescription
 
     public function getDateDebut(): DateTime
     {
-        return $this->dateDebut;
+        return $this->dateDeDebut;
     }
 
-    public function setDateDebut(DateTime $dateDebut): void
+    public function setDateDebut(DateTime $dateDeDebut): void
     {
-        $this->dateDebut = $dateDebut;
+        $this->dateDeDebut = $dateDeDebut;
     }
 
-    public function getDateFin(): DateTime
+    public function getdateDeFin(): ?DateTime
     {
-        return $this->dateFin;
+        return $this->dateDeFin;
+    }
+
+    public function setdateDeFin(?DateTime $dateDeFin): void
+    {
+        $this->dateDeFin = $dateDeFin;
     }
 
     public function getMedecin(): Medecin
@@ -81,8 +90,18 @@ class Prescription
         return $this->medecin;
     }
 
-    public function setMedecin(Medecin $medecin): Medecin
+    public function setMedecin(Medecin $medecin): void
     {
-        return $this->medecin;
+        $this->medecin = $medecin;
+    }
+
+    public function getPatient(): Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(Patient $patient): void
+    {
+        $this->patient = $patient;
     }
 }

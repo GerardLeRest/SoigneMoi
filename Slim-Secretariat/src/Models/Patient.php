@@ -8,11 +8,8 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\InverseJoinColumn;
-use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
-use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
@@ -40,9 +37,17 @@ class Patient
     #[Column(type: "string", length: 255)]
     private string $motDePasse;
 
-    // Relation Patient-Sejours
+    // Relation Patients-Sejours
     #[OneToMany(targetEntity: Sejour::class, mappedBy: 'patient')]
     private Collection $sejours;
+
+    // Relation Patients-prescriptions
+    #[OneToMany(targetEntity: Prescription::class, mappedBy: 'patient')]
+    private Collection $prescriptions;
+
+    // Relation Patients-Avis
+    #[OneToMany(targetEntity: Avis::class, mappedBy: 'patient')]
+    private Collection $aviss;
 
     // Relation Patient-Medecins
     #[ManyToMany(targetEntity: Medecin::class, inversedBy: 'patients')]
@@ -52,9 +57,11 @@ class Patient
     public function __construct()
     {
         $this->sejours = new ArrayCollection();
+        $this->prescriptions = new ArrayCollection();
+        $this->aviss = new ArrayCollection();
         $this->medecins = new ArrayCollection();
     }
-
+        
     public function getIdPatient(): int
     {
         return $this->idPatient;
@@ -111,7 +118,24 @@ class Patient
     }
 
     public function getSejours(): Collection
-{
-    return $this->sejours;
-}
+    {
+        return $this->sejours;
+    }
+
+    public function getAvis(): Collection
+    {
+        return $this->aviss;
+    }
+
+    public function getPrescriptions(): Collection
+    {
+        return $this->prescriptions;
+
+    }
+
+    public function getMedecins(): Collection
+    {
+        return $this->medecins;
+    }
+
 }

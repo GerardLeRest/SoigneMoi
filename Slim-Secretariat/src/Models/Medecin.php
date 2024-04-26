@@ -34,9 +34,6 @@ class Medecin
     #[Column(type: "string", length: 100)]
     private string $specialite;
 
-   /*  #[ManyToMany(targetEntity: "Patient", mappedBy: "medecins")]
-    private Collection $patients; */
-   
     // liaison Avis
     #[OneToMany(targetEntity: Avis::class, mappedBy: 'medecin')]
     private Collection $aviss;
@@ -50,17 +47,12 @@ class Medecin
     #[JoinTable(name: 'auscultations')]
     private Collection $patients;
 
-   
     public function __construct()
     {
         $this->aviss = new ArrayCollection();
         $this->prescriptions = new ArrayCollection();
         $this->patients = new ArrayCollection();
     }
-
-   /*  public function __construct() {
-        $this->patients = new ArrayCollection();
-    } */
 
     public function getIdMedecin(): int
     {
@@ -107,8 +99,21 @@ class Medecin
         $this->specialite = $specialite;
     }
 
-    /* public function getPatients(): Collection
+    public function getAvis(): Collection
+    {
+        return $this->aviss;
+    }
+
+    public function getPrescriptions(): Collection
+    {
+        return $this->prescriptions;
+
+    }
+
+    public function getPatients(): Collection
     {
         return $this->patients;
-    } */
+    }
+
+    
 }
