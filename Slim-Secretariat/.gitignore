@@ -1,0 +1,6 @@
+.vscode/
+vendor/
+.idea/
+.env
+Notes.md
+*.log
