@@ -84,14 +84,14 @@ INSERT INTO patients (prenom, nom, adressePostale, email, motDePasse) VALUES
 ('Charlotte', 'Martin', '15 Chemin des Ducs, Betton', 'charlotte.martin@example.com', '$2y$12$6kUYdW.7LUed31Wtrt7TCOoOgHrz6K5mV8xXvOdF3I6xMIfWbjC82');
 
 INSERT INTO sejours (dateDebut, dateFin, motifSejour, specialite, medecinSouhaite, idPatient) VALUES
-('2023-02-15', '2023-04-29', 'Opération du genou suite à un accident sportif. Reconstruction des ligaments avec réhabilitation post-opératoire intensive.', 'Chirurgien orthopédique', 'Lei Wang', 1),
+('2023-02-15', '2024-05-01', 'Opération du genou suite à un accident sportif. Reconstruction des ligaments avec réhabilitation post-opératoire intensive.', 'Chirurgien orthopédique', 'Lei Wang', 1),
 ('2024-03-15', '2024-04-05', 'Opération du cœur nécessitant une intervention chirurgicale complexe par un spécialiste en chirurgie cardiaque', 'Chirurgien cardiaque', NULL, 1),
-('2024-05-20', '2024-04-29', 'Suivi de maladie cardiaque impliquant un examen complet et la gestion des risques cardiaques', 'Cardiologue', 'Marie Curie', 2),
+('2024-05-20', '2024-05-01', 'Suivi de maladie cardiaque impliquant un examen complet et la gestion des risques cardiaques', 'Cardiologue', 'Marie Curie', 2),
 ('2024-06-10', '2024-06-24', 'Traitement spécialisé d''une infection bactérienne résistante aux antibiotiques. Administration d''antibiotiques à spectre étendu et surveillance médicale constante.', 'Médecine générale', 'Jean Dupont', 2),
 ('2024-07-01', NULL, 'Traitement d''une pneumonie sévère nécessitant une hospitalisation pour surveillance et administration de traitements intraveineux', 'Pneumologue', 'Jean Dupont', 3),
 ('2024-08-12', NULL, 'Gestion et réhabilitation d''arthrose avancée nécessitant une approche multidisciplinaire, incluant la chirurgie orthopédique', 'Chirurgien orthopédique', 'Lei Wang', 4),
-('2024-04-29', '2024-10-05', 'Prise en charge d''une bronchite chronique exacerbée, nécessitant un suivi spécialisé et des soins pneumologiques avancés', 'Pneumologue', 'Amina Diallo', 5),
-('2024-10-15', NULL, 'Programme intensif de rééducation après AVC, visant à restaurer autant que possible les fonctions motrices et cognitives', 'Neurologue', NULL, 6);
+('2024-04-29', '2024-5-01', 'Prise en charge d''une bronchite chronique exacerbée, nécessitant un suivi spécialisé et des soins pneumologiques avancés', 'Pneumologue', 'Amina Diallo', 5),
+('2024-05-01', NULL, 'Programme intensif de rééducation après AVC, visant à restaurer autant que possible les fonctions motrices et cognitives', 'Neurologue', NULL, 6);
 
 INSERT INTO prescriptions (nomMedicament, posologie, dateDeDebut, dateDeFin, idmedecin, idPatient) VALUES
 ('Amoxicilline', '500 mg toutes les 8 heures pendant 7 jours', '2024-09-05', '2024-09-12', 6, 5),
