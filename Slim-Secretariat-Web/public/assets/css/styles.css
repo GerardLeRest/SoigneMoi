@@ -1,0 +1,27 @@
+.nav-link{
+    color: #738F84; /*texte barre de menu */
+}
+
+ h4{
+    color: #738F84;
+}
+
+h2{
+    color: #F4D895;
+}
+
+.bouton-perso{
+    background-color: #F4D895; /* couleur du fond de bouton */
+    color:black; /* couleur du texte du bouton */
+}
+
+.carousel-control-next, /* contrôles des boutons des carrousels */
+.carousel-control-prev{
+    filter: invert(1);
+}
+
+footer p {
+    font-size: 14px;
+    color: grey;
+    text-align: center;
+}
