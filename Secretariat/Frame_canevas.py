@@ -15,7 +15,7 @@ class Frame_canevas(ttk.Frame):
         self.photo2 = self.creer_image("images/logo_120_120.png")
         # ajouter une photo au canevas
         self.canvas.create_image(390, 230, anchor='nw', image=self.photo2)
-        self.photo3 = self.creer_image("images/adresse_240_163.png")
+        self.photo3 = self.creer_image("images/adresse.png")
         # ajouter une photo au canevas
         self.canvas.create_image(330, 50, anchor='nw', image=self.photo3)
        

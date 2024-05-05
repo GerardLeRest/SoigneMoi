@@ -12,7 +12,9 @@ class Tableau(tk.Toplevel):
     def __init__(self, fenetre, titre_fenetre): # self: fenêtre tkToplevel - fenetre: fenetre mère - titre de la fenêtre)
         tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenetrte parente
         self.title(titre_fenetre)
-        self.geometry("700x400")  # Dimensions de la fenêtrefenetre_application("Fenêtre Secondaire")
+        self.resizable(width=False, height=False) # bloquer le redimensionnement
+        self.geometry("700x300")  # Dimensions de la fenêtrefenetre_application("Fenêtre Secondaire")
+        #self(width=False,height=False)
         self.liste_patients = []
         self.id_selectionne = None  # permet de récupéer l'ID sélectionnée au clic sur la ligne
         ## Tableau Triview
@@ -90,10 +92,9 @@ class Tableau(tk.Toplevel):
 
 if __name__ == '__main__':       
     root = tk.Tk()
-    root.title("fenêtre principale")
-    root.resizable(width=False,height=False)
-    tableau = Tableau(root, "fenêtre")
-    tableau.recuperation_donnees('http://127.0.0.1:8082/tous')
+    root.title("fenêtre mère")
+    tableau = Tableau(root, "TopLevel")
+    tableau.recuperation_donnees('http://127.0.0.1/slim-secretariat-web/tous')
     tableau.affichage_tableau()
     tableau.habillage_tableau()
     root.mainloop()

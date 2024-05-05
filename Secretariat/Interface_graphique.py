@@ -31,19 +31,20 @@ class Interface_graphique (tk.Tk):
        
     def tous(self):
         self.tableau = Tableau(self, "Tous")
-        self.tableau.recuperation_donnees('http://localhost:8082/tous')
-        self.tableau.affichage_tableau()
-        self.tableau.habillage_tableau()
+        self.tableau.recuperation_donnees('http://localhost/slim-secretariat-web/tous')
+        self.affichage()
         
     def sorties(self):
         self.tableau = Tableau(self, "Sorties")
-        self.tableau.recuperation_donnees('http://localhost:8082/sorties')
-        self.tableau.affichage_tableau()
-        self.tableau.habillage_tableau()
+        self.tableau.recuperation_donnees('http://localhost/slim-secretariat-web/sorties')
+        self.affichage()
         
     def entrees(self):
         self.tableau = Tableau(self, "Entrées")
-        self.tableau.recuperation_donnees('http://localhost:8082/entrees')
+        self.tableau.recuperation_donnees('http://localhost/slim-secretariat-web/entrees')
+        self.affichage()
+        
+    def affichage(self):
         self.tableau.affichage_tableau()
         self.tableau.habillage_tableau()
         
