@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use DateTime;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
