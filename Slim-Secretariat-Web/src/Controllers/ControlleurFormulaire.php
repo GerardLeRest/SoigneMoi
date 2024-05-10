@@ -7,10 +7,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\Patient;
 use Exception;
+use Slim\Views\PhpRenderer;
 
 class ControlleurFormulaire{
 
-    private $entityManager;
+    private EntityManager $entityManager;
     private array $donnees =[];
     private string $motDePassseHache;
 
@@ -20,6 +21,7 @@ class ControlleurFormulaire{
 
     public function verification(Request $request, Response $response, $args): Response
     {
+        $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         // récupération des données
         $this->donnees = $request->getParsedBody();
         // affectation des variables
@@ -28,6 +30,13 @@ class ControlleurFormulaire{
         $adressePostale = $this->donnees["adressePostale"];
         $email = $this->donnees['email'];
         $motDePasse = $this->donnees["motDePasse"];
+        $errors =[];
+
+        $prenom = "";
+        $nom = "LE REST";
+        $adressePostale = "";
+        $email = $this->donnees["GERATD.HSD"];
+        $motDePasse = $this->donnees["Vcu"];
         $errors =[];
 
         // Prenom
@@ -61,7 +70,6 @@ class ControlleurFormulaire{
                 $errors['email'] = "votre email est déjà enregistré";
             }
         }
-        
         // mot de passe
         //^: début de chaine - \d: au moins 1 nombre -?=.*[^a-zA-Z\d]: au moins un caractère spécial -{8-20}: mot de passe entre 8 et 20 carctères
         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,20}$/', $motDePasse)) { 
@@ -70,16 +78,11 @@ class ControlleurFormulaire{
         $this->motDePassseHache = password_hash($motDePasse, PASSWORD_DEFAULT); 
 
         if (count($errors)>0){
-            foreach ($errors as $cle => $valeur){
-                echo $cle . ": " . $valeur. " <br>";
+            return $renderer->render($response,'inscription.php', ['errors' => $errors]);
             }
-        }
         else{
             $this->validation();
         }
-
-        $reponse = json_encode($errors);
-        return $response;
     }
 
     public function validation(){

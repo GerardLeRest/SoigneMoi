@@ -10,7 +10,7 @@ use Psr\Http\Message\RequestInterface as Request;
 
 class ControlleurDonnees
 {
-    private $entityManager; 
+    private EntityManager $entityManager; 
     private array $donnees; //données de la requête
   
 
@@ -36,7 +36,7 @@ class ControlleurDonnees
             return $tableauFinal; // Retourne après avoir traité tous les éléments
         }
 
-
+    //tous
     public function donneesTous (Request $request, Response $response) : Response
     {
         try{
@@ -105,7 +105,7 @@ class ControlleurDonnees
             //------------------------------------------------------------------------------------------      
             //Sejour
             $querySejours = $this->entityManager->createQuery('
-            SELECT s.dateDebut, s.dateFin, s.motifSejour, s.specialite, s.medecinSouhaite,
+            SELECT p.prenom, p.nom, s.dateDebut, s.dateFin, s.motifSejour, s.specialite, s.medecinSouhaite,
                     p.email
             FROM App\Models\Patient p
             JOIN p.sejours s

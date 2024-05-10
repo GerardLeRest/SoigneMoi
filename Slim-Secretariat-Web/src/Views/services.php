@@ -7,7 +7,8 @@
         <?php require_once('header.php'); ?>
             
         <main  class="container">
-            <p>page des services</p>
+            <p>Espace utilisateur</p>
+            <?php echo "$PWD"; ?>
         </main>
         
         <!-- include footer -->

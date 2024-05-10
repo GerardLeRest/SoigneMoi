@@ -54,6 +54,10 @@
                     </div>
                 </div>
             </form>
+            <?php foreach ($errors as $cle => $valeur) {
+                    echo $cle . ": " . $valeur . '<br>';
+                  }                       
+                ?>
         </main>
         <!-- bas de page-->
         <?php require_once('footerEnBas.php'); ?>

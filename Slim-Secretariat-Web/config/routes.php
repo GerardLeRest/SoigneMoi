@@ -6,6 +6,7 @@ use App\Controllers\ControlleurFormulaire;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
+use App\Controllers\ControlleurSejours;
 
 
 //pages Web
@@ -42,5 +43,5 @@ return function (App $app) {
 
    //site//web
    $app->post("/validation-formulaire", ControlleurFormulaire::class . ':verification'); //validation du formulaire
+   $app->get('/sejours', ControlleurSejours::class . ':requeteSejours'); //récupération des données du séjour 
 };
-

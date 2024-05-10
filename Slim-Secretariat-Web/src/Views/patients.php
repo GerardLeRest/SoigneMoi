@@ -8,6 +8,7 @@
             
         <main  class="container">
             <p>page des patients</p>
+            <?php echo getcwd(); ?>
         </main>
         
         <!-- include footer -->

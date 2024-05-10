@@ -1,9 +1,9 @@
 <?php 
-$liensURL = ['href="accueil"', 'href = "services"', 'href = "patients"', 'href = "professionnels"'];
+$liensURL = ['href="accueil"', 'href = "services"', 'href = "patients"', 'href = "professionnels"', 'href = "sejours"'];
    
-$titres = ["Accueil", "Services", "Patients", "Professionnels"];
+$titres = ["Accueil", "Services", "Patients", "Professionnels", "Sejours"];
 
-$titrePrincipaux = ["Hôpital SoigneMoi","Services", "Patients", "Professionnels"];
+$titrePrincipaux = ["Hôpital SoigneMoi","Services", "Patients", "Professionnels", "Espace Utilisateur"];
 
 $indice=0; //indice de déplacement du tableau $footerURL
     
