@@ -19,7 +19,7 @@ class ControlleurFormulairePatient{
         $this->entityManager = $entityManager;
     }   
 
-    public function verification(Request $request, Response $response, $args): Response
+    public function verification(Request $request, Response $response, array $args): Response
     {
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         // récupération des données
@@ -31,13 +31,13 @@ class ControlleurFormulairePatient{
         $email = $this->donnees['email'];
         $motDePasse = $this->donnees["motDePasse"];
         $errors =[];
-
-        $prenom = "";
-        $nom = "LE REST";
+        
+        // Données de test
+       /*  $prenom = "";
+        $nom = "";
         $adressePostale = "";
-        $email = "GERATD.HSD";
-        $motDePasse = "Vcu";
-        $errors =[]; 
+        $email = "";
+        $motDePasse = ""; */
 
         // Prenom
         if (!isset($prenom) || empty($prenom)){
@@ -82,6 +82,8 @@ class ControlleurFormulairePatient{
             }
         else{
             $this->validation();
+            $response->getBody()->write("la vérification est bonne");
+            return $response;
         }
     }
 

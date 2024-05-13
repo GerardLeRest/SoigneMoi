@@ -8,7 +8,7 @@
         <?php require_once('header.php'); ?>
         
         <main class="container">
-            <form action="/slim-secretariat-web/formulairePatient" method="post">
+            <form action="/slim-secretariat-web/formulairePatient" method="post"> <!-- /slim-secretariat-web/formulairePatient : route -->
                 <div class ="row text-center">
                     <div class="col-12">
                         <br>
@@ -42,14 +42,17 @@
                         Le mot de passe doit contenir entre 8 et 20 caractères, incluant au moins une lettre minuscule, une lettre majuscule, un chiffre, et un caractère spécial.
                     </div>
                 </div>    
+                <br>
                 <div class="col-10 offset 2 text-center">
                     <button type="submit" class="btn bouton-perso">Valider</button>
                 </div>
             </form>
+            <!-- affichage des erreurs -->
             <?php foreach ($errors as $cle => $valeur) {
-                    echo $cle . ": " . $valeur . '<br>';
+                    //htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
+                    echo htmlspecialchars($cle) . ": " . htmlspecialchars($valeur) . '<br>';
                   }                       
-                ?>
+                ?>   
         </main>
         <!-- bas de page-->
         <?php require_once('footerEnBas.php'); ?>

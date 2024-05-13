@@ -1,7 +1,7 @@
 <?php 
-$liensURL = ['href="accueil"', 'href = "services"', 'href = "patients"', 'href = "professionnels"', 'href = "sejours"'];
+$liensURL = ['href="accueil"', 'href = "services"', 'href = "patients"', 'href = "professionnels"', 'href = "listeSejours/1"', 'href = "formulaireSejour"'];
    
-$titres = ["Accueil", "Services", "Patients", "Professionnels", "Sejours"];
+$titres = ["Accueil", "Services", "Patients", "Professionnels", "Liste les séjours", "Créer un séjour"];
 
 $titrePrincipaux = ["Hôpital SoigneMoi","Services", "Patients", "Professionnels", "Espace Utilisateur"];
 

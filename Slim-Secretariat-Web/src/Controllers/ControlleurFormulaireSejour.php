@@ -8,6 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 use App\Models\Sejour;
 use Exception;
+use DateTime; 
+use App\Models\Patient;
 
 class ControlleurFormulaireSejour{
 
@@ -15,10 +17,11 @@ class ControlleurFormulaireSejour{
     private Entitymanager $entityManager;
 
     public function __construct(EntityManager $entityManager){
-        $thisEntityManager = $entityManager;
+        $this->entityManager = $entityManager;
     }
 
-    public function verification(Request $request, Response $response, $args ){
+    public function verification(Request $request, Response $response, $args ) : Response
+    {
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         $errors = [];
         $this->donnees = $request->getParsedBody();
@@ -28,18 +31,16 @@ class ControlleurFormulaireSejour{
         $specialite = $this->donnees['specialite'];
         $medecinSouhaite = $this->donnees['medecinSouhaite'];
 
-        $dateDebut="";
-        $dateFin ="";
+        // Données de test
+        /* $dateDebut = "";
+        $dateFin = "";
         $motifSejour = "";
-        $specialite = "CHIRURGIE";
-        $medecinSouhaite = "";
+        $specialite = "";
+        $medecinSouhaite = ""; */
 
         //tests
         if (!isset($dateDebut) || empty($dateDebut)){
             $errors['dateDebut'] = "la date de début n'a pas été saisie";
-        }
-        if (!isset($dateFin) || empty($dateFin)){
-            $errors['datefin'] = "la date de fin n'a pas été saisie";
         }
         if (!isset($motifSejour) || empty($motifSejour)){
             $errors['motifSejour'] = "le motif de séjour n'a pas été saisie";
@@ -47,31 +48,40 @@ class ControlleurFormulaireSejour{
         if (!isset($specialite) || empty($specialite)){
             $errors['specialite'] = "la specialite n'a pas été saisie";
         }
-        if (!isset($medecinSouhaite) || empty($medecinSouhaite)){
-            $errors['medecinSouhaite'] = "le medecin souhaité n'a pas été saisie";
-        }
         // traitement des erreurs
         if (count($errors)>0){
-            return $renderer ->render($response,'formulairePatient.php', ['errors' => $errors]);
+            return $renderer ->render($response,'formulaireSejour.php', ['errors' => $errors]);
             }
         else{
             $this->validation();
+            $response->getBody()->write("la vérification est bonne");
+            return $response;
         }
     }
 
-        public function validation(){
+        public function validation() : void
+        {
             $sejour =  new Sejour;
-            $sejour->setDateDebut($this->donnees['dateDebut']);
-            $sejour->setDateFin(($this->donnees['dateFin']));
+            // transformation en format dateTime
+            $dateDeDebut = new DateTime($this->donnees['dateDebut']);
+            // affectation de la date
+            $sejour->setDateDebut($dateDeDebut);
+            // date de fin
+            $dateDeFin = new DateTime($this->donnees['dateFin']);
+            $sejour->setDateFin($dateDeFin);
             $sejour->setMotifSejour($this->donnees['motifSejour']);
             $sejour->setSpecialite($this->donnees['specialite']);
             $sejour->setMedecinSouhaite($this->donnees['medecinSouhaite']);
+
+            $patient = $this->entityManager->find(Patient::class, 3); // $idPatient = 3 - simulation
+            $sejour->setPatient($patient);
+             
             try{
                 $this->entityManager->persist($sejour);
                 $this->entityManager->flush();
             }
-            catch (Exception $e) {
+                catch (Exception $e) {
                 echo 'Erreur de transfert: ', $e->getMessage(), "\n";
             }
-        }
+            }
     }

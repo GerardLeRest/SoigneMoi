@@ -53,7 +53,7 @@ class ControlleurSecretariat
             return $response->withHeader('Content-Type', 'application/json');
         } catch( Exception $e){ 
             $response->getBody()->write("Erreur: " . $e->getMessage());
-            return $response->withStatus(500)->withHeader('Content-Type', 'application/json');
+            return $response;
            }
     }
 
@@ -73,7 +73,7 @@ class ControlleurSecretariat
             return $response->withHeader('Content-Type', 'application/json');
         } catch(Exception $e){
             $response->getBody()->write("Erreur: " . $e->getmessage());
-            return $response->withStatus(500)->withHeader('Content-Type', 'application/json');
+            return $response;
         }
     }
 
@@ -94,7 +94,7 @@ class ControlleurSecretariat
             return $response->withHeader('Content-Type', 'application/json');
         } catch (Exception $e){
             $response->getBody()->write("Erreur: " . $e->getmessage());
-            return $response->withStatus(500)->withHeader('Content-Type', 'application/json');
+            return $response;
         }    
     }
 
@@ -216,9 +216,9 @@ class ControlleurSecretariat
             $donneesJSON = json_encode($tableauFinal);
             $response->getBody()->write($donneesJSON); 
             return $response->withHeader('Content-Type', 'application/json');        
-        } catch (\Throwable $e){
-                    $response->getBody()->write("Erreur: " . $e->getmessage());
-                    return $response->withStatus(500)->withHeader('Content-Type', 'application/json');
+        } catch (Exception $e){
+                $response->getBody()->write("Erreur: " . $e->getmessage());
+                return $response;
                 }    
         }
 }

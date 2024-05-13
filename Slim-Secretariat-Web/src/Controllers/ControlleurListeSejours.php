@@ -16,7 +16,8 @@ use Slim\Views\PhpRenderer;
                 $this->entityManager = $entityManager; 
             }    
 
-            public function requeteSejours(Request $request, Response $response, array $args){
+            public function requeteSejours(Request $request, Response $response, array $args) : Response 
+            {
                 $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
                 //récupération de l'id
                 $id = $args['id'];

@@ -8,7 +8,7 @@
             
         <main  class="container">
             <p>Espace utilisateur</p>
-            <?php echo "$PWD"; ?>
+            
         </main>
         
         <!-- include footer -->

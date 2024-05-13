@@ -47,23 +47,28 @@
               <textarea class="form-control" id="motifSejour" name="motifSejour" rows="3"></textarea>
             </div>
             <row class="row justify-content-center">
-              <div class="mb-2 col-6">
+              <div class="mb-3 col-6">
                 <label for="specialite" class="form-label">Spécialité</label>
                 <input type="text" class="form-control" id="specialite" name="specialite" required>
               </div>
-              <div class="mb-2 col-6">
+              <div class="mb-3 col-6">
                 <label for="medecinSouhaite" class="form-label">Médecin souhaité</label>
-                <input type="text" class="form-control" id="medecinSouhaite" name="medecinSouhaite" required>
+                <input type="text" class="form-control" id="medecinSouhaite" name="medecinSouhaite" >
               </div>
             </div>
-            <div class="col-10 offset 2 text-center">
+            <br>
+            <div class="col-10 md-5 text-center">
               <button type="submit" class="btn bouton-perso">Valider</button>
             </div>
           </form>  
-          <!-- affichage des erreurs -->
-          <?php foreach ($errors as $cle => $valeur){
-            echo $cle . ": " . "$valeur" . "<br>";
-          } ?>
+          <div class ="row">
+            <!-- affichage des erreurs -->
+            <?php foreach ($errors as $cle => $valeur) {
+                    //htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
+                    echo htmlspecialchars($cle) . ": " . htmlspecialchars($valeur) . '<br>';
+                  }                       
+                ?>   
+          <div>
         </main>      
         <!-- include footer -->
         <script src="assets/js/calendriers/jquery-3.3.1.min.js"></script>
