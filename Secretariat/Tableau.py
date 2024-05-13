@@ -23,7 +23,7 @@ class Tableau(tk.Toplevel):
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.grid(row=0, column=0, sticky='nsew')
         # sélection d'un enregistrement
-        self.tree.bind('<<TreeviewSelect>>', self.select_id)
+        self.tree.bind('<<TreeviewSelect>>', self.identite)
         self.numero_ligne=0
         
     def recuperation_donnees(self, url):
@@ -72,13 +72,18 @@ class Tableau(tk.Toplevel):
             else:
                 self.tree.insert('', tk.END, values=row_values, tags=('evenrow',))
             
-    def select_id(self, event):
+    def identite(self, event):
         selected_items = self.tree.selection()  # Récupère la liste des éléments sélectionnés dans le Treeview.
         selected_item = selected_items[0]  # Prend uniquement le premier élément sélectionné.
         id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
+        selected_item = selected_items[0]  # Prend uniquement le deuxième élément sélectionné.
+        prenom = self.tree.item(selected_item, 'values')[1]  # Récupère le nom, qui est la deuxième valeur de l'élément sélectionné.
+        selected_item = selected_items[0]  # Prend uniquement le troisième élément sélectionné.
+        nom = self.tree.item(selected_item, 'values')[2]  # Récupère l'ID, qui est la troisième valeur de l'élément sélectionné.
+        identity = prenom + " " + nom
         ##print(id)  # Affiche l'ID de l'élément sélectionné.
         # ouverture de la fenêtre "Détails"
-        details = Details(self, id)
+        details = Details(self, identity, id)
         
     def habillage_tableau(self):
        # Création et configuration de la Scrollbar

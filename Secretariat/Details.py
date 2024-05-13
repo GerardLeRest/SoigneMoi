@@ -5,9 +5,9 @@ import requests
 
 class Details(tk.Toplevel):
     
-    def __init__(self, fenetre, id):
+    def __init__(self, fenetre, identity, id):
         tk.Toplevel.__init__(self, fenetre) # Initialisation de la fenêtre Toplevel avec 'fenetre' comme parent.
-        self.title(f"Patient N° {id}")
+        self.title(f"{identity}")
         #self.url = 'http://127.0.0.1:5000/students' - table students - university
         self.resizable(width=False, height=False) # bloquer le redimensionnement
         self.id = id
@@ -34,7 +34,7 @@ class Details(tk.Toplevel):
         url_complete = f"http://localhost/slim-secretariat-web/details/{id}"
         response = requests.get(url_complete)
         if response.status_code == 200:
-            # Transformer le format json en listes
+            # Transformer le format json en listes de dictionnnaires
             self.liste_donnees = response.json()
             #print(self.liste_donnees)
         else:
