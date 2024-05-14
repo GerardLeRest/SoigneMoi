@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="fr">
-    <?php require_once('head.php'); ?>
-
+    <?php require_once('commun/head.php'); ?>
     <body>
-        <?php require_once('header.php'); ?>
+        <?php require_once('commun/header.php'); ?>
 
         <main class="container">
             <div class="row text-center">
@@ -44,5 +43,7 @@
                   }                       
                 ?>   
         </main> 
+        <!-- bas de page-->
+        <?php require_once('commun/footerEnBas.php'); ?>
     </body>
 </html>

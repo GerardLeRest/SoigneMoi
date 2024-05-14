@@ -7,11 +7,14 @@
 }
 
 h2{
-    color: #F4D895;
+    color: #FFC857;
 }
-
+p{
+    color: #343A40;
+}
+    
 .bouton-perso{
-    background-color: #F4D895; /* couleur du fond de bouton */
+    background-color: #FFC857; /* couleur du fond de bouton */
     color:black; /* couleur du texte du bouton */
 }
 

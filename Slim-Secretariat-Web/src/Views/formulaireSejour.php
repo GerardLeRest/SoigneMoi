@@ -20,12 +20,13 @@
     <link rel="stylesheet"  href="assets/css/styles.css"> 
   </head>
     <body>
-        <?php require_once('header.php'); ?>
+        <?php require_once('commun/header.php'); ?>
+        <br>
+        <br>
         <main class="container">
           <form action="/slim-secretariat-web/formulaireSejour" method="post">
             <div class="row justify-content-center">
               <div class="col-lg-7">
-                <h4 class="mb-2 text-center">Création d'un séjour</h4>
                   <div class ="row">
                     <div class="col-6">
                         <div class="form-group">
@@ -40,7 +41,6 @@
                         </div>
                     </div>
                   </div>
-              </div>
             </div>
             <div class="mb-3 col-12">
               <label for="motifSejour" class="form-label">Motif du séjour</label>
@@ -57,7 +57,7 @@
               </div>
             </div>
             <br>
-            <div class="col-10 md-5 text-center">
+            <div class="col-12 md-5 text-center">
               <button type="submit" class="btn bouton-perso">Valider</button>
             </div>
           </form>  
@@ -79,6 +79,6 @@
         <script src="assets/js/calendriers/main.js"></script>
         <!--fichier Bootstrap JS -->
         <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <?php require_once('footerEnBas.php'); ?>
+        <?php require_once('commun/footerEnBas.php'); ?>
     </body>
 </html>

@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="fr">
 
-    <?php require_once('head.php') ?>
+    <?php require_once('commun/head.php') ?>
     
     <body>
 
-        <?php require_once('header.php'); ?>
+        <?php require_once('commun/header.php'); ?>
         
         <main class="container">
             <form action="/slim-secretariat-web/formulairePatient" method="post"> <!-- /slim-secretariat-web/formulairePatient : route -->
@@ -17,6 +17,8 @@
                         <br>
                     </div>
                 </div>
+                <br>
+                <br>
                 <div class ="row justify-content-center">
                     <div class="mb-2 col-4">
                         <label for="prenom" class="form-label">Prénom</label>
@@ -43,7 +45,7 @@
                     </div>
                 </div>    
                 <br>
-                <div class="col-10 offset 2 text-center">
+                <div class="col-12 text-center">
                     <button type="submit" class="btn bouton-perso">Valider</button>
                 </div>
             </form>
@@ -55,6 +57,6 @@
                 ?>   
         </main>
         <!-- bas de page-->
-        <?php require_once('footerEnBas.php'); ?>
+        <?php require_once('commun/footerEnBas.php'); ?>
     </body>
 </html>

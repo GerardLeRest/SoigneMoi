@@ -73,7 +73,7 @@ class ControlleurFormulaireSejour{
             $sejour->setSpecialite($this->donnees['specialite']);
             $sejour->setMedecinSouhaite($this->donnees['medecinSouhaite']);
 
-            $patient = $this->entityManager->find(Patient::class, 3); // $idPatient = 3 - simulation
+            $patient = $this->entityManager->find(Patient::class, 1); // $idPatient = 1 - simulation
             $sejour->setPatient($patient);
              
             try{

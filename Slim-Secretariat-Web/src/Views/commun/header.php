@@ -27,7 +27,7 @@
         <div class="row justify-content-center align-self-center">
             <div class="col-8 border-bottom">
                 <!--Titre principal du site-->
-                <h2 class="text-center Jaune py-3"><?php echo $titrePrincipaux[0];?></h2>
+                <h2 class="text-center py-3"><?php echo $titrePrincipaux[$indice];?></h2>
             </div>                                               
         </div>
 </header>                                           

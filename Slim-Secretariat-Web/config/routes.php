@@ -9,8 +9,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 use App\Controllers\ControlleurListeSejours;
+use App\Controllers\ControlleurFormulaireConnexion;
 
-//pages Web
+//pages Web - icônes de menu
 $renderer = new PhpRenderer(__DIR__ . '/../src/Views');
 
 $app->get('/accueil', function (Request $request, Response $response, $args) use ($renderer) {
@@ -41,6 +42,10 @@ $app->get('/formulaireMedecin', function (Request $request, Response $response, 
    return $renderer->render($response, 'formulaireMedecin.php');
 });
 
+$app->get('/formulaireConnexion', function (Request $request, Response $response, $args) use ($renderer) {
+   return $renderer->render($response, 'formulaireConnexion.php');
+});
+
 return function (App $app) {
     
    // Application bureautique - Entrés/Sorties des patients
@@ -50,10 +55,11 @@ return function (App $app) {
    $app->get('/details/{id}', ControlleurSecretariat::class . ':details'); // les détails des patients
    
 
-   //site//web
-   $app->post("/formulairePatient", ControlleurFormulairePatient::class . ':verification'); //validation du formulaire
-   $app->post('/formulaireSejour', ControlleurFormulaireSejour::class . ':verification'); // validation de la création du séjour
-   $app->post('/formulaireMedecin',ControlleurFormulaireMedecin::class .':verification');
-   $app->get('/listeSejours/{id}', ControlleurListeSejours::class . ':requeteSejours'); //récupération des données du séjour 
+   //site web - formulaires et requête  pour la liste des séjours
+   $app->post("/formulairePatient", ControlleurFormulairePatient::class . ':verification'); //validation du formulaire du patient
+   $app->post('/formulaireSejour', ControlleurFormulaireSejour::class . ':verification'); //validation du formulaire des du sejour
+   $app->post('/formulaireMedecin',ControlleurFormulaireMedecin::class .':verification'); //validation du formulaire du médecin
+   $app->post('/formulaireConnexion', ControlleurFormulaireConnexion::class . ':verification'); //validation du formulaire du médecin
+   $app->get('/listeSejours', ControlleurListeSejours::class . ':requeteSejours'); //récupération des données du séjour 
 };
 

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <?php require_once('head.php'); ?>
+    <?php require_once('commun/head.php'); ?>
     <body>
-        <?php require_once('header.php'); ?>
+        <?php require_once('commun/header.php'); ?>
         <main class="container">
             <div class="row" >
                 <div class = "col-12b py-3">  <!-- py: padding sur l'axe y - de 0 à 5 -->
                     <h4> Historique de l'hôpital </h4>
             </div>
             <div class =row>
-                <div class = "col-9" >
+                <div class = "col-sm-12 col-sm-12 col-lg-9" >
                     <p>
                         Bienvenue à l'Hôpital SoigneMoi, un havre de paix et de guérison situé dans la région Lilloise. Fondé dans les années 1920, notre
                         établissement combine le charme d'une architecture historique avec les équipements médicaux les plus modernes. Malgré les épreuves 
@@ -28,7 +28,7 @@
                     </p>
                 </div>   
                 <!-- image de l'hôpital -->
-                <div class="center col-3">
+                <div class="center col-xs-12 col-sm-12 col-lg-3">
                     <figure class="figure">
                         <img src="assets/images/Hopital-500x500.webp" class="figure-img img-fluid rounded" alt="image de l'hôpital">
                         <figcaption class="figure-caption text-end">Vue de l'hôpital</figcaption>
@@ -54,7 +54,7 @@
             </div>
             <div class = "row">
                 <!--Carroussel-->
-                <div class = "col-4">
+                <div class = "col-sm-12 col-md-4 col-lg-4">
                     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="10000">
@@ -77,7 +77,7 @@
                         </button>
                     </div>
                 </div>
-                <div class = "col-8">
+                <div class = "col-sm-12 col-md-8 col-lg-8">
                     <p>
                         - Une salle de chirurgie moderne dispose de technologies médicales avancées. Elle illustre un environnement stérile et bien équipé, idéal
                         pour des opérations chirurgicales de précision.
@@ -103,6 +103,6 @@
             </div>
         </main>
         <!-- bas de page-->
-        <?php require_once('footer.php'); ?>
+        <?php require_once('commun/footer.php'); ?>
     </body>
 </html>
