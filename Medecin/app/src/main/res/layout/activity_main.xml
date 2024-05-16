@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">  <!-- centre tous les éléments enfants -->
+
+    <TextView
+        android:id="@+id/Titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/medecin"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:textColor="#FFC857"/>
+
+    <ImageView
+        android:id="@+id/imageMedecin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/medecin"
+        android:src="@drawable/medecin"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:id="@+id/imageLogoAdresse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/logo_et_adresse"
+        android:src="@drawable/logoadresse"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/boutonSuivant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/jauneTitre"
+        android:text="@string/suivant"
+        android:onClick="page2"/>
+    <!-- voir fichier colors.xml pour la couleur du bouton-->
+</LinearLayout>

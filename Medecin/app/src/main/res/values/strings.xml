@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">medecin1</string>
+    <string name="medecin">Médecin</string>
+    <string name="suivant">Suivant</string>
+    <string name="logo_et_adresse">Suivant</string>
+
+</resources>
