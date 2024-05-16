@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Titre Prescriptions -->
+        <TextView
+            android:id="@+id/titrePrescriptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prescriptions"
+            android:textSize="32sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/jauneTitre"/>
+
+        <!-- Nom du médicament -->
+        <EditText
+            android:id="@+id/editNomMedicament"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nom_medicament"
+            android:layout_marginBottom="16dp"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Zone de texte pour la posologie -->
+        <EditText
+            android:id="@+id/editPosologie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/posologie"
+            android:layout_marginBottom="16dp"
+            android:inputType="textMultiLine"
+            android:maxLength="256"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Champ pour la date de début -->
+        <EditText
+            android:id="@+id/editDateDebut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_de_debut"
+            android:layout_marginBottom="16dp"
+            android:focusable="false"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Champ pour la date de fin -->
+        <EditText
+            android:id="@+id/editDateFin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_de_fin"
+            android:layout_marginBottom="20dp"
+            android:focusable="false"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Image centrée -->
+        <ImageView
+            android:id="@+id/imageLogoAdresse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/logo_50_50"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Ligne grise -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="#CCCCCC"/>
+
+        <!-- LinearLayout pour les boutons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/boutonPrecedent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="@string/avant"
+                style="@style/Widget.Button.Custom"/>
+
+            <Button
+                android:id="@+id/boutonValidation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@string/validation"
+                style="@style/Widget.Button.Custom"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

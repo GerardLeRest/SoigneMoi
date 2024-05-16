@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Medecin1"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ActivitePagePrincipale"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ActiviteAvis"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ActivitePrescriptions"
+            android:exported="true" />
     </application>
 
 </manifest>

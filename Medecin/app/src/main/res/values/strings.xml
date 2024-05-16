@@ -1,7 +1,20 @@
 <resources>
-    <string name="app_name">medecin1</string>
+    <string name="app_name">medecin2</string>
     <string name="medecin">Médecin</string>
+    <string name="logo_et_adresse">Logo et adresse</string>
     <string name="suivant">Suivant</string>
-    <string name="logo_et_adresse">Suivant</string>
-
+    <string name="avant"> Avant </string>
+    <string name="avis">Avis</string>
+    <string name="libelle">Libellé:</string>
+    <string name="prenom_medecin">Prénom du médecin:</string>
+    <string name="nom_medecin">Nom du médecin:</string>
+    <string name="date">Date</string>
+    <string name="description_avis">Description de l\'avis:</string>
+    <string name="logo">Logo</string>
+    <string name="prescriptions">Prescriptions</string>
+    <string name="posologie">Posologie</string>
+    <string name="date_de_debut">Date de début</string>
+    <string name="date_de_fin">Date de fin</string>
+    <string name="validation">validation</string>
+    <string name="nom_medicament">Nom du médicament</string>
 </resources>

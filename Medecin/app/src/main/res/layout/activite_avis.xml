@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Titre Avis -->
+        <TextView
+            android:id="@+id/titreAvis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/avis"
+            android:textSize="32sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/jauneTitre"/>
+
+        <!-- Champ pour le titre de l'avis -->
+        <EditText
+            android:id="@+id/editTitreAvis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/libelle"
+            android:layout_marginBottom="16dp"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Champ pour le prénom du médecin -->
+        <EditText
+            android:id="@+id/editPrenomMedecin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prenom_medecin"
+            android:layout_marginBottom="16dp"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Champ pour le nom du médecin -->
+        <EditText
+            android:id="@+id/editNomMedecin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nom_medecin"
+            android:layout_marginBottom="16dp"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Champ pour la date -->
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date"
+            android:layout_marginBottom="16dp"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+        <!--pour avoir un clavier pour la date:
+            focusable et clickable -->
+
+        <!-- Zone de texte pour la description de l'avis -->
+        <EditText
+            android:id="@+id/editDescriptionAvis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/description_avis"
+            android:layout_marginBottom="20dp"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:minLines="5"
+            android:gravity="top"/>
+
+        <!-- Image centrée -->
+        <ImageView
+            android:id="@+id/imageLogoAdresse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/logo_50_50"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Ligne grise -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="#CCCCCC"/>
+
+        <!-- LinearLayout pour les boutons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/boutonPrecedent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="@string/avant"
+                android:onClick="pagePrecedente"
+                style="@style/Widget.Button.Custom"/>
+                <!-- voir res/values/styles-->
+            <Button
+                android:id="@+id/boutonSuivant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@string/suivant"
+                android:onClick="pageSuivante"
+                style="@style/Widget.Button.Custom"/>
+                <!-- voir res/values/styles-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
