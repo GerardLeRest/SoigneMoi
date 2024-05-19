@@ -1,0 +1,7 @@
+Gros titres (h1 à h6) : Jaune foncé (#FFA500)
+Sous-titres : Vert foncé (#4F7F67)
+Texte contrastant : Jaune foncé (#FFA500)
+Arrière-plans : Gris clair (#E9ECEF)
+Liens : Bleu doux (#0D6EFD)
+Alertes/Erreurs : Rouge vif (#DC3545)
+Texte de base : Gris foncé (#343A40)
