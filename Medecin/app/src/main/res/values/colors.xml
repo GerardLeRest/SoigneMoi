@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <!-- couleur vert des boutons et des Titres-->
-    <color name="jauneTitre">#FFC857</color>
+    <color name="jaune">#FFA500</color>
+    <color name="blanche">#FFFFFF</color>
+    <color name="grisFonce">#343A40</color>
+    <color name="grisClair">#E9ECEF</color>
+    <color name="noire">#000000</color>
+    <color name="vert">#4F7F67</color>
 </resources>

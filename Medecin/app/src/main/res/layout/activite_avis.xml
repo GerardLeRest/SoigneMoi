@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/blanche">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +20,11 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/jauneTitre"/>
+            android:textColor="@color/jaune"/>
 
-        <!-- Champ pour le titre de l'avis -->
+        <!-- Champ pour le libellé de l'avis -->
         <EditText
-            android:id="@+id/editTitreAvis"
+            android:id="@+id/libelle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/libelle"
@@ -35,7 +35,7 @@
 
         <!-- Champ pour le prénom du médecin -->
         <EditText
-            android:id="@+id/editPrenomMedecin"
+            android:id="@+id/prenomMedecin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prenom_medecin"
@@ -46,7 +46,7 @@
 
         <!-- Champ pour le nom du médecin -->
         <EditText
-            android:id="@+id/editNomMedecin"
+            android:id="@+id/nomMedecin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nom_medecin"
@@ -57,7 +57,7 @@
 
         <!-- Champ pour la date -->
         <EditText
-            android:id="@+id/editDate"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/date"
@@ -72,7 +72,7 @@
 
         <!-- Zone de texte pour la description de l'avis -->
         <EditText
-            android:id="@+id/editDescriptionAvis"
+            android:id="@+id/descriptionAvis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/description_avis"
@@ -91,7 +91,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/logo"
-            android:src="@drawable/logo_50_50"
+            android:src="@drawable/logo_75_75"
             android:layout_marginBottom="20dp"/>
 
         <!-- Ligne grise -->
@@ -114,10 +114,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
-                android:text="@string/avant"
+                android:text="@string/retour"
                 android:onClick="pagePrecedente"
                 style="@style/Widget.Button.Custom"/>
                 <!-- voir res/values/styles-->
+
             <Button
                 android:id="@+id/boutonSuivant"
                 android:layout_width="wrap_content"

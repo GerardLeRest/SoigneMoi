@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/blanche">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,16 +15,16 @@
             android:id="@+id/titrePrescriptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/prescriptions"
+            android:text="@string/prescription"
             android:textSize="32sp"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/jauneTitre"/>
+            android:textColor="@color/jaune"/>
 
         <!-- Nom du médicament -->
         <EditText
-            android:id="@+id/editNomMedicament"
+            android:id="@+id/nomMedicament"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nom_medicament"
@@ -35,7 +35,7 @@
 
         <!-- Zone de texte pour la posologie -->
         <EditText
-            android:id="@+id/editPosologie"
+            android:id="@+id/posologie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/posologie"
@@ -47,7 +47,7 @@
 
         <!-- Champ pour la date de début -->
         <EditText
-            android:id="@+id/editDateDebut"
+            android:id="@+id/dateDeDebut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/date_de_debut"
@@ -59,7 +59,7 @@
 
         <!-- Champ pour la date de fin -->
         <EditText
-            android:id="@+id/editDateFin"
+            android:id="@+id/dateDeFin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/date_de_fin"
@@ -77,7 +77,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/logo"
-            android:src="@drawable/logo_50_50"
+            android:src="@drawable/logo_75_75"
             android:layout_marginBottom="20dp"/>
 
         <!-- Ligne grise -->
@@ -100,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
-                android:text="@string/avant"
+                android:text="@string/retour"
                 style="@style/Widget.Button.Custom"/>
 
             <Button
@@ -110,6 +110,7 @@
                 android:layout_marginStart="30dp"
                 android:text="@string/validation"
                 style="@style/Widget.Button.Custom"/>
+
         </LinearLayout>
 
     </LinearLayout>

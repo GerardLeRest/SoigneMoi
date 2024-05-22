@@ -10,7 +10,7 @@
 
     <!-- Titre "Médecins" -->
     <TextView
-        android:id="@+id/Titre"
+        android:id="@+id/titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/medecin"
@@ -38,16 +38,15 @@
         android:contentDescription="@string/logo_et_adresse"
         android:src="@drawable/logoadresse"
         android:layout_marginBottom="20dp"/>
+        <!-- bouton de la page suivante -->
 
-    <!-- bouton de la page suivante -->
     <Button
         android:id="@+id/boutonPrecedent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/jauneTitre"
+        android:backgroundTint="@color/jaune"
         android:text="@string/suivant"
-        android:onClick="pageSuivante"
-        style="@style/Widget.Button.Custom"/>
+        android:onClick="pageSuivante"/>
         <!-- voir res/values/styles-->
 
 </LinearLayout>

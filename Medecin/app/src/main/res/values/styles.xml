@@ -1,16 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme without ActionBar. -->
-    <style name="Theme.Medecin1" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">#E9ECEF</item> <!-- Couleur principale -->
-        <item name="colorPrimaryDark">#343A40</item> <!-- Couleur principale foncée -->
-        <item name="colorAccent">#FFC857</item> <!-- Couleur d'accent -->
-        <item name="buttonStyle">@style/Widget.Button.Custom</item> <!-- Style personnalisé pour les boutons -->
+    <style name="Theme.Medecin4" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Couleurs du theme -->
+        <item name="colorPrimary">@color/grisFonce</item>
+        <item name="colorPrimaryDark">@color/grisClair</item>
+        <item name="colorAccent">@color/vert</item>
+        <item name="buttonStyle">@style/Widget.Button.Custom</item>
     </style>
 
-    <!-- Style personnalisé pour les boutons -->
-    <style name="Widget.Button.Custom" parent="Widget.Material3.Button">
-        <item name="android:backgroundTint">@color/jauneTitre</item>
-        <item name="android:textColor">@color/black</item>
+    <!-- Style personnalisé pour les boutons de l'application -->
+    <style name="Widget.Button.Custom" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/jaune</item>
+        <item name="android:textColor">@color/noire</item>
     </style>
+
 </resources>
