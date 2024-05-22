@@ -20,7 +20,7 @@ class ControlleurFormulaireMedecin{
 
     public function verification(Request $request, Response $response, array $args): Response
     {
-        $erreurs=[];
+        $errors=[];
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         // récupération des données
         $this->donnees = $request->getParsedBody();
@@ -38,24 +38,25 @@ class ControlleurFormulaireMedecin{
 
         // test
         if (!isset($prenom) || empty($prenom)){
-            $erreurs['prenom'] = " le champ du prénom n'a pas été complété";
+            $errors['prenom'] = " le champ du prénom n'a pas été complété";
         }
         if (!isset($nom) || empty($nom)){
-            $erreurs['nom'] = " le champ du nom n'a pas été complété";
+            $errors['nom'] = " le champ du nom n'a pas été complété";
         }
         if (!isset($specialite) || empty($specialite)){
-            $erreurs['specialite'] = " le champ de la spécialité n'a pas été complété";
+            $errors['specialite'] = " le champ de la spécialité n'a pas été complété";
         }
         if (!isset($matricule) || empty($matricule)){
-            $erreurs['matricule'] = " le champ du matricule n'a pas été complété";
+            $errors['matricule'] = " le champ du matricule n'a pas été complété";
         }
         // traitement des erreurs
-        if (count($erreurs)>0){
-            return $renderer->render($response,'formulaireMedecin.php', ['errors' => $erreurs]);
+        if (count($errors)>0){
+            return $renderer->render($response,'formulaireMedecin.php', ['errors' => $errors]);
         }
         else{
             $this->validation();
-            return $renderer->render($response, 'accueil.php'); 
+            $response->getBody()->write("la vérification est correcte");
+            return $response;
         }
     }
 

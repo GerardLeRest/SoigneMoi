@@ -65,12 +65,12 @@ class Prescription
         $this->posologie = $posologie;
     }
 
-    public function getDateDebut(): DateTime
+    public function getDateDeDebut(): DateTime
     {
         return $this->dateDeDebut;
     }
 
-    public function setDateDebut(DateTime $dateDeDebut): void
+    public function setDateDeDebut(DateTime $dateDeDebut): void
     {
         $this->dateDeDebut = $dateDeDebut;
     }

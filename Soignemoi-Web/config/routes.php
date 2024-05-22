@@ -11,6 +11,7 @@ use Slim\Views\PhpRenderer;
 use App\Controllers\ControlleurListeSejours;
 use App\Controllers\ControlleurFormulaireConnexion;
 use App\Controllers\ControlleurFormulaireAvis;
+use App\Controllers\ControlleurFormulairePrescription;
 
 //pages Web - icônes de menu
 $renderer = new PhpRenderer(__DIR__ . '/../src/Views');
@@ -49,14 +50,16 @@ $app->get('/formulaireConnexion', function (Request $request, Response $response
 
 return function (App $app) {
     
-   // Application bureautique  "Secrétaire" - Entrés/Sorties des patients
+   // Application bureautique - Entrés/Sorties des patients
    $app->get('/tous', ControlleurSecretariat::class . ':donneesTous');  // l'ensemble des entrées/sorties des patients
    $app->get('/entrees', ControlleurSecretariat::class . ':donneesEntrees'); // les entrées des patients
    $app->get('/sorties', ControlleurSecretariat::class . ':donneesSorties'); // les sorties des patients
    $app->get('/details/{id}', ControlleurSecretariat::class . ':details'); // les détails des patients
    
    // Application mobile "Médecin" - Formulaires Avis et Prescriptions
-   $app->get('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avid
+   $app->post('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avid
+   $app->post('/formulairePrescription', ControlleurFormulairePrescription::class . ':verification'); //validation du formulaire Avid
+
 
    //site web - formulaires et requête  pour la liste des séjours
    $app->post("/formulairePatient", ControlleurFormulairePatient::class . ':verification'); //validation du formulaire du patient
@@ -65,3 +68,4 @@ return function (App $app) {
    $app->post('/formulaireConnexion', ControlleurFormulaireConnexion::class . ':verification'); //validation du formulaire du médecin
    $app->get('/listeSejours', ControlleurListeSejours::class . ':requeteSejours'); //récupération des données du séjour 
 };
+

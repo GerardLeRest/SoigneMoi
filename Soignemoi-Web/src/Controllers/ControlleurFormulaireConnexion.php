@@ -20,7 +20,7 @@ class ControlleurFormulaireConnexion{
 
     public function verification(Request $request, Response $response, array $args): Response
     {
-        $erreurs=[];
+        $errors=[];
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         // récupération des données
         $this->donnees = $request->getParsedBody();
@@ -31,15 +31,15 @@ class ControlleurFormulaireConnexion{
         // test
         //Adresse Email
         if (!isset($email) || empty($email)){
-            $erreurs["email1"] = 'le champs "Adresse Email" n\'a pas été rempli';
+            $errors["email1"] = 'le champs "Adresse Email" n\'a pas été rempli';
         }
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $erreurs['email1'] = "Le format de l'adresse e-mail n'est pas valide.";
+            $errors['email1'] = "Le format de l'adresse e-mail n'est pas valide.";
         }
 
         //mot de passe
         if (!isset($motDePasse) || empty($motDePasse)){
-            $erreurs['motDePasse'] = "le mot de passe n'a pas été saisi";
+            $errors['motDePasse'] = "le mot de passe n'a pas été saisi";
         }
     
         //Recupération de l'utilisateur par l'email
@@ -49,7 +49,7 @@ class ControlleurFormulaireConnexion{
             $utilisateur = $query->getOneOrNullResult();
 
             if (!$utilisateur) {
-                $erreurs['email2'] = "L'email ou le mot de passe est incorrect.";
+                $errors['email2'] = "L'email ou le mot de passe est incorrect.";
             } else {
                 // vérification du mot de passe
                 $motDePasseHache = $utilisateur->getMotDePasse();
@@ -58,15 +58,16 @@ class ControlleurFormulaireConnexion{
                     $response->getBody()->write("Connexion réussie");
                     return $response;
                 } else {
-                    $erreurs['motDePasse'] = "L'email ou le mot de passe est incorrect.";
+                    $errors['motDePasse'] = "L'email ou le mot de passe est incorrect.";
                 }
             }
 
             // traitement des erreurs
-            if (count($erreurs) > 0) {
-                return $renderer->render($response, 'formulaireConnexion.php', ['errors' => $erreurs]);
+            if (count($errors) > 0) {
+                return $renderer->render($response, 'formulaireConnexion.php', ['errors' => $errors]);
             } else {
-                return $renderer->render($response, 'accueil.php');
+                $response->getBody()->write("La vérification est correcte");
+                return $response;
             }
 
         } catch (Exception $e) {

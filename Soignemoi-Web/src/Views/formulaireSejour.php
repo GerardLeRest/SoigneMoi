@@ -24,7 +24,7 @@
         <br>
         <br>
         <main class="container">
-          <form action="/slim-secretariat-web/formulaireSejour" method="post">
+          <form action="/soignemoi-web/formulaireSejour" method="post">
             <div class="row justify-content-center">
               <div class="col-lg-7">
                   <div class ="row">

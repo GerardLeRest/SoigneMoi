@@ -9,7 +9,7 @@
             </div>
             <br>
             <br>
-            <form action="/slim-secretariat-web/formulaireConnexion" method="post">
+            <form action="/soignemoi-web/formulaireConnexion" method="post">
                 <div class="row justify-content-center">
                 <div class="mb-2 col-5 ">
                     <label for="email" class="form-label">Adresse Email</label>

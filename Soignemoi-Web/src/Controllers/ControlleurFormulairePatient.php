@@ -30,7 +30,7 @@ class ControlleurFormulairePatient{
         $adressePostale = $this->donnees["adressePostale"];
         $email = $this->donnees['email'];
         $motDePasse = $this->donnees["motDePasse"];
-        $erreurs =[];
+        $errors =[];
         
         // Données de test
        /*  $prenom = "";
@@ -41,25 +41,25 @@ class ControlleurFormulairePatient{
 
         // Prenom
         if (!isset($prenom) || empty($prenom)){
-            $erreurs["prenom"] = 'le champs "Prénom" n\'a pas été rempli';
+            $errors["prenom"] = 'le champs "Prénom" n\'a pas été rempli';
         }
 
         // nom
         if (!isset($nom) || empty($nom)){
-            $erreurs["nom"] = 'le champs "Nom" n\'a pas été rempli';
+            $errors["nom"] = 'le champs "Nom" n\'a pas été rempli';
         }
         
         // Adresse postale
         if (!isset($adressePostale) || empty($adressePostale)){
-            $erreurs["adressePostale"] = 'le champs "Adresse Postale" n\'a pas été rempli';
+            $errors["adressePostale"] = 'le champs "Adresse Postale" n\'a pas été rempli';
         }
     
         //Adresse Email
         if (!isset($email) || empty($email)){
-            $erreurs["email"] = 'le champs "Adresse Email" n\'a pas été rempli';
+            $errors["email"] = 'le champs "Adresse Email" n\'a pas été rempli';
         }
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $erreurs['email'] = "Le format de l'adresse e-mail n'est pas valide.";
+            $errors['email'] = "Le format de l'adresse e-mail n'est pas valide.";
         }
         // présence d'un email identique
         else{
@@ -67,22 +67,23 @@ class ControlleurFormulairePatient{
             $query->setParameter('email',$email);
             $emaiIdentique = $query->getOneOrNullResult();
             if (isset($emaiIdentique)){
-                $erreurs['email'] = "votre email est déjà enregistré";
+                $errors['email'] = "votre email est déjà enregistré";
             }
         }
         // mot de passe
         //^: début de chaine - \d: au moins 1 nombre -?=.*[^a-zA-Z\d]: au moins un caractère spécial -{8-20}: mot de passe entre 8 et 20 carctères
         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,20}$/', $motDePasse)) { 
-            $erreurs['password'] = "Le mot de passe doit contenir entre 8 et 20 caractères, incluant au moins une lettre minuscule, une lettre majuscule, un chiffre, et un caractère spécial.";
+            $errors['password'] = "Le mot de passe doit contenir entre 8 et 20 caractères, incluant au moins une lettre minuscule, une lettre majuscule, un chiffre, et un caractère spécial.";
         }
         $this->motDePassseHache = password_hash($motDePasse, PASSWORD_DEFAULT); 
 
-        if (count($erreurs)>0){
-            return $renderer->render($response,'formulairePatient.php');
+        if (count($errors)>0){
+            return $renderer->render($response,'formulairePatient.php', ['errors' => $errors]);
             }
         else{
             $this->validation();
-            return $renderer->render($response, 'accueil.php');
+            $response->getBody()->write("la vérification est bonne");
+            return $response;
         }
     }
 

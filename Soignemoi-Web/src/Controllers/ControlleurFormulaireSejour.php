@@ -23,7 +23,7 @@ class ControlleurFormulaireSejour{
     public function verification(Request $request, Response $response, $args ) : Response
     {
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
-        $erreurs = [];
+        $errors = [];
         $this->donnees = $request->getParsedBody();
         $dateDebut = $this->donnees['dateDebut'];
         $dateFin = $this->donnees['dateFin'];
@@ -40,21 +40,22 @@ class ControlleurFormulaireSejour{
 
         //tests
         if (!isset($dateDebut) || empty($dateDebut)){
-            $erreurs['dateDebut'] = "la date de début n'a pas été saisie";
+            $errors['dateDebut'] = "la date de début n'a pas été saisie";
         }
         if (!isset($motifSejour) || empty($motifSejour)){
-            $erreurs['motifSejour'] = "le motif de séjour n'a pas été saisie";
+            $errors['motifSejour'] = "le motif de séjour n'a pas été saisie";
         }
         if (!isset($specialite) || empty($specialite)){
-            $erreurs['specialite'] = "la specialite n'a pas été saisie";
+            $errors['specialite'] = "la specialite n'a pas été saisie";
         }
         // traitement des erreurs
-        if (count($erreurs)>0){
-            return $renderer ->render($response,'formulaireSejour.php', ['errors' => $erreurs]);
+        if (count($errors)>0){
+            return $renderer ->render($response,'formulaireSejour.php', ['errors' => $errors]);
             }
         else{
             $this->validation();
-            return $renderer->render($response, 'accueil.php');
+            $response->getBody()->write("la vérification est bonne");
+            return $response;
         }
     }
 

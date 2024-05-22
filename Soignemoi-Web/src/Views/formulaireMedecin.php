@@ -12,7 +12,7 @@
                     <br>
                 </div>
             </div>
-            <form action="/slim-secretariat-web/formulaireMedecin" method="post">
+            <form action="/soignemoi-web/formulaireMedecin" method="post">
                 <div class="row justify-content-center">
                     <div class="mb-2 col-6">
                         <label for="prenom" class="form-label">Prénom</label>

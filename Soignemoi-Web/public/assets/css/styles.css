@@ -1,20 +1,20 @@
 .nav-link{
-    color: #4F7F67; /*texte barre de menu */
+    color: #738F84; /*texte barre de menu */
 }
 
  h4{
-    color: #4F7F67;
+    color: #738F84;
 }
 
 h2{
-    color: #FFA500;
+    color: #FFC857;
 }
 p{
     color: #343A40;
 }
     
 .bouton-perso{
-    background-color: #FFA500; /* couleur du fond de bouton */
+    background-color: #FFC857; /* couleur du fond de bouton */
     color:black; /* couleur du texte du bouton */
 }
 

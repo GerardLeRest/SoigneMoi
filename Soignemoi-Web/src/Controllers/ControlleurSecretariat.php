@@ -93,7 +93,8 @@ class ControlleurSecretariat
             $response->getBody()->write($donneesJSON); 
             return $response->withHeader('Content-Type', 'application/json');
         } catch (Exception $e){
-            
+            $response->getBody()->write("Erreur: " . $e->getmessage());
+            return $response;
         }    
     }
 

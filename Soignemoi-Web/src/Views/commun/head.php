@@ -1,7 +1,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <base href="<?= "/slim-secretariat-web" ?>/"/>
+        <base href="<?= "/soignemoi-web" ?>/"/>
         <!--élimination de l'icone Favicon -->
         <link rel="icon" href="data:,">
         <!--fichiers css bootstrap -->
