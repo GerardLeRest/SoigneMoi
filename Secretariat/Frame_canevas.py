@@ -14,10 +14,10 @@ class Frame_canevas(ttk.Frame):
         self.canvas.create_image(20, 50, anchor='nw', image=self.photo1)
         self.photo2 = self.creer_image("images/logo_120_120.png")
         # ajouter une photo au canevas
-        self.canvas.create_image(390, 230, anchor='nw', image=self.photo2)
+        self.canvas.create_image(390, 210, anchor='nw', image=self.photo2)
         self.photo3 = self.creer_image("images/adresse.png")
         # ajouter une photo au canevas
-        self.canvas.create_image(330, 50, anchor='nw', image=self.photo3)
+        self.canvas.create_image(330, 75, anchor='nw', image=self.photo3)
        
     def creer_image(self, image_a_afficher):
         # Charger une image avec Pillow

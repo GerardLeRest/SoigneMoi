@@ -23,7 +23,7 @@ class Tableau(tk.Toplevel):
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.grid(row=0, column=0, sticky='nsew')
         # sélection d'un enregistrement
-        self.tree.bind('<<TreeviewSelect>>', self.identite)
+        self.tree.bind('<<TreeviewSelect>>', self.identite) # déclenchement au clic de la souris sur la ligne
         self.numero_ligne=0
         
     def recuperation_donnees(self, url):
@@ -52,7 +52,7 @@ class Tableau(tk.Toplevel):
         self.tree.heading('prenom', text='Prenom', anchor=tk.W)
         self.tree.heading('nom', text='Nom', anchor=tk.W)
         self.tree.heading('adressePostale', text='Adresse_Postale', anchor=tk.W)
-        s.configure('Treeview.Heading', background="lightblue")
+        s.configure("Treeview.Heading", background="#4F7F67")
 
          #definir les colonnes
         self.tree.column('id', width=60, anchor=tk.W) # colonne de largeur 30 px et id à gauche (West)
@@ -75,15 +75,12 @@ class Tableau(tk.Toplevel):
     def identite(self, event):
         selected_items = self.tree.selection()  # Récupère la liste des éléments sélectionnés dans le Treeview.
         selected_item = selected_items[0]  # Prend uniquement le premier élément sélectionné.
-        id = self.tree.item(selected_item, 'values')[0]  # Récupère l'ID, qui est la première valeur de l'élément sélectionné.
-        selected_item = selected_items[0]  # Prend uniquement le deuxième élément sélectionné.
-        prenom = self.tree.item(selected_item, 'values')[1]  # Récupère le nom, qui est la deuxième valeur de l'élément sélectionné.
-        selected_item = selected_items[0]  # Prend uniquement le troisième élément sélectionné.
-        nom = self.tree.item(selected_item, 'values')[2]  # Récupère l'ID, qui est la troisième valeur de l'élément sélectionné.
-        identity = prenom + " " + nom
-        ##print(id)  # Affiche l'ID de l'élément sélectionné.
-        # ouverture de la fenêtre "Détails"
-        details = Details(self, identity, id)
+        valeurs = self.tree.item(selected_item, 'values') # récupérer les valeurs des colonnes d'une ligne sélectionnée dans le Treeview
+        id = valeurs[0]  # Récupère l'ID
+        prenom = valeurs[1]  # Récupère le prénom
+        nom = valeurs[2]  # Récupère le nom
+        identite = prenom + " " + nom
+        details = Details(self, identite, id)
         
     def habillage_tableau(self):
        # Création et configuration de la Scrollbar
@@ -91,9 +88,9 @@ class Tableau(tk.Toplevel):
         self.tree.configure(yscroll=scrollbar.set)
         scrollbar.grid(row=0, column=1, sticky='ns')
 
-        # couleur des lignes
-        self.tree.tag_configure('oddrow', background='lightgrey')
-        self.tree.tag_configure('evenrow', background='white')
+        # couleur de fond des lignes
+        self.tree.tag_configure('oddrow', background="#FFA500")
+        self.tree.tag_configure('evenrow', background="#E9ECEF")
 
 if __name__ == '__main__':       
     root = tk.Tk()
