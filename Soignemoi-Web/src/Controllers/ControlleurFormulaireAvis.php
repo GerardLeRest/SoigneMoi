@@ -24,7 +24,7 @@ class ControlleurFormulaireAvis{
 
     public function verification (Request $request, Response $response, array $Args ){
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
-        //$this->donnees = $request->getParsedBody();
+        $this->donnees = $request->getParsedBody();
         $libelle = $this->donnees['libelle'];
         $date = $this->donnees['date'];
         $description = $this->donnees['description'];

@@ -91,7 +91,7 @@
                         offre un espace moderne et spacieux. Chaque détail est conçu pour favoriser une guérison sécurisée et efficace.
                     </p>
                     <div class="text-center">
-                        <a href="/slim-secretariat-web/formulairePatient" class="btn bouton-perso">S'incrire</a>
+                        <a href="/soignemoi-web/formulairePatient" class="btn bouton-perso">S'incrire</a>
                     </div>
                     <br>
                     <br>

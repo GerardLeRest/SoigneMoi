@@ -57,8 +57,8 @@ return function (App $app) {
    $app->get('/details/{id}', ControlleurSecretariat::class . ':details'); // les détails des patients
    
    // Application mobile "Médecin" - Formulaires Avis et Prescriptions
-   $app->post('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avid
-   $app->post('/formulairePrescription', ControlleurFormulairePrescription::class . ':verification'); //validation du formulaire Avid
+   $app->post('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avis
+   $app->post('/formulairePrescription', ControlleurFormulairePrescription::class . ':verification'); //validation du formulaire Prescription
 
 
    //site web - formulaires et requête  pour la liste des séjours
