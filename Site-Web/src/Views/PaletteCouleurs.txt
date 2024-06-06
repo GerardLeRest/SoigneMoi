@@ -1,0 +1,15 @@
+https://www.palettedecouleur.net/palette-category/bleu/
+#001328
+#738F84
+#F4D895
+#C20704
+#8F0902
+
+ChatGPT:
+    Gros titres (h1 à h6) : Utilisent le jaune doré (#FFC857) pour une bonne visibilité et un look attractif.
+    Sous-titres : Utilisent le vert sombre (#738F84).
+    Texte contrastant : Utilise le jaune doré (#FFC857) pour les éléments qui doivent se démarquer.
+    Arrière-plans : Utilisent le gris clair (#E9ECEF).
+    Liens : Utilisent le bleu doux (#0D6EFD).
+    Alertes/Erreurs : Utilisent le rouge vif (#DC3545).
+    Texte de base : Utilise le gris foncé (#343A40).
