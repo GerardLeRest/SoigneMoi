@@ -33,7 +33,7 @@ class ControlleurFormulaireAvis{
         if(!isset($libelle) || empty($libelle)
             || !isset($date) || empty($date)
             || !isset($description) || empty($description)){
-                $response->getBody()->write("erreur de saisie dans au moins un formulaire");
+                $response->getBody()->write("erreur de saisie dans au moins un champ");
                 return $response;
                 }
             else{

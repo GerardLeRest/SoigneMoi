@@ -9,7 +9,7 @@
                     <h4> Historique de l'hôpital </h4>
             </div>
             <div class =row>
-                <div class = "col-sm-12 col-sm-12 col-lg-9" >
+                <div class = "col-xs-12 col-sm-12 col-lg-9" >
                     <p>
                         Bienvenue à l'Hôpital SoigneMoi, un havre de paix et de guérison situé dans la région Lilloise. Fondé dans les années 1920, notre
                         établissement combine le charme d'une architecture historique avec les équipements médicaux les plus modernes. Malgré les épreuves 
@@ -102,7 +102,9 @@
                 </div>
             </div>
         </main>
-        <!-- bas de page-->
-        <?php require_once('commun/footer.php'); ?>
+        <footer>
+            <!-- bas de page-->
+            <?php require_once('commun/footer.php'); ?>
+        </footer
     </body>
 </html>

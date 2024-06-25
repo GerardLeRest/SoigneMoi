@@ -68,4 +68,3 @@ return function (App $app) {
    $app->post('/formulaireConnexion', ControlleurFormulaireConnexion::class . ':verification'); //validation du formulaire du médecin
    $app->get('/listeSejours', ControlleurListeSejours::class . ':requeteSejours'); //récupération des données du séjour 
 };
-

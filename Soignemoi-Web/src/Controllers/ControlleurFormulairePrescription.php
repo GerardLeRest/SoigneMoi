@@ -17,8 +17,8 @@ class ControlleurFormulairePrescription{
     private EntityManager $entityManager;
     private int $idMedecin;
     private array $donnees;
-    // = ["nomMedicament"=>"Levthyrox", "posologie"=>"2 fois par jour", "dateDeDebut"=>"20/5/2024", "dateDeFin"=>"27/06/2024"];
-    
+    //private donnees = ["nomMedicament"=>"Levthyrox", "posologie"=>"2 fois par jour", "dateDeDebut"=>"20/5/2024", "dateDeFin"=>"27/06/2024"];
+   
     public function __construct (EntityManager $entityManager){
         $this->entityManager = $entityManager;
     }
@@ -37,13 +37,14 @@ class ControlleurFormulairePrescription{
             || !isset($posologie) || empty($posologie)
             || !isset($dateDeDebut) || empty($dateDeDebut)
             || !isset($dateDeFin) || empty($dateDeFin)){
-                $response->getBody()->write("erreur de saisie dans au moins un formulaire");
+                $response->getBody()->write("erreur de saisie dans au moins un champ");
                 return $response;
                 }
             else{
                 $this->validation();
                 return $renderer->render($response, 'accueil.php'); 
         }
+        echo "tableau" . $donnees;
        
     }
 
@@ -59,8 +60,8 @@ class ControlleurFormulairePrescription{
         $dateDeDebutObject = DateTime::createFromFormat('d/m/Y', $this->donnees['dateDeDebut']);
         $prescription->setDateDeDebut($dateDeDebutObject);
         // changement de la string (DD/MM/YYYY) dateDeFin en DateTime (YYYY/MM/DD)
-        $dateDeFinObject = DateTime::createFromFormat('d/m/Y', $this->donnees['datedeFin']);
-        $prescription->setDateDeFin($dateDeDebutObject);
+        $dateDeFinObject = DateTime::createFromFormat('d/m/Y', $this->donnees['dateDeFin']);
+        $prescription->setDateDeFin($dateDeFinObject);
         try{
             $this->entityManager->persist($prescription);
             $this->entityManager->flush();
