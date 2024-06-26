@@ -31,7 +31,7 @@ class Details(tk.Toplevel):
     
     def recuperation_donnees(self, id):
 
-        url_complete = f"http://localhost/slim-secretariat-web/details/{id}"
+        url_complete = f"https://www.soignemoi.net/details/{id}"
         response = requests.get(url_complete)
         if response.status_code == 200:
             # Transformer le format json en listes de dictionnnaires

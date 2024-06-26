@@ -96,7 +96,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title("fenêtre mère")
     tableau = Tableau(root, "TopLevel")
-    tableau.recuperation_donnees('http://127.0.0.1/slim-secretariat-web/tous')
+    tableau.recuperation_donnees('https://www.soignemoi.net/tous')
     tableau.affichage_tableau()
     tableau.habillage_tableau()
     root.mainloop()
