@@ -26,7 +26,7 @@ class ControlleurFormulaireAvis{
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         $this->donnees = $request->getParsedBody();
         $libelle = $this->donnees['libelle'];
-        $idPatient = $this->donnees["idPatient"];
+        $idPatient = (int)$this->donnees["idPatient"]; // $idPatient est un entier
         $date = $this->donnees['date'];
         $description = $this->donnees['description'];
 
