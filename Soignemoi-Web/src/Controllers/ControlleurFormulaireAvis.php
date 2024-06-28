@@ -26,11 +26,13 @@ class ControlleurFormulaireAvis{
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         $this->donnees = $request->getParsedBody();
         $libelle = $this->donnees['libelle'];
+        $idPatient = $this->donnees["idPatient"];
         $date = $this->donnees['date'];
         $description = $this->donnees['description'];
 
         //Vérification des données
         if(!isset($libelle) || empty($libelle)
+            || !isset($idPatient) || empty($idPatient)
             || !isset($date) || empty($date)
             || !isset($description) || empty($description)){
                 $response->getBody()->write("erreur de saisie dans au moins un champ");
@@ -44,11 +46,13 @@ class ControlleurFormulaireAvis{
 
     public function validation(){
         $avis = new Avis();
-        $patient = $this->entityManager->find(Patient::class, 1); // $idPatient = 1 - simulation
+        $patient = $this->entityManager->find(Patient::class, $this->donnees["idPatient"]); 
+        // récupération du patient ayant l'id  $this->donnees["idPatient"] 
+        // ex: recuperation dunom echo "Nom du Patient : " . $patient->getNom() . "\n";
         $medecin = $this->entityManager->find(Medecin::class, 3); // $idPatient = 2 - simulation
         $avis->setLibelle($this->donnees['libelle']);
         $avis->setMedecin($medecin);
-        $avis->setPatient($patient);
+        $avis->setPatient($patient); 
         // changement de la string (DD/MM/YYYY) date en DateTime (YYYY/MM/DD)
         $dateObject = DateTime::createFromFormat('d/m/Y', $this->donnees['date']);
         $avis->setDate($dateObject);

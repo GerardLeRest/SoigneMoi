@@ -11,6 +11,12 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Doctrine\DBAL\Connection;
+use Odan\Session\PhpSession;
+use Odan\Session\SessionInterface;
+use Odan\Session\SessionManagerInterface;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Http\Message\ResponseFactoryInterface;
+
 
 return[
     'settings' => function () {
@@ -63,6 +69,7 @@ return[
 
         return $app;
     },
+
     //console
     Application::class => function (ContainerInterface $container) {
         $application = new Application();
@@ -76,5 +83,21 @@ return[
         }
 
         return $application;
-    }
+    },
+
+    // session
+    SessionManagerInterface::class => function (ContainerInterface $container) {
+        return $container->get(SessionInterface::class);
+    },
+
+    //session
+    SessionInterface::class => function (ContainerInterface $container) {
+        $options = $container->get('settings')['session'];
+        return new PhpSession($options);
+    },
+    
+    ResponseFactoryInterface::class => function (ContainerInterface $container) {
+        return $container->get(Psr17Factory::class);
+    },
+
 ];

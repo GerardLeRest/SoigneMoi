@@ -54,8 +54,7 @@ class ControlleurFormulaireSejour{
             }
         else{
             $this->validation();
-            $response->getBody()->write("la vérification est bonne");
-            return $response;
+            return $renderer->render($response, 'accueil.php'); 
         }
     }
 

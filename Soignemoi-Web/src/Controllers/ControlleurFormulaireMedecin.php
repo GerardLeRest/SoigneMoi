@@ -25,7 +25,7 @@ class ControlleurFormulaireMedecin{
         // récupération des données
         $this->donnees = $request->getParsedBody();
         // affectation des variables
-        $prenom = $this->donnees['prenom'];
+        $prenom = $this->donnees['nom'];
         $nom = $this->donnees['prenom'];
         $specialite = $this->donnees['specialite'];
         $matricule =$this->donnees['matricule'];
@@ -55,8 +55,7 @@ class ControlleurFormulaireMedecin{
         }
         else{
             $this->validation();
-            $response->getBody()->write("la vérification est correcte");
-            return $response;
+            return $renderer->render($response, 'accueil.php'); 
         }
     }
 

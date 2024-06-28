@@ -44,8 +44,6 @@ class ControlleurFormulairePrescription{
                 $this->validation();
                 return $renderer->render($response, 'accueil.php'); 
         }
-        echo "tableau" . $donnees;
-       
     }
 
     public function validation(){

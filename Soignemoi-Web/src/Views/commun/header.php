@@ -3,7 +3,7 @@
 <header class="container">
     <nav class="navbar sticky-top navbar-expand-lg navbar navbar-light bg-light">
         <!-- Logo de la barre de naviguation -->
-        <a class="navbar-brand" href="/accueil"><img src="assets/images/logo_120_120.png"
+        <a class="navbar-brand" href="/soignemoi-web/accueil"><img src="assets/images/logo_120_120.png"
         width="60" height="60" alt="Logo">
         </a>
         <!--menu-->

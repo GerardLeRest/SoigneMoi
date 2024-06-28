@@ -66,8 +66,7 @@ class ControlleurFormulaireConnexion{
             if (count($errors) > 0) {
                 return $renderer->render($response, 'formulaireConnexion.php', ['errors' => $errors]);
             } else {
-                $response->getBody()->write("La vérification est correcte");
-                return $response;
+                return $renderer->render($response, 'accueil.php'); 
             }
 
         } catch (Exception $e) {
