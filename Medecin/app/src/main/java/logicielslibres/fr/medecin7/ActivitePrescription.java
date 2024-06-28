@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin5;
+package logicielslibres.fr.medecin7;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -58,7 +58,7 @@ public class ActivitePrescription extends AppCompatActivity {
 
         // Initialisation de Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.19.74/soignemoi-web/") // Définissez la base de l'URL ici
+                .baseUrl("http://192.168.1.10/soignemoi-web/") // Définir la base de l'URL ici
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);

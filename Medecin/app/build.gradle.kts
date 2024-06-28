@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "logicielslibres.fr.medecin5"
+    namespace = "logicielslibres.fr.medecin7"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "logicielslibres.fr.medecin5"
+        applicationId = "logicielslibres.fr.medecin7"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

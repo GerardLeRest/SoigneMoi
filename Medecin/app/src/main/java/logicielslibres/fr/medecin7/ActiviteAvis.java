@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin5;
+package logicielslibres.fr.medecin7;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -22,6 +22,9 @@ public class ActiviteAvis extends AppCompatActivity {
 
     private static final String TAG = "ActiviteAvis";
     private EditText libelle;
+    private EditText prenomMedcin;
+    private EditText nomMedecin;
+    private EditText idPatient;
     private EditText date;
     private EditText descriptionAvis;
     private Map<String, String> tableauAvis;
@@ -38,6 +41,7 @@ public class ActiviteAvis extends AppCompatActivity {
 
         // Initialisation des vues
         libelle = findViewById(R.id.libelle);
+        idPatient = findViewById(R.id.idPatient);
         date = findViewById(R.id.date);
         descriptionAvis = findViewById(R.id.descriptionAvis);
 
@@ -54,7 +58,7 @@ public class ActiviteAvis extends AppCompatActivity {
 
         // Initialisation de Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.19.74/soignemoi-web/") // Définissez la base de l'URL ici
+                .baseUrl("http://192.168.1.10/soignemoi-web/") // Définir la base de l'URL ici
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
@@ -92,16 +96,15 @@ public class ActiviteAvis extends AppCompatActivity {
     private void pageSuivante() {
         // Récupérer les valeurs des EditText
         String texteLibelle = libelle.getText().toString();
+        String texteIdPatient = idPatient.getText().toString();
         String texteDate = date.getText().toString();
         String texteDescriptionAvis = descriptionAvis.getText().toString();
 
         // Remplissage du tableauAvis
         tableauAvis.put("libelle", texteLibelle);
-        Log.d(TAG, "libelle du jour:" + texteLibelle);
+        tableauAvis.put("idPatient", texteIdPatient);
         tableauAvis.put("date", texteDate);
-        Log.d(TAG, "date du jour" + texteDate);
         tableauAvis.put("description", texteDescriptionAvis);
-        Log.d(TAG, "description avis:" + texteDescriptionAvis);
 
         // Traitement des erreurs
         if (!erreurs()) {
@@ -116,13 +119,23 @@ public class ActiviteAvis extends AppCompatActivity {
     public boolean erreurs() {
         String messageErreur = "";
         String texteLibelle = tableauAvis.get("libelle");
+        String texteIdPatient = tableauAvis.get("idPatient");
         String texteDate = tableauAvis.get("date");
         String texteDescriptionAvis = tableauAvis.get("description");
 
         if (texteLibelle == null || texteLibelle.isEmpty()
                 || texteDate == null || texteDate.isEmpty()
-                || texteDescriptionAvis == null || texteDescriptionAvis.isEmpty()) {
+                || texteDescriptionAvis == null || texteDescriptionAvis.isEmpty()
+                || texteIdPatient == null || texteIdPatient.isEmpty())  {
             messageErreur = "au moins un des champs n'a pas été saisi";
+        }
+        // gesstion du nombre idPatient
+        else{
+            try {
+                int IdPatient = Integer.parseInt(texteIdPatient);
+            } catch (NumberFormatException e) {
+                Toast.makeText(ActiviteAvis.this, "Veuillez entrer un nombre valide", Toast.LENGTH_SHORT).show();
+            }
         }
 
         if (!messageErreur.isEmpty()) {

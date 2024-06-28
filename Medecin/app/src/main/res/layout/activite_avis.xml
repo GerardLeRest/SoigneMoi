@@ -55,15 +55,26 @@
             android:minHeight="48dp"
             android:padding="8dp"/>
 
-        <!-- Champ pour la date -->
+        <!-- Champ pour l'id du patient -->
+        <EditText
+            android:id="@+id/idPatient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id_du_patient"
+            android:layout_marginBottom="16dp"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:padding="8dp"/>
+
+        <!-- Champ pour la date (inputType="non" -disparition du clavier avant le calendrier-->
         <EditText
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/date"
             android:layout_marginBottom="16dp"
-            android:inputType="date"
-            android:focusable="false"
+            android:inputType="none"
+            android:focusable="true"
             android:clickable="true"
             android:minHeight="48dp"
             android:padding="8dp"/>

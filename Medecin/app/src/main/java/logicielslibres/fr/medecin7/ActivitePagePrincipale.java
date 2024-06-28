@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin5;
+package logicielslibres.fr.medecin7;
 
 import android.content.Intent;
 import android.os.Bundle;
