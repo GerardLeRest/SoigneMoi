@@ -54,12 +54,13 @@ class ControlleurFormulaireMedecin{
             return $renderer->render($response,'formulaireMedecin.php', ['errors' => $errors]);
         }
         else{
-            $this->validation();
+            $this->validation($response, $prenom, $nom, $specialite, $matricule);
             return $renderer->render($response, 'accueil.php'); 
         }
     }
 
-    public function validation(){
+    public function validation(Response $response, string $prenom, string $nom, string $specialite, $matricule) : Response
+    {
         $medecin = new Medecin;
         $medecin->SetPrenom($this->donnees['prenom']);
         $medecin->SetNom($this->donnees['nom']);
@@ -68,9 +69,12 @@ class ControlleurFormulaireMedecin{
         try{
             $this->entityManager->persist($medecin);
             $this->entityManager->flush();
+            $response->getBody()->write("données enregistrées");
+            return $response;
         }
             catch (Exception $e) {
-            echo 'Erreur de transfert: ', $e->getMessage(), "\n";
+                $response->getBody()->write('Erreur de transfert: ', $e->getMessage(), "\n");
+                return $response;
         }
     }
 }   

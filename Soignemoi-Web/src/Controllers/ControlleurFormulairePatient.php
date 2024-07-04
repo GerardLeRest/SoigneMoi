@@ -13,7 +13,6 @@ class ControlleurFormulairePatient{
 
     private EntityManager $entityManager;
     private array $donnees =[];
-    private string $motDePassseHache;
 
     public  function __construct(EntityManager $entityManager){
         $this->entityManager = $entityManager;
@@ -30,6 +29,7 @@ class ControlleurFormulairePatient{
         $adressePostale = $this->donnees["adressePostale"];
         $email = $this->donnees['email'];
         $motDePasse = $this->donnees["motDePasse"];
+        $motDePasseHache="";
         $errors =[];
         
         // Données de test
@@ -75,31 +75,35 @@ class ControlleurFormulairePatient{
         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,20}$/', $motDePasse)) { 
             $errors['password'] = "Le mot de passe doit contenir entre 8 et 20 caractères, incluant au moins une lettre minuscule, une lettre majuscule, un chiffre, et un caractère spécial.";
         }
-        $this->motDePassseHache = password_hash($motDePasse, PASSWORD_DEFAULT); 
-
+        $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT); 
+ 
         if (count($errors)>0){
             return $renderer->render($response,'formulairePatient.php', ['errors' => $errors]);
             }
         else{
-            $this->validation();
+            $this->validation($response, $prenom, $nom, $adressePostale, $email, $motDePasseHache);
             return $renderer->render($response, 'accueil.php'); 
         }
     }
 
-    public function validation(){
+    public function validation(Response $response, string $prenom, string $nom, string $adressePostale, string $email, string $motDePasseHache) : Response
+    {
         $patient = new Patient;
-        $patient->setPrenom($this->donnees['prenom']);
-        $patient->setNom($this->donnees['nom']);
-        $patient->setAdressePostale($this->donnees['adressePostale']);
-        $patient->setEmail($this->donnees['email']);
-        $patient->setMotDePasse($this->motDePassseHache);
+        $patient->setPrenom($prenom);
+        $patient->setNom($nom);
+        $patient->setAdressePostale($adressePostale);
+        $patient->setEmail($email);
+        $patient->setMotDePasse($motDePasseHache);
         //transfert des données du nouveau patient
         try{
             $this->entityManager->persist($patient);
             $this->entityManager->flush();
+            $response->getBody()->write("données enregistrées");
+            return $response;
         }
             catch (Exception $e) {
-            echo 'Erreur de transfert: ', $e->getMessage(), "\n";
+                $response->getBody()->write('Erreur de transfert: ', $e->getMessage(), "\n");
+                return $response;
         }
     }
 }

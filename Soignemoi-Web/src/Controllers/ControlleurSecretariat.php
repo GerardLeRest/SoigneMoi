@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use DateTime; // Add this line to import the DateTime class
 
 
 class ControlleurSecretariat
@@ -19,22 +20,6 @@ class ControlleurSecretariat
         $this->entityManager = $entityManager;
     }
 
-    public function recuperationDonnees(): array
-        {
-            $tableauFinal = [];
-            foreach ($this->donnees as $donnee) {
-                $tableauCoordonnees = [
-                    'idPatient' => $donnee['idPatient'],
-                    'prenom' => $donnee['prenom'],  
-                    'nom' => $donnee['nom'],
-                    'adressePostale' => $donnee['adressePostale']
-                ];
-                if (!in_array($tableauCoordonnees, $tableauFinal)) {  //élimine les doublons
-                    array_push($tableauFinal, $tableauCoordonnees);
-                }
-            }
-            return $tableauFinal; // Retourne après avoir traité tous les éléments
-        }
 
     //tous
     public function donneesTous (Request $request, Response $response) : Response
@@ -47,10 +32,7 @@ class ControlleurSecretariat
                 WHERE  s.dateDebut = CURRENT_DATE() OR s.dateFin = CURRENT_DATE()
                 ');
             $this->donnees = $query->getResult();
-            $tableauEntreesSorties = $this->recuperationDonnees();
-            $donneesJSON = json_encode($tableauEntreesSorties);
-            $response->getBody()->write($donneesJSON); 
-            return $response->withHeader('Content-Type', 'application/json');
+            return $this->transformationJSON($this->donnees, $response);
         } catch( Exception $e){ 
             $response->getBody()->write("Erreur: " . $e->getMessage());
             return $response;
@@ -67,10 +49,7 @@ class ControlleurSecretariat
                 JOIN s.patient p
                 WHERE  s.dateDebut = CURRENT_DATE()');
             $this->donnees = $query->getResult();
-            $tableauEntrees = $this->recuperationDonnees();        
-            $donneesJSON = json_encode($tableauEntrees);
-            $response->getBody()->write($donneesJSON); 
-            return $response->withHeader('Content-Type', 'application/json');
+            return $this->transformationJSON($this->donnees, $response);
         } catch(Exception $e){
             $response->getBody()->write("Erreur: " . $e->getmessage());
             return $response;
@@ -86,17 +65,22 @@ class ControlleurSecretariat
             FROM App\Models\Sejour s 
             JOIN s.patient p
             WHERE  s.dateFin = CURRENT_DATE()');
-            
-            $this->donnees = $query->getResult();
-            $tableauSorties = $this->recuperationDonnees();        
-            $donneesJSON = json_encode($tableauSorties);
-            $response->getBody()->write($donneesJSON); 
-            return $response->withHeader('Content-Type', 'application/json');
+        $this->donnees = $query->getResult();   
+        return $this->transformationJSON($this->donnees, $response);
         } catch (Exception $e){
             $response->getBody()->write("Erreur: " . $e->getmessage());
             return $response;
         }    
     }
+
+    public function transformationJSON($tableau, Response $response ) : Response 
+    {
+        $donneesJSON = json_encode($tableau);
+        $response->getBody()->write($donneesJSON); 
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    //---------------------------------------------------------------------------------------------------
 
     public function details (Request $request, Response $response, array $args) : Response
     {
@@ -113,24 +97,18 @@ class ControlleurSecretariat
             ');
             $querySejours->setParameter('idPatient', $id);    
             $this->donnees = $querySejours->getResult();
-            // Transformation des données en format JSON
-            $tableauSejours = [];
-            foreach ($this->donnees as $donnee) {
+            
+            // transformation des dates sur tous les enregistrements
+            // !!! avec & toute modification apportée à $donnee sera directement appliquée à $this->donnees dans le tableau.
+            foreach ($this->donnees as &$donnee) {
+                // Les objets DateTime retournés par Doctrine sont déjà des objets DateTime, donc pas besoin de reconversion
                 $donnee['dateDebut'] = $donnee['dateDebut']->format('Y-m-d');
-                $donnee['dateFin'] = $donnee['dateFin'] ? $donnee['dateFin']->format('Y-m-d') : null; //opérateur ternaire (condition)
-                $tableauCoordonnees = [
-                    'dateDebut' => $donnee['dateDebut'],
-                    'dateFin' => $donnee['dateFin'],
-                    'motif du séjour' => $donnee['motifSejour'],
-                    'spécialité du séjour' => $donnee['specialite'],  
-                    'médecin souhaité' => $donnee['medecinSouhaite'],
-                    'email du patient' => $donnee['email']
-                ];
-                if (!in_array($tableauCoordonnees, $tableauSejours)) {  //élimine les doublons
-                    array_push($tableauSejours, $tableauCoordonnees);
-                }
+                $donnee['dateFin'] = $donnee['dateFin'] ? $donnee['dateFin']->format('Y-m-d') : null;
             }
-                //------------------------------------------------------------------------------------------  
+            
+            $tableauSejours = $this->donnees;
+           
+            //------------------------------------------------------------------------------------------  
             //Medecin
             $queryMedecins = $this->entityManager->createQuery('
             SELECT m.prenom, m.nom, m.matricule, m.specialite
@@ -141,20 +119,9 @@ class ControlleurSecretariat
             ');
             $queryMedecins->setParameter('idPatient', $id);    
             $this->donnees = $queryMedecins->getResult();
-            // Transformation des données en format JSON
-            $tableauMedecins = [];
-            foreach ($this->donnees as $donnee) {
-                $tableauCoordonnees = [
-                    'prenom' => $donnee['prenom'],
-                    'nom' => $donnee['nom'],
-                    'matricule' => $donnee['matricule'],
-                    'specialité du médecin' => $donnee['specialite'] 
-                ];
-                if (!in_array($tableauCoordonnees, $tableauMedecins)) {  //élimine les doublons
-                    array_push($tableauMedecins, $tableauCoordonnees);
-                }
-            }
-
+            
+            $tableauMedecins = $this->donnees;
+            
             //------------------------------------------------------------------------------------------  
             // Avis
             $queryAvis = $this->entityManager->createQuery('
@@ -166,22 +133,12 @@ class ControlleurSecretariat
             ');
             $queryAvis->setParameter('idPatient', $id);
             $this->donnees = $queryAvis->getResult();
-            // Transformation des données en format JSON
-            $tableauAvis = [];
-            foreach ($this->donnees as $donnee) {
-                // formatage de la date
-                $donnee['date'] = $donnee['date']->format('Y-m-d');  //doit être dans cette boucle et non seul dans une boucle
-                $tableauCoordonnees = [
-                    'prénom du médecin' => $donnee['prenom'],
-                    'nom médecin:' => $donnee['nom'],
-                    'date' => $donnee['date'],
-                    'libelle' => $donnee['libelle'],
-                    'description' => $donnee['description']
-                ];
-                if (!in_array($tableauCoordonnees, $tableauAvis)) {  //élimine les doublons
-                    array_push($tableauAvis, $tableauCoordonnees);
-                }
+            // transformation des dates sur tous les enregistrements
+            foreach ($this->donnees as &$donnee) {
+                $donnee['date'] = $donnee['date']->format('Y-m-d');
             }
+            
+            $tableauAvis = $this->donnees;
             
             //------------------------------------------------------------------------------------------      
             // Prescriptions
@@ -194,31 +151,23 @@ class ControlleurSecretariat
             ');
             $queryPrescriptions->setParameter('idPatient', $id);    
             $this->donnees = $queryPrescriptions->getResult();
-            // Transformation des données en format JSON
-            $tableauPrescriptions = [];
-            foreach ($this->donnees as $donnee) {
-                // formatage des dates
+            // transformation des dates sur tous les enregistrements
+            foreach ($this->donnees as &$donnee) {
                 $donnee['dateDeDebut'] = $donnee['dateDeDebut']->format('Y-m-d');
-                $donnee['dateDeFin'] = $donnee['dateDeFin']->format('Y-m-d');
-                $tableauCoordonnees = [
-                    'prénom du médecin' =>$donnee['prenom'],
-                    'nom du médecin' => $donnee["nom"],
-                    'nom du médicament' => $donnee['nomMedicament'],
-                    'posologie' => $donnee['posologie'],
-                    'dateDeDebut' => $donnee['dateDeDebut'],
-                    'dateDeFin' => $donnee['dateDeFin']
-                ];
-                if (!in_array($tableauCoordonnees, $tableauPrescriptions)) {  //élimine les doublons
-                    array_push($tableauPrescriptions, $tableauCoordonnees);
-                }
+                $donnee['dateDeFin'] = $donnee['dateDeFin'] ? $donnee['dateDeFin']->format('Y-m-d') : null;
             }
-            $tableauFinal = [$tableauSejours, $tableauMedecins, $tableauAvis, $tableauPrescriptions];
+                           
+            $tableauPrescriptions = $this->donnees;
+
+            $tableauFinal = [$tableauSejours,$tableauMedecins, $tableauPrescriptions, $tableauPrescriptions];
+
             $donneesJSON = json_encode($tableauFinal);
             $response->getBody()->write($donneesJSON); 
             return $response->withHeader('Content-Type', 'application/json');        
+        
         } catch (Exception $e){
                 $response->getBody()->write("Erreur: " . $e->getmessage());
                 return $response;
                 }    
-        }
+    }
 }

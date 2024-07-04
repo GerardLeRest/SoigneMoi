@@ -12,7 +12,7 @@ use Slim\Views\PhpRenderer;
 class ControlleurFormulaireConnexion{
 
     private EntityManager $entityManager;
-    private array $donnees =[];
+    private array $donnees;
 
     public  function __construct(EntityManager $entityManager){
         $this->entityManager = $entityManager;
@@ -31,15 +31,15 @@ class ControlleurFormulaireConnexion{
         // test
         //Adresse Email
         if (!isset($email) || empty($email)){
-            $errors["email1"] = 'le champs "Adresse Email" n\'a pas été rempli';
+            $errors["saisieEmail"] = 'le champs "Adresse Email" n\'a pas été rempli';
         }
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email1'] = "Le format de l'adresse e-mail n'est pas valide.";
+            $errors['validiteEmail'] = "Le format de l'adresse e-mail n'est pas valide.";
         }
 
         //mot de passe
         if (!isset($motDePasse) || empty($motDePasse)){
-            $errors['motDePasse'] = "le mot de passe n'a pas été saisi";
+            $errors['saiSiMotDePasse'] = "le mot de passe n'a pas été saisi";
         }
     
         //Recupération de l'utilisateur par l'email
@@ -49,16 +49,17 @@ class ControlleurFormulaireConnexion{
             $utilisateur = $query->getOneOrNullResult();
 
             if (!$utilisateur) {
-                $errors['email2'] = "L'email ou le mot de passe est incorrect.";
+                $errors['erreurSaisie1'] = "L'email ou le mot de passe est incorrect.";
             } else {
                 // vérification du mot de passe
                 $motDePasseHache = $utilisateur->getMotDePasse();
                 if (password_verify($motDePasse, $motDePasseHache)) {
                     // Mot de passe correct
-                    $response->getBody()->write("Connexion réussie");
-                    return $response;
+                    return $renderer->render($response, 'accueil.php');
                 } else {
-                    $errors['motDePasse'] = "L'email ou le mot de passe est incorrect.";
+                    $errors['ErreurSaisie2'] = "L'email ou le mot de passe est incorrect.";
+                    return $renderer->render($response,'formulaireConnexion.php', ['errors' => $errors]);
+                    
                 }
             }
 

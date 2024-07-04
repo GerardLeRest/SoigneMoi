@@ -12,6 +12,7 @@ use App\Controllers\ControlleurListeSejours;
 use App\Controllers\ControlleurFormulaireConnexion;
 use App\Controllers\ControlleurFormulaireAvis;
 use App\Controllers\ControlleurFormulairePrescription;
+use App\Controllers\ControlleurIdMedecin;
 
 //pages Web - icônes de menu
 $renderer = new PhpRenderer(__DIR__ . '/../src/Views');
@@ -59,6 +60,7 @@ return function (App $app) {
    // Application mobile "Médecin" - Formulaires Avis et Prescriptions
    $app->post('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avis
    $app->post('/formulairePrescription', ControlleurFormulairePrescription::class . ':verification'); //validation du formulaire Prescription
+   $app->post('/idMedecin', ControlleurIdMedecin::class .':acquisitionIdMedecin'); // détermination de l'idMedecin pour l'application mobile à parttir du prénom et du nom
 
 
    //site web - formulaires et requête  pour la liste des séjours
