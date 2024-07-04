@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/id_du_patient"
             android:layout_marginBottom="16dp"
-            android:inputType="number"
+            android:inputType="text"
             android:minHeight="48dp"
             android:padding="8dp"/>
 

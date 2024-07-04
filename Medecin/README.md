@@ -21,7 +21,7 @@ Changer les trois URL de types https par les adresses locales
   <?xml version="1.0" encoding="utf-8"?>
   <network-security-config>
       <domain-config cleartextTrafficPermitted="true">
-          <domain includeSubdomains="true">192.168.235.74</domain> <!-- à adapt -->r0
+          <domain includeSubdomains="true">192.168.1.10</domain>
       </domain-config>
   </network-security-config>
   ```
@@ -29,7 +29,8 @@ Changer les trois URL de types https par les adresses locales
 - dans le fichier app/manifets/AndroidManifest.xml, ajouter:
   
   ```xml
-  android:networkSecurityConfig="@xml/network_security_config"
+    <application
+   android:networkSecurityConfig="@xml/network_security_config"
   ```
 
 ### 2.2 En hébergé:
