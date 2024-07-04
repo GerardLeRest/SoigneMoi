@@ -31,17 +31,17 @@ class Secretariat (tk.Tk):
        
     def tous(self):
         self.tableau = Tableau(self, "Tous")
-        self.tableau.recuperation_donnees('https://www.soignemoi.net/tous')
+        self.tableau.recuperation_donnees('http://localhost/soignemoi-web/tous')
         self.affichage()
         
     def sorties(self):
         self.tableau = Tableau(self, "Sorties")
-        self.tableau.recuperation_donnees('https://www.soignemoi.net/sorties')
+        self.tableau.recuperation_donnees('http://localhost/soignemoi-web/sorties')
         self.affichage()
         
     def entrees(self):
         self.tableau = Tableau(self, "Entrées")
-        self.tableau.recuperation_donnees('https://www.soignemoi.net/entrees')
+        self.tableau.recuperation_donnees('http://localhost/soignemoi-web/entrees')
         self.affichage()
         
     def affichage(self):
