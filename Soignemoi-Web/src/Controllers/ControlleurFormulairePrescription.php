@@ -29,7 +29,15 @@ class ControlleurFormulairePrescription{
         $dateDeFin = $this->donnees["dateDeFin"];
         $idMedecin = (int)$this->donnees['idMedecin'];  // transformation de la chaine de caravtère en entier    
         $idPatient = (int)$this->donnees['idPatient'];  // transformation de la chaine de caravtère en entier   
-                        
+               
+        /* $nomMedicament = '';
+        $posologie = '';
+        $dateDeDebut = '';
+        $dateDeFin = '';
+        $idMedecin = '';  
+        $idPatient = ''; */
+        
+
         //Vérification des données
         if(!isset($nomMedicament) || empty($nomMedicament)
             || !isset($posologie) || empty($posologie)
@@ -38,12 +46,12 @@ class ControlleurFormulairePrescription{
             || !isset($idMedecin) || empty($idMedecin)
             || !isset($idPatient) || empty($idPatient)){
             $response->getBody()->write("erreur de saisie dans au moins un champ");
+            return $response;
             }                
         else{
-            $this->validation($response, $nomMedicament, $posologie, $dateDeDebut, $dateDeFin, $idMedecin, $idPatient );    
-            $response->getBody()->write("les champs sont bien complétés");         
+            return $this->validation($response, $nomMedicament, $posologie, $dateDeDebut, $dateDeFin, $idMedecin, $idPatient );    
         }
-        return $response;
+       
     }
 
     public function validation(Response $response, string $nomMedicament, string $posologie, string $dateDeDebut, string $dateDeFin, int $idMedecin, int $idPatient) : Response
@@ -70,7 +78,7 @@ class ControlleurFormulairePrescription{
         try{
             $this->entityManager->persist($prescription);
             $this->entityManager->flush();
-            $response->getBody->write("données enregistrées");
+            $response->getBody->write(" ");
             return $response;
         }
         catch (Exception $e) {

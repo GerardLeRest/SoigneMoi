@@ -30,7 +30,15 @@ class ControlleurFormulaireAvis{
         $date = $this->donnees['date'];
         $description = $this->donnees['description'];
         $response->getBody()->write("");
+	
+	//tests
+	//$libelle = "";
+    //$idMedecin = "";
+    //$idPatient = "";
+    //$date = "";
+    //$description = "";
 
+	
         //Vérification des données
         if(!isset($libelle) || empty($libelle)
             || !isset($idMedecin) || empty($idMedecin)
@@ -38,11 +46,11 @@ class ControlleurFormulaireAvis{
             || !isset($date) || empty($date)
             || !isset($description) || empty($description)){
                 $response->getBody()->write("erreur de saisie dans au moins un champ");
+                return $response;
                 }
             else{
-                $this->validation($response, $libelle, $idMedecin, $idPatient, $date, $description);
+                return $this->validation($response, $libelle, $idMedecin, $idPatient, $date, $description);
             }
-            return $response;
     }
 
     public function validation(Response $response, string $libelle, int $idMedecin, int $idPatient, string $date, string $description ) : Response

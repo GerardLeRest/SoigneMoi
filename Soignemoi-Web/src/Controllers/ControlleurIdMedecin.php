@@ -28,14 +28,13 @@ Class ControlleurIdMedecin{
         if ($prenom == null || (!isset($prenom))
             || $nom == null || (!isset($nom))){
             $response->getBody()->write("Les champs du médecins doivent être remplis");
+            return $response;
         }
         else{
-            $this->determinationIdMedecin($response, $prenom, $nom);
+            return $this->determinationIdMedecin($response, $prenom, $nom);
         }
-        return $response;     
         
     }
-
     public function determinationIdMedecin(Response $response, string $prenom, string $nom) : Response{
         try{
             $query = $this->entityManager->createQuery('

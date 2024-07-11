@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <?php require_once('commun/head.php'); ?>
+
     <body>
         <?php require_once('commun/header.php'); ?>
         <main class="container">

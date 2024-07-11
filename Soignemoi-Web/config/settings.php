@@ -18,12 +18,7 @@ $settings = [
             'host' => "localhost",
             'port' => 3306
         ],
-    ],
-    'commands' => [
-        \App\Console\ExampleCommand::class,
-        // Add more here...
-    ],
-    'session' => [ 'name' => 'webapp'] // session
+    ]
 ];
     
 return $settings;

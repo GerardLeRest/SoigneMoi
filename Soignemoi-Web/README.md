@@ -23,10 +23,8 @@
 	DB_PASS = "MotDePasseBaseDeDonnees"
 	DB_NAME = "Soignemoi"
 - ouvrir un terminal pour installer les dépendances manquantes du projet: composer install 
-- //$app->setBasePath('/soignemoi-web'); - doit être commenté dans le fichier config/container.php
-- <base href="<?= "/soignemoi-web" ?>/"/> dans src/Views/commun/head.php"
-- les liens doivent intégrer maintenant commencer par public/ Exemple:
-"href="public/assets/css/styles.css"
+- $app->setBasePath('/soignemoi-web'); - ne doit pas être commenté dans le fichier config/container.php
+- <base href="<?= "/soignemoi-web" ?>/"/> doit être présent dans src/Views/commun/head.php"
 	
   3 - Mise en place sur le serveur
 ---------------------------------
