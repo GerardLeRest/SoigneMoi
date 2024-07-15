@@ -4,7 +4,7 @@
     <body class="d-flex flex-column min-vh-100">
         <?php require_once('commun/header.php'); ?>
             
-        <main  class="container">
+        <main  class="containe flex-grow-1r">
             <p>page des services</p>
         </main>
         

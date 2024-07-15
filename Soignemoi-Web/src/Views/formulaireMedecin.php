@@ -49,7 +49,7 @@
                         }
                     }
                 ?>
-            <</div>
+            </div>
         </main> 
         <footer class="mt-auto">
             <!-- bas de page-->

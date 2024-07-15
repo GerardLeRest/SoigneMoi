@@ -10,7 +10,7 @@
             <br>
             <row>
                 <table class="table">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark"> <!--enttête du tableau-->
                         <tr>
                         <th scope="col"></th>
                         <th scope="col">Date de début</th>
@@ -29,7 +29,7 @@
                                 <?php if ($donnees[$i]['dateFin']): ?>
                                     <?= $donnees[$i]['dateFin']->format('d-m-Y') ?>
                                 <?php else: ?>
-                                    &nbsp;
+                                    &nbsp;          <!-- créer un espace à la plave de la date de fin si elle est de type null -->
                                 <?php endif; ?>
                             </td>
                             <td><?= isset($donnees[$i]['motifSejour']) ? htmlspecialchars($donnees[$i]['motifSejour']) : '' ?></td>

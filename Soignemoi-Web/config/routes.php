@@ -49,6 +49,10 @@ $app->get('/formulaireConnexion', function (Request $request, Response $response
    return $renderer->render($response, 'formulaireConnexion.php');
 });
 
+$app->get('/test', function (Request $request, Response $response, $args) use ($renderer) {
+   return $renderer->render($response, 'test.php');
+});
+
 return function (App $app) {
     
    // Application bureautique - Entrés/Sorties des patients
