@@ -1,10 +1,10 @@
 <?php
 
 // Should be set to 0 in production
-error_reporting(E_ALL);
+error_reporting(0);
 
 // Should be set to '0' in production
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 
 $settings = [
     'doctrine' => [
@@ -18,10 +18,6 @@ $settings = [
             'host' => "91.216.107.186",
             'port' => 3306
         ],
-    ],
-    'commands' => [
-        \App\Console\ExampleCommand::class,
-        // Add more here...
     ]
 ];
     

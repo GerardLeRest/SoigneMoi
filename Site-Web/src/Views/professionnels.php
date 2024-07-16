@@ -4,13 +4,12 @@
     <body class="d-flex flex-column min-vh-100">
         <?php require_once('commun/header.php'); ?>
             
-        <main  class="container">
+        <main  class="container flex-grow-1">
             <p>page des professionnels</p>
         </main>
         
-        <footer class="mt-auto">
             <!-- bas de page-->
             <?php require_once('commun/footer.php'); ?>
-        </footer>
+        
     </body>
 </html>

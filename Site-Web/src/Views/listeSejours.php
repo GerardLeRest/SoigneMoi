@@ -10,7 +10,7 @@
             <br>
             <row>
                 <table class="table">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark"> 
                         <tr>
                         <th scope="col"></th>
                         <th scope="col">Date de début</th>
@@ -20,24 +20,29 @@
                         <th scope="col">Médecin souhaité</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php for ($i = 0; $i < count($donnees); $i++): ?>
-                            <tr>
-                                <th scope="row"><?= $i+1 ?></th>
-                                    <td><?= $donnees[$i]['dateDebut']->format('d-m-Y')?></td>
-                                    <td><?= $donnees[$i]['dateFin']->format('d-m-Y')?></td>
-                                    <td><?= $donnees[$i]['motifSejour'] ?></td>
-                                    <td><?= $donnees[$i]['specialite'] ?></td>
-                                    <td><?= $donnees[$i]['medecinSouhaite'] ?></td>
-                            </tr>
-                        <?php endfor; ?>                     
+                    <tbody> <!--corps du tabelau-->
+                    <?php for ($i = 0; $i < count($donnees); $i++): ?>
+                        <tr>
+                            <th scope="row"><?= $i + 1 ?></th>
+                            <td><?= $donnees[$i]['dateDebut']->format('d-m-Y') ?></td>
+                            <td>
+                                <?php if ($donnees[$i]['dateFin']): ?>
+                                    <?= $donnees[$i]['dateFin']->format('d-m-Y') ?>
+                                <?php else: ?>
+                                    &nbsp;
+                                <?php endif; ?>
+                            </td>
+                            <td><?= isset($donnees[$i]['motifSejour']) ? htmlspecialchars($donnees[$i]['motifSejour']) : '' ?></td>
+                            <td><?= isset($donnees[$i]['specialite']) ? htmlspecialchars($donnees[$i]['specialite']) : '' ?></td>
+                            <td><?= isset($donnees[$i]['medecinSouhaite']) ? htmlspecialchars($donnees[$i]['medecinSouhaite']) : '' ?></td>
+                        </tr>
+                    <?php endfor; ?>
                     </tbody>
                 </table>
             </row>
         </main>
-        <footer class="mt-auto">
-            <!-- include footer -->
+            <!-- pied de page -->
             <?php require_once('commun/footer.php'); ?>
-        </footer>
+       
     </body>
 </html> 

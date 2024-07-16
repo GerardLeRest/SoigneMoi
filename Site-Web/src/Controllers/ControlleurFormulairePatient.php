@@ -13,7 +13,6 @@ class ControlleurFormulairePatient{
 
     private EntityManager $entityManager;
     private array $donnees =[];
-    private string $motDePassseHache;
 
     public  function __construct(EntityManager $entityManager){
         $this->entityManager = $entityManager;
@@ -30,10 +29,11 @@ class ControlleurFormulairePatient{
         $adressePostale = $this->donnees["adressePostale"];
         $email = $this->donnees['email'];
         $motDePasse = $this->donnees["motDePasse"];
-        $errors =[];
+        $motDePasseHache="";
+        $erreurs =[];
         
         // Données de test
-       /*  $prenom = "";
+        /* $prenom = "";
         $nom = "";
         $adressePostale = "";
         $email = "";
@@ -41,25 +41,25 @@ class ControlleurFormulairePatient{
 
         // Prenom
         if (!isset($prenom) || empty($prenom)){
-            $errors["prenom"] = 'le champs "Prénom" n\'a pas été rempli';
+            $erreurs["prenom"] = 'le champs "Prénom" n\'a pas été rempli';
         }
 
         // nom
         if (!isset($nom) || empty($nom)){
-            $errors["nom"] = 'le champs "Nom" n\'a pas été rempli';
+            $erreurs["nom"] = 'le champs "Nom" n\'a pas été rempli';
         }
         
         // Adresse postale
         if (!isset($adressePostale) || empty($adressePostale)){
-            $errors["adressePostale"] = 'le champs "Adresse Postale" n\'a pas été rempli';
+            $erreurs["adressePostale"] = 'le champs "Adresse Postale" n\'a pas été rempli';
         }
     
         //Adresse Email
         if (!isset($email) || empty($email)){
-            $errors["email"] = 'le champs "Adresse Email" n\'a pas été rempli';
+            $erreurs["email"] = 'le champs "Adresse Email" n\'a pas été rempli';
         }
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = "Le format de l'adresse e-mail n'est pas valide.";
+            $erreurs['email'] = "Le format de l'adresse e-mail n'est pas valide.";
         }
         // présence d'un email identique
         else{
@@ -67,40 +67,43 @@ class ControlleurFormulairePatient{
             $query->setParameter('email',$email);
             $emaiIdentique = $query->getOneOrNullResult();
             if (isset($emaiIdentique)){
-                $errors['email'] = "votre email est déjà enregistré";
+                $erreurs['email'] = "votre email est déjà enregistré";
             }
         }
         // mot de passe
         //^: début de chaine - \d: au moins 1 nombre -?=.*[^a-zA-Z\d]: au moins un caractère spécial -{8-20}: mot de passe entre 8 et 20 carctères
         if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,20}$/', $motDePasse)) { 
-            $errors['password'] = "Le mot de passe doit contenir entre 8 et 20 caractères, incluant au moins une lettre minuscule, une lettre majuscule, un chiffre, et un caractère spécial.";
+            $erreurs['password'] = "Le mot de passe doit contenir entre 8 et 20 caractères, incluant au moins une lettre minuscule, une lettre majuscule, un chiffre, et un caractère spécial.";
         }
-        $this->motDePassseHache = password_hash($motDePasse, PASSWORD_DEFAULT); 
-
-        if (count($errors)>0){
-            return $renderer->render($response,'formulairePatient.php', ['errors' => $errors]);
+        $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT); 
+ 
+        if (count($erreurs)>0){
+            return $renderer->render($response,'formulairePatient.php', ['erreurs' => $erreurs]);
             }
         else{
-            $this->validation();
-            $response->getBody()->write("la vérification est bonne");
-            return $response;
+            $this->validation($response, $prenom, $nom, $adressePostale, $email, $motDePasseHache);
+            return $renderer->render($response, 'accueil.php', ['urlr' => 0]); //urlr : voir page constantes.php
         }
     }
 
-    public function validation(){
+    public function validation(Response $response, string $prenom, string $nom, string $adressePostale, string $email, string $motDePasseHache) : Response
+    {
         $patient = new Patient;
-        $patient->setPrenom($this->donnees['prenom']);
-        $patient->setNom($this->donnees['nom']);
-        $patient->setAdressePostale($this->donnees['adressePostale']);
-        $patient->setEmail($this->donnees['email']);
-        $patient->setMotDePasse($this->motDePassseHache);
+        $patient->setPrenom($prenom);
+        $patient->setNom($nom);
+        $patient->setAdressePostale($adressePostale);
+        $patient->setEmail($email);
+        $patient->setMotDePasse($motDePasseHache);
         //transfert des données du nouveau patient
         try{
             $this->entityManager->persist($patient);
             $this->entityManager->flush();
+            $response->getBody()->write(" ");
+            return $response;
         }
             catch (Exception $e) {
-            echo 'Erreur de transfert: ', $e->getMessage(), "\n";
+                $response->getBody()->write('Erreur de transfert: ', $e->getMessage(), "\n");
+                return $response;
         }
     }
 }

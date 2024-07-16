@@ -20,47 +20,47 @@ class ControlleurFormulaireMedecin{
 
     public function verification(Request $request, Response $response, array $args): Response
     {
-        $errors=[];
+        $erreurs=[];
         $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
         // récupération des données
         $this->donnees = $request->getParsedBody();
         // affectation des variables
-        $prenom = $this->donnees['prenom'];
+        $prenom = $this->donnees['nom'];
         $nom = $this->donnees['prenom'];
         $specialite = $this->donnees['specialite'];
         $matricule =$this->donnees['matricule'];
 
         // Données de test
-       /*  $prenom = "";
-        $nom = "";
-        $specialite = "";
-        $matricule =""; */
+        //$prenom = "";
+        //$nom = "";
+        //$specialite = "";
+        //$matricule ="";
 
         // test
         if (!isset($prenom) || empty($prenom)){
-            $errors['prenom'] = " le champ du prénom n'a pas été complété";
+            $erreurs['prenom'] = " le champ du prénom n'a pas été complété";
         }
         if (!isset($nom) || empty($nom)){
-            $errors['nom'] = " le champ du nom n'a pas été complété";
+            $erreurs['nom'] = " le champ du nom n'a pas été complété";
         }
         if (!isset($specialite) || empty($specialite)){
-            $errors['specialite'] = " le champ de la spécialité n'a pas été complété";
+            $erreurs['specialite'] = " le champ de la spécialité n'a pas été complété";
         }
         if (!isset($matricule) || empty($matricule)){
-            $errors['matricule'] = " le champ du matricule n'a pas été complété";
+            $erreurs['matricule'] = " le champ du matricule n'a pas été complété";
         }
         // traitement des erreurs
-        if (count($errors)>0){
-            return $renderer->render($response,'formulaireMedecin.php', ['errors' => $errors]);
+        if (count($erreurs)>0){
+            return $renderer->render($response,'formulaireMedecin.php', ['erreurs' => $erreurs]);
         }
         else{
-            $this->validation();
-            $response->getBody()->write("la vérification est correcte");
-            return $response;
+            $this->validation($response, $prenom, $nom, $specialite, $matricule);
+            return $renderer->render($response, 'accueil.php', ['urlr' => 0]); 
         }
     }
 
-    public function validation(){
+    public function validation(Response $response, string $prenom, string $nom, string $specialite, $matricule) : Response
+    {
         $medecin = new Medecin;
         $medecin->SetPrenom($this->donnees['prenom']);
         $medecin->SetNom($this->donnees['nom']);
@@ -69,9 +69,12 @@ class ControlleurFormulaireMedecin{
         try{
             $this->entityManager->persist($medecin);
             $this->entityManager->flush();
+            $response->getBody()->write(" ");
+            return $response;
         }
             catch (Exception $e) {
-            echo 'Erreur de transfert: ', $e->getMessage(), "\n";
+                $response->getBody()->write('Erreur de transfert: ', $e->getMessage(), "\n");
+                return $response;
         }
     }
 }   

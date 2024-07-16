@@ -1,67 +1,39 @@
-# Installation du site web du projet
-
-Page d'accueil du site: https://www.soignemoi.net/accueil
-
-## 1 - Création de la branche locale "site-web"
-
+  
+                     Installation du site we "soignemoi-web"
+                     --------------------------------------
+                     
+  
+  1 - Création de la branche locale "soignemoi-web"
   -------------------------------------------------
+- Ouvrir un terminal
+- git clone git@github.com:GerardLeRest/SoigneMoi.git
+- git branch  (branches locales - on ne voit que la branche master)
+- git branch -r (liste de branches distantes)
+- git checkout soignemoi-web (création de la branche locale et basculement sur la branche)
+- git branch (pour vérifier que l'on est sur la branche soignemoi-web)
+- on peut alors copier le dossier dans son propre projet
 
-- Ouvrir un terminal et exécuter:
-  
-  ```bash
-  git clone git@github.com:GerardLeRest/SoigneMoi.git
-  ```
-  
-  On liste les branches locales - on ne voit que la branche master:
-  
-  ```bash
-  git branch
-  ```
-  
-  On liste les branches distantes:
-  
-  ```bash
-  git branch -r
-  ```
-  
-  On crée la branche locale et on bascule dessus:
-  
-  ```bash
-  git checkout branch site-web
-  ```
-  
-  On vérifie le bon basculment:
-  
-  ```bash
-  git checkout branch
-  ```
-  
-  On peut maintenant utiliser le dossier Site-web.
-
-## 2 - Configuration de l'application "Site-Web"
-
+  2 - Configuration de l'application "SoigneMoi"
   ----------------------------------------------
-
-- lancer son IDE et ouvrir le projet "Site-Web"
+- lancer son IDE et ouvrir le projet "Soignemoi-Web"
 - créer un dossier .env à la racine de projet
 - et y mettre:
-  
-  ```php
-  # Variables de la base de données \
-    DB_USER = "utilisateur" \
-    DB_PASS = "MotDePasseBaseDeDonnees" \
-    DB_NAME = "NomDeLaBaseDeDonnées" \
-  ```
-- changer "localhost" par l'adresse IP du site dans le fichiers config/settings (hébergeur)
-- ouvrir un terminal pour installer les dépendances manquantes du projet:
-    composer install 
-
-## 3 - Mise en place sur le serveur
-
+	# Variables de la base de données
+	DB_USER = "utilisateur"
+	DB_PASS = "MotDePasseBaseDeDonnees"
+	DB_NAME = "Soignemoi"
+- ouvrir un terminal pour installer les dépendances manquantes du projet: composer install 
+- $app->setBasePath('/soignemoi-web'); - ne doit pas être commenté dans le fichier config/container.php
+- <base href="<?= "/soignemoi-web" ?>/"/> doit être présent dans src/Views/commun/head.php"
+	
+  3 - Mise en place sur le serveur
 ---------------------------------
-
-- Compresser le dossier ZIP. 
-- Le déposer dans le "Panel" du site dans le dossier "htdocs".
-- Décompresser le dossier. 
-- Extraire le contenu du dossier et le mettre dans htdocs. Le dossier vide peu-être alors effacé.
-- Pour la base de données, il suffit de l'importer avec phpMyAdmin du site.
+- renommer le dossier Soignemoi-Web en soignemoi-web
+- déplacer le dossier dans /var/www/html
+- changer les propriétaires:
+    sudo chown -R $USER:www-data /var/www/html/soignemoi-web
+- changer les droits:
+    chmod -R a-rwx,u+rwX,g+rX /var/www/html/soignemoi-web
+- Suivre la documentation: https://www.slimframework.com/docs/v3/start/web-servers.html
+- lancer le site en executant http://localhost/soignemoi-web/accueil dans un navigateur internet.
+ http://localhost/soignemoi-web/formulaireMedecin permet de rentrer les inforation d'un medecin.

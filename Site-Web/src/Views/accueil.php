@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <?php require_once('commun/head.php'); ?>
+
     <body>
         <?php require_once('commun/header.php'); ?>
         <main class="container">
@@ -17,11 +18,10 @@
                         blessés, SoigneMoi a été reconstruit pour offrir sécurité et confort, témoignant de la résilience et de l'engagement de notre
                         communauté envers le soin et le bien-être.
                     </p>
-                    <p> <!-- sources:  https://www.calameo.com/read/005552956571a9c2174ee -->
-                        Aujourd'hui, SoigneMoi s'étend sur un site magnifiquement restauré, où une vue apaisante sur la ville de Chtibuck, encourageant la
-                        guérison et la tranquillité d'esprit. L'hôpital est doté de 212 lits et emploie une équipe médicale de 28 médecins (sage-femmes, 
-                        practicines, etc...) environ 90 infirmières, 120 aides-soignantes et 112 autres personnels, tous formés pour fournir des soins
-                        exceptionnels avec une touche humaine et empathique. 
+                    <p> Aujourd'hui, SoigneMoi s'étend sur un site magnifiquement restauré, où une vue apaisante sur la ville de Chtibuck,
+                        encourageant la guérison et la tranquillité d'esprit. L'hôpital est doté de 212 lits et emploie une équipe dévouée de 56 médecins,
+                        environ 49 infirmières, 25 aides-soignantes et 20 agents hospitaliers, tous formés pour fournir des soins exceptionnels avec une
+                        touche humaine et empathique.
                     </p>
                     <p> Chez SoigneMoi, nous croyons que l'environnement joue un rôle crucial dans le processus de guérison. C'est pourquoi nous nous
                         efforçons de faire de votre séjour chez nous une expérience aussi agréable et réconfortante que possible, dans un cadre qui allie
@@ -103,9 +103,9 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <!-- bas de page-->
+        
+            <!-- pied de page-->
             <?php require_once('commun/footer.php'); ?>
-        </footer
+            
     </body>
 </html>

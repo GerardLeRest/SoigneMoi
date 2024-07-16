@@ -1,16 +1,15 @@
 <?php
 
+use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Doctrine\DBAL\DriverManager; 
-use Doctrine\ORM\EntityManager; 
 use Doctrine\ORM\ORMSetup;
-use Psr\Container\ContainerInterface;
+use Doctrine\ORM\EntityManager; 
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Connection; // Add this line to import the Connection class
+
 
 return[
     'settings' => function () {
@@ -52,9 +51,6 @@ return[
     App::class => function (ContainerInterface $container) {
         $app = AppFactory::createFromContainer($container);
 
-        // Configuration de le chemin de la base
-        $app->setBasePath('/soignemoi-web'); //https://www.slimframework.com/docs/v4/start/web-servers.html
-
         // Register routes
         (require __DIR__ . '/routes.php')($app);
 
@@ -62,19 +58,6 @@ return[
         (require __DIR__ . '/middleware.php')($app);
 
         return $app;
-    },
-    //console
-    Application::class => function (ContainerInterface $container) {
-        $application = new Application();
-
-        $application->getDefinition()->addOption(
-            new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev')
-        );
-
-        foreach ($container->get('settings')['commands'] as $class) {
-            $application->add($container->get($class));
-        }
-
-        return $application;
-    }
+   }
 ];
+

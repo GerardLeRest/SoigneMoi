@@ -29,6 +29,7 @@ use Exception;
                     $this->donnees = $query->getResult(); 
                 } catch (Exception $e) {
                     $response->getBody()->write("Erreur: " . $e->getMessage());
+                    return $response;
                 }
                  
                 return $renderer->render($response,'listeSejours.php', ['donnees' => $this->donnees]);
