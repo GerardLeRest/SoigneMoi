@@ -103,9 +103,7 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <!-- bas de page-->
-            <?php require_once('commun/footer.php'); ?>
-        </footer
+        <!-- pied de page-->
+        <?php require_once('commun/footer.php'); ?>
     </body>
 </html>

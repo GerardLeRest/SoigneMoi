@@ -29,7 +29,7 @@
                                 <?php if ($donnees[$i]['dateFin']): ?>
                                     <?= $donnees[$i]['dateFin']->format('d-m-Y') ?>
                                 <?php else: ?>
-                                    &nbsp;          <!-- créer un espace à la plave de la date de fin si elle est de type null -->
+                                    &nbsp;          <!-- créer un espace à la place de la date de fin si elle est de type null -->
                                 <?php endif; ?>
                             </td>
                             <td><?= isset($donnees[$i]['motifSejour']) ? htmlspecialchars($donnees[$i]['motifSejour']) : '' ?></td>
@@ -41,9 +41,7 @@
                 </table>
             </row>
         </main>
-        <footer class="mt-auto">
-            <!-- include footer -->
-            <?php require_once('commun/footer.php'); ?>
-        </footer>
+        <!-- pied de page -->
+        <?php require_once('commun/footer.php'); ?>
     </body>
 </html> 

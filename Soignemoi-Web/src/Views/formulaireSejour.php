@@ -68,10 +68,8 @@
         ?>
       </div>
     </main>
-    <!-- Include footer -->
-    <footer class="mt-auto">
-      <?php require_once('commun/footer.php'); ?>
-    </footer>
+    <!-- Pied de page -->
+    <?php require_once('commun/footer.php'); ?>
     <!-- Include JS files -->
     <script src="public/assets/js/calendriers/jquery-3.3.1.min.js"></script>
     <script src="public/assets/js/calendriers/popper.min.js"></script>

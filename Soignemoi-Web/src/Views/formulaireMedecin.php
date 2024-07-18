@@ -51,9 +51,7 @@
                 ?>
             </div>
         </main> 
-        <footer class="mt-auto">
-            <!-- bas de page-->
-            <?php require_once('commun/footer.php'); ?>
-        </footer>
+        <!-- pied de page-->
+        <?php require_once('commun/footer.php'); ?>
     </body>
 </html>
