@@ -6,7 +6,6 @@
                 </p>
             </div>
         </div>
-    </div>
     <!--fichier Bootstrap JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 </footer

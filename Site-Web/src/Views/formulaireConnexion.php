@@ -21,9 +21,9 @@
                         <input type="password" id="motDePasse" class="form-control" aria-describedby="passwordHelpBlock" name="motDePasse" required>
                     </div>    
                     <br>
-                    <div class="col-lg-10 col-md-12 col-xs-12 md-5 offse-2 text-center">
+                    <div class="col-12 text-center">
                         <button type="submit" class="btn bouton-perso">Valider</button>
-                </div>
+                    </div>
             </form>  
             <!-- affichage des erreurs -->
             <br>
