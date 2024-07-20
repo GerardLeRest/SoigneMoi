@@ -53,7 +53,7 @@
 
 - $app->setBasePath('/soignemoi-web'); - doit être décommenté dans le fichier config/container.php
 
-- \<base href="\<?= "/soignemoi-web" ?\>/"/\> dans src/Views/commun/head.php"
+- \<base href="\<?= "/soignemoi-web" ?\>/"> dans src/Views/commun/head.php"
 
 ## 1.3 Mise en place sur le serveur
 
@@ -82,7 +82,8 @@
 
 ## 2.1 - Préparation de la base de données
 
-- Modifier des dates de sortie et de rentrée en les mettant à la date du jour dans la base de données
+- Récupérer le dossier "Secretariat" (voir 1)
+- Modifier des dates de sortie et de rentrée en les mettant à la date du jour dans la base de données avec les fichiers   et "dateDuJour.sql" "ajoutSejour.sql" (sur la branche base-de-donnees)
 
 ## 2.2 - Installation des dépendances
 
@@ -104,11 +105,13 @@ sudo apt-get install python3-pil python3-pil.imagetk
 ## 2.4 - lancement de l'application
 
 - Ouvrir le dossier dans un IDE. Ouvrir un terminal.
-- Taper "python3 Secretariat.py dans le terminal de l'IDE pour lancer l'application
+- Taper "python3 Secretariat.py dans le terminal de l'IDE pour lancer l'application.
 
 # Installation de "Medecin"
 
 ## ## 3 Configuration  de l'adresse IP du serveur
+
+- Récupérer le dossier "Medecin" (voir 1)
 
 ### 3.1  En local:
 
