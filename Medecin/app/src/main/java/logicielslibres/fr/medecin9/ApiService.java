@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin8;
+package logicielslibres.fr.medecin9;
 
 import java.util.Map;
 import retrofit2.Call;

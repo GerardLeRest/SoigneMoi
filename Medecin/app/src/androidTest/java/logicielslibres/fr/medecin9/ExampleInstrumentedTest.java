@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin6;
+package logicielslibres.fr.medecin9;
 
 import android.content.Context;
 

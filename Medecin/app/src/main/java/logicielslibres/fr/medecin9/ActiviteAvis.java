@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin8;
+package logicielslibres.fr.medecin9;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,7 +58,7 @@ public class ActiviteAvis extends AppCompatActivity {
 
         // Configuration du bouton suivant
         Button boutonSuivant = findViewById(R.id.boutonSuivant);
-        boutonSuivant.setOnClickListener(v -> pageSuivante());
+        boutonSuivant.setOnClickListener(v -> verification());
 
         // Initialisation de Retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -97,7 +96,7 @@ public class ActiviteAvis extends AppCompatActivity {
         finish(); // Optionnel : Terminez l'activité actuelle si on ne veut pas qu'elle soit en arrière-plan
     }
 
-    private void pageSuivante() {
+    private void verification() {
         // Récupérer les valeurs des EditText
         String texteLibelle = libelle.getText().toString();
         String textePrenomMedecin = prenomMedecin.getText().toString();

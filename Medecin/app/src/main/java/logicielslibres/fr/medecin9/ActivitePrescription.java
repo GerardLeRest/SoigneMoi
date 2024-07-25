@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin6;
+package logicielslibres.fr.medecin9;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +27,8 @@ public class ActivitePrescription extends AppCompatActivity {
     private EditText dateDeFin;
     private Map<String, String> tableauPrescription;
     private ApiService apiService;
+    private String idMedecin; //valeur transmise de l'activité Avis
+    private String idPatient; //valeur transmise de l'activité Avis
 
     public ActivitePrescription() {
         tableauPrescription = new HashMap<>();
@@ -58,7 +61,7 @@ public class ActivitePrescription extends AppCompatActivity {
 
         // Initialisation de Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.soignemoi.net/") // Définissez la base de l'URL ici
+                .baseUrl("http://192.168.1.10/soignemoi-web/") // Définir la base de l'URL ici
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
@@ -98,38 +101,40 @@ public class ActivitePrescription extends AppCompatActivity {
         String texteDateDeDebut = dateDeDebut.getText().toString();
         String texteDateDeFin = dateDeFin.getText().toString();
 
-        // Remplissage du tableauPrescriptions
-        tableauPrescription.put("nomMedicament", texteNomMedicament);
-        tableauPrescription.put("posologie", textePosologie);
-        tableauPrescription.put("dateDeDebut", texteDateDeDebut);
-        tableauPrescription.put("dateDeFin", texteDateDeFin);
-
-        // Traitement des erreurs
-        if (!erreurs()) {
-            transfertJSON();
-        }
-    }
-
-    public boolean erreurs() {
         String messageErreur = "";
-        String texteNomMedicament = tableauPrescription.get("nomMedicament");
-        String textePosologie = tableauPrescription.get("posologie");
-        String texteDateDeDebut = tableauPrescription.get("dateDeDebut");
-        String texteDateDeFin = tableauPrescription.get("dateDeFin");
-
-        if (texteNomMedicament == null || texteNomMedicament.isEmpty()
-                || textePosologie == null || textePosologie.isEmpty()
-                || texteDateDeDebut == null || texteDateDeDebut.isEmpty()
-                || texteDateDeFin == null || texteDateDeFin.isEmpty()){
+        if (texteNomMedicament.isEmpty()
+                || textePosologie.isEmpty()  // textePosologie ne peut pas être null
+                || texteDateDeDebut.isEmpty()
+                || texteDateDeFin.isEmpty()) {
             messageErreur = "Au moins un des champs n'a pas été saisi.";
         }
+
         if (!messageErreur.isEmpty()) {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(ActivitePrescription.this, messageErreur, duration);
             toast.show();
-            return true;
         } else {
-            return false;
+            // Remplissage du tableauPrescriptions
+            tableauPrescription.put("nomMedicament", texteNomMedicament);
+            tableauPrescription.put("posologie", textePosologie);
+            tableauPrescription.put("dateDeDebut", texteDateDeDebut);
+            tableauPrescription.put("dateDeFin", texteDateDeFin);
+
+            // récupération de l'intent de l'activité Avis
+            Intent intent = getIntent();
+
+            // ajouter les deux clés étrangères
+            // récupérer les valeurs de l'activité Avis
+            if (intent != null){
+                idMedecin = intent.getStringExtra("idMedecin");
+                idPatient = intent.getStringExtra("idPatient");
+                if (idMedecin!=null || idPatient!=null) {
+                    tableauPrescription.put("idMedecin", idMedecin);
+                    tableauPrescription.put("idPatient", idPatient);
+                }
+            }
+
+                transfertJSON(); // transférer les données
         }
     }
 

@@ -1,4 +1,4 @@
-package logicielslibres.fr.medecin8;
+package logicielslibres.fr.medecin9;
 
 public class ReponseMedecin {
     private String idMedecin;
