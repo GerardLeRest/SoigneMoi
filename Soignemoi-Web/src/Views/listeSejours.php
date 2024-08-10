@@ -10,7 +10,7 @@
             <br>
             <row>
                 <table class="table">
-                    <thead class="thead-dark"> <!--enttête du tableau-->
+                    <thead class="thead-dark"> <!--entête du tableau-->
                         <tr>
                         <th scope="col"></th>
                         <th scope="col">Date de début</th>

@@ -14,59 +14,60 @@ use App\Controllers\ControlleurFormulaireAvis;
 use App\Controllers\ControlleurFormulairePrescription;
 use App\Controllers\ControlleurIdMedecin;
 
-//pages Web - icônes de menu
-$renderer = new PhpRenderer(__DIR__ . '/../src/Views');
-
-$app->get('/accueil', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'accueil.php'); 
-});
-
-$app->get('/services', function(Request $request, Response $response, $arg) use ($renderer) {
-   return $renderer->render($response, 'services.php');
-});
-
-$app->get('/patients', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'patients.php'); 
-});
-
-$app->get('/professionnels', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'professionnels.php'); 
-});
-
-$app->get('/formulairePatient', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'formulairePatient.php');
-});
-
-$app->get('/formulaireSejour', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'formulaireSejour.php');
-});
-
-$app->get('/formulaireMedecin', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'formulaireMedecin.php');
-});
-
-$app->get('/formulaireConnexion', function (Request $request, Response $response, $args) use ($renderer) {
-   return $renderer->render($response, 'formulaireConnexion.php');
-});
 
 return function (App $app) {
-    
-   // Application bureautique - Entrés/Sorties des patients
-   $app->get('/tous', ControlleurSecretariat::class . ':donneesTous');  // l'ensemble des entrées/sorties des patients
-   $app->get('/entrees', ControlleurSecretariat::class . ':donneesEntrees'); // les entrées des patients
-   $app->get('/sorties', ControlleurSecretariat::class . ':donneesSorties'); // les sorties des patients
-   $app->get('/details/{id}', ControlleurSecretariat::class . ':details'); // les détails des patients
-   
-   // Application mobile "Médecin" - Formulaires Avis et Prescriptions
-   $app->post('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avis
-   $app->post('/formulairePrescription', ControlleurFormulairePrescription::class . ':verification'); //validation du formulaire Prescription
-   $app->post('/idMedecin', ControlleurIdMedecin::class .':acquisitionIdMedecin'); // détermination de l'idMedecin pour l'application mobile à parttir du prénom et du nom
+
+      //pages Web - icônes de menu
+      $renderer = new PhpRenderer(__DIR__ . '/../src/Views');
+
+      $app->get('/accueil', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'accueil.php'); 
+      });
+
+      $app->get('/services', function(Request $request, Response $response, $arg) use ($renderer) {
+         return $renderer->render($response, 'services.php');
+      });
+
+      $app->get('/patients', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'patients.php'); 
+      });
+
+      $app->get('/professionnels', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'professionnels.php'); 
+      });
+
+      $app->get('/formulairePatient', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'formulairePatient.php');
+      });
+
+      $app->get('/formulaireSejour', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'formulaireSejour.php');
+      });
+
+      $app->get('/formulaireMedecin', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'formulaireMedecin.php');
+      });
+
+      $app->get('/formulaireConnexion', function (Request $request, Response $response, $args) use ($renderer) {
+         return $renderer->render($response, 'formulaireConnexion.php');
+      });
+      
+      // Application bureautique - Entrés/Sorties des patients
+      $app->get('/tous', ControlleurSecretariat::class . ':donneesTous');  // l'ensemble des entrées/sorties des patients
+      $app->get('/entrees', ControlleurSecretariat::class . ':donneesEntrees'); // les entrées des patients
+      $app->get('/sorties', ControlleurSecretariat::class . ':donneesSorties'); // les sorties des patients
+      $app->get('/details/{id}', ControlleurSecretariat::class . ':details'); // les détails des patients
+      
+      // Application mobile "Médecin" - Formulaires Avis et Prescriptions
+      $app->post('/formulaireAvis', ControlleurFormulaireAvis::class . ':verification'); //validation du formulaire Avis
+      $app->post('/formulairePrescription', ControlleurFormulairePrescription::class . ':verification'); //validation du formulaire Prescription
+      $app->post('/idMedecin', ControlleurIdMedecin::class .':acquisitionIdMedecin'); // détermination de l'idMedecin pour l'application mobile à parttir du prénom et du nom
 
 
-   //site web - formulaires et requête  pour la liste des séjours
-   $app->post("/formulairePatient", ControlleurFormulairePatient::class . ':verification'); //validation du formulaire du patient
-   $app->post('/formulaireSejour', ControlleurFormulaireSejour::class . ':verification'); //validation du formulaire des du sejour
-   $app->post('/formulaireMedecin',ControlleurFormulaireMedecin::class .':verification'); //validation du formulaire du médecin
-   $app->post('/formulaireConnexion', ControlleurFormulaireConnexion::class . ':verification'); //validation du formulaire du médecin
-   $app->get('/listeSejours', ControlleurListeSejours::class . ':requeteSejours'); //récupération des données du séjour 
-};
+      //site web - formulaires et requête  pour la liste des séjours
+      $app->post("/formulairePatient", ControlleurFormulairePatient::class . ':verification'); //validation du formulaire du patient
+      $app->post('/formulaireSejour', ControlleurFormulaireSejour::class . ':verification'); //validation du formulaire des du sejour
+      $app->post('/formulaireMedecin',ControlleurFormulaireMedecin::class .':verification'); //validation du formulaire du médecin
+      $app->post('/formulaireConnexion', ControlleurFormulaireConnexion::class . ':verification'); //validation du formulaire du médecin
+      $app->get('/listeSejours', ControlleurListeSejours::class . ':requeteSejours'); //récupération des données du séjour 
+   };

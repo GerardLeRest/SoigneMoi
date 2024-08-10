@@ -7,7 +7,7 @@
 
         <?php require_once('commun/header.php'); ?>
         
-        <main class="container">
+        <main class="container container flex-grow-1">
             <form action="/soignemoi-web/formulairePatient" method="post"> <!-- /slim-secretariat-web/formulairePatient : route -->
                 <div class ="row text-center">
                     <div class="col-12">

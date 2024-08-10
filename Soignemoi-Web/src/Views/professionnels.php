@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
     <?php require_once('commun/head.php'); ?>
 
     <body class="d-flex flex-column min-vh-100">

@@ -75,12 +75,12 @@ class Prescription
         $this->dateDeDebut = $dateDeDebut;
     }
 
-    public function getdateDeFin(): ?DateTime
+    public function getdateDeFin(): DateTime
     {
         return $this->dateDeFin;
     }
 
-    public function setdateDeFin(?DateTime $dateDeFin): void
+    public function setdateDeFin(DateTime $dateDeFin): void
     {
         $this->dateDeFin = $dateDeFin;
     }
