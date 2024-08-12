@@ -23,3 +23,8 @@ p {
 .carousel-control-prev {
     filter: invert(1);
 }
+
+/* texte des erreurs à gauche */
+#erreur-list {
+    text-align: left;
+}

@@ -51,7 +51,7 @@ class ControlleurFormulaireMedecin{
         }
         // traitement des erreurs
         if (count($erreurs)>0){
-            return $renderer->render($response,'formulaireMedecin.php', ['erreurs' => $erreurs]);
+            return $renderer->render($response,'formulaireMedecin.php', ["erreurs" => $erreurs]);
         }
         else{
             $this->validation($response, $prenom, $nom, $specialite, $matricule);

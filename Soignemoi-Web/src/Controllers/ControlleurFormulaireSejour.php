@@ -101,7 +101,7 @@ class ControlleurFormulaireSejour{
                 return $response;
             }
                 catch (Exception $e) {
-                echo 'Erreur de transfert: ', $e->getMessage(), "\n";
+                echo 'Erreur de transfert: '. $e->getMessage() . "\n";
             }
         }
     }

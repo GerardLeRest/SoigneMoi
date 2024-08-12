@@ -30,6 +30,10 @@ class ControlleurFormulaireConnexion
         $email = $this->donnees['email'];
         $motDePasse = $this->donnees['motDePasse'];
 
+        // test des données
+        //$email = "gege.lerest";
+        //$motDePasse="";
+
         // Adresse Email
         if (empty($email) || !isset($email)) {
             $this->erreurs["saisieEmail"] = 'Le champ "Adresse Email" n\'a pas été saisi';
@@ -43,8 +47,10 @@ class ControlleurFormulaireConnexion
         }
 
         if (count($this->erreurs) > 0) {
-            return $this->affichageErreurs($response);
-        } else {
+             // traitement des erreurs
+            return $this->renderer->render($response,'formulaireConnexion.php', ["erreurs" => $this->erreurs]);
+        }
+        else {
             return $this->validation($response, $email, $motDePasse);
         }
     }
@@ -58,7 +64,7 @@ class ControlleurFormulaireConnexion
             $utilisateur = $query->getOneOrNullResult();
 
             if (!$utilisateur) {
-                $this->erreurs['erreurSaisie1'] = "L'email ou le mot de passe est incorrect.";
+                $this->erreurs['emailMDP'] = "L'email ou le mot de passe est incorrect.";
             } else {
                 // vérification du mot de passe
                 $motDePasseHache = $utilisateur->getMotDePasse();
@@ -67,24 +73,15 @@ class ControlleurFormulaireConnexion
                     return $this->renderer->render($response, 'accueil.php', ['urlr' => 0]); //urlr : voir page constantes.php
                 } else {
                     // mot de passe incorrect
-                    $errors['ErreurSaisie2'] = "L'email ou le mot de passe est incorrect.";
-                    $this->erreurs['ErreurSaisie2'] = "L'email ou le mot de passe est incorrect.";
+                    $this->erreurs['emailMDP'] = "L'email ou le mot de passe est incorrect.";
                 }
+            
             }
+            return $this->renderer->render($response,'formulaireConnexion.php', ["erreurs" => $this->erreurs]);
         } catch (Exception $e) {
             $response->getBody()->write("Erreur: " . $e->getMessage());
             return $response;
         }
-        return $this->affichageErreurs($response);
-    }
-
-    public function affichageErreurs(Response $response): Response
-    {
-        // traitement des erreurs
-        if (count($this->erreurs) > 0) {
-            return $this->renderer->render($response, 'formulaireConnexion.php', ['erreurs' => $this->erreurs]);
-        } else {
-            return $this->renderer->render($response, 'accueil.php');
-        }
+        
     }
 }

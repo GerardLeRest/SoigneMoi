@@ -28,7 +28,7 @@
                 <div class="mb-2 col-lg-8 col-md-10 col-xs-12">
                     <label for="specialite" class="form-label">Spécialité</label>
                     <input type="text" class="form-control" id="specialite" name="specialite" required>
-                </div>
+                    </div>
                 <!--matricule-->
                 <div class="mb-2 col-lg-8 col-md-10 col-xs-12">
                     <label for="matricule" class="form-label">Matricule</label>
@@ -36,22 +36,26 @@
                 </div>
                 <br>
                 <div class="col-lg-12 col-md-12 col-xs-12 md-5 text-center">
-              <button type="submit" class="btn bouton-perso">Valider</button>
-            </div>
+                    <button type="submit" class="btn bouton-perso">Valider</button>
+                </div>
             </form>  
-            <div class = "row">
-                <!-- affichage des erreurs -->
-                <?php
-                    if (isset($erreurs) && count($erreurs) > 0) {
-                        foreach ($erreurs as $valeur) {
-                            // htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
-                            echo htmlspecialchars($valeur) . '<br>';
-                        }
-                    }
-                ?>
-            </div>
+
+            <!-- Inclusion du fichier php -erreurs.php -->
+            <?php require_once('erreurs.php'); ?>    
+
         </main> 
-        <!-- pied de page-->
+
+        <!-- pied de page -->
         <?php require_once('commun/footer.php'); ?>
+
+        <!-- Script JavaScript pour la gestion des erreurs -->
+        <script src="assets/js/afficherErreurs.js"></script>
+        <script>
+            // Injection du tableau JSON dans une variable JavaScript
+            const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+            // appel de la fonction afficherErreurs
+            afficherErreurs(erreursDeValidation);
+        </script>
+
     </body>
 </html>

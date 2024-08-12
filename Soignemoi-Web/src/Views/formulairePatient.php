@@ -55,21 +55,23 @@
                     <button type="submit" class="btn bouton-perso">Valider</button>
                 </div>
             </form>
-            <div class ="row">
-            <!-- affichage des erreurs -->
-                <?php
-                    if (isset($erreurs) && count($erreurs) > 0) {
-                        foreach ($erreurs as $valeur) {
-                            // htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
-                            echo htmlspecialchars($valeur) . '<br>';
-                        }
-                    }
-                ?>
-            </div>
-            <br>
-            <br>
-        </main>
-        <!-- pied de page-->
+
+        <!-- Inclusion du fichier php -erreurs.php -->
+        <?php require_once('erreurs.php'); ?>    
+
+        </main> 
+
+        <!-- pied de page -->
         <?php require_once('commun/footer.php'); ?>
+
+        <!-- Script JavaScript pour la gestion des erreurs -->
+        <script src="assets/js/afficherErreurs.js"></script>
+        <script>
+            // Injection du tableau JSON dans une variable JavaScript
+            const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+            // appel de la fonction afficherErreurs
+            afficherErreurs(erreursDeValidation);
+        </script>
+
     </body>
 </html>

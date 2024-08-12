@@ -8,8 +8,8 @@
    
     <main class="container">
       <form action="/soignemoi-web/formulaireSejour" method="post">
-      <br>
-      <br>
+        <br>
+        <br>
         <div class="row text-center">
           <!-- date de début -->
           <div class="col-lg-6 col-md-12 col-xs-12 mb-3">
@@ -57,19 +57,24 @@
             <button type="submit" class="btn bouton-perso">Valider</button>
         </div>
       </form>
-      <div class="row">
-        <!-- affichage des erreurs -->
-        <?php
-          if (isset($erreurs) && count($erreurs) > 0) {
-            foreach ($erreurs as $valeur) {
-              echo htmlspecialchars($valeur) . '<br>';
-            }
-          }
-        ?>
-      </div>
-    </main>
-    <!-- Pied de page -->
+      
+      <!-- Inclusion du fichier php -erreurs.php -->
+      <?php require_once('erreurs.php'); ?>    
+
+    </main> 
+
+    <!-- pied de page -->
     <?php require_once('commun/footer.php'); ?>
+
+    <!-- Script JavaScript pour la gestion des erreurs -->
+    <script src="assets/js/afficherErreurs.js"></script>
+    <script>
+        // Injection du tableau JSON dans une variable JavaScript
+        const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+        // appel de la fonction afficherErreurs
+        afficherErreurs(erreursDeValidation);
+    </script>
+
     <!-- Include JS files -->
     <script src="public/assets/js/calendriers/jquery-3.3.1.min.js"></script>
     <script src="public/assets/js/calendriers/popper.min.js"></script>
@@ -77,6 +82,7 @@
     <script src="public/assets/js/calendriers/picker.js"></script>
     <script src="public/assets/js/calendriers/picker.date.js"></script>
     <script src="public/assets/js/calendriers/main.js"></script>
+
   </body>
 </html>
 
