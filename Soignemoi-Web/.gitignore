@@ -1,7 +1,0 @@
-.vscode/
-vendor/
-.idea/
-.env
-Notes.md
-*.log
-node_modules
