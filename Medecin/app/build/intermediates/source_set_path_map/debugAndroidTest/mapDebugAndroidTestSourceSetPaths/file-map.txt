@@ -1,0 +1,6 @@
+logicielslibres.fr.medecin9.test.app-core-1.5.0-0 /home/gerard/.gradle/caches/transforms-4/7cc1cf1e1e98f68becbf086381a333fd/transformed/core-1.5.0/res
+logicielslibres.fr.medecin9.test.app-annotation-experimental-1.4.0-1 /home/gerard/.gradle/caches/transforms-4/e258f6493cedea0feefa4904fc7f6851/transformed/annotation-experimental-1.4.0/res
+logicielslibres.fr.medecin9.test.app-androidTest-2 /home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/generated/res/resValues/androidTest/debug
+logicielslibres.fr.medecin9.test.app-mergeDebugAndroidTestResources-3 /home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+logicielslibres.fr.medecin9.test.app-mergeDebugAndroidTestResources-4 /home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+logicielslibres.fr.medecin9.test.app-debugAndroidTest-5 /home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

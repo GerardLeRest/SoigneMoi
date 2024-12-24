@@ -31,10 +31,10 @@ class ControlleurFormulaireMedecin{
         $matricule =$this->donnees['matricule'];
 
         // Données de test
-        //$prenom = "";
-        //$nom = "";
-        //$specialite = "";
-        //$matricule ="";
+        /*$prenom = "";
+        $nom = "";
+        $specialite = "";
+        $matricule ="";*/
 
         // test
         if (!isset($prenom) || empty($prenom)){

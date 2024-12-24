@@ -12,7 +12,7 @@ $indice = 0; //indice du menu
 // détermination de la page courante - nom du fichier de la page courante sans extension
 $pageCourante = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), ".php");
 
-// détermination de l'indice $indice servant à se repérer dans le menu 
+// détermination de l'indice $indice servant à se repérer dans le menu
 for($i = 0; $i < count($liensURL); $i++){
     $NomDuFichierActuel = substr($liensURL[$i], 6, -1); // enlève href=" et le dernier "
     if ($pageCourante === $NomDuFichierActuel){

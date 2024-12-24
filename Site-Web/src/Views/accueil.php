@@ -4,7 +4,7 @@
 
     <body>
         <?php require_once('commun/header.php'); ?>
-        <main class="container">
+        <main class="container container flex-grow-1">
             <div class="row" >
                 <div class = "col-12b py-3">  <!-- py: padding sur l'axe y - de 0 à 5 -->
                     <h4> Historique de l'hôpital </h4>
@@ -103,9 +103,7 @@
                 </div>
             </div>
         </main>
-        
-            <!-- pied de page-->
-            <?php require_once('commun/footer.php'); ?>
-            
+        <!-- pied de page-->
+        <?php require_once('commun/footer.php'); ?>
     </body>
 </html>

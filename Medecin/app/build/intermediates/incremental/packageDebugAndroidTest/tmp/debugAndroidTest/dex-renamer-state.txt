@@ -1,0 +1,10 @@
+#Thu Jul 25 11:41:47 CEST 2024
+base.0=/home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
+base.1=/home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
+base.2=/home/gerard/Documents/OneDrive/Bachelor_Developpeur_PHP-Symfony/Projets/ECF/Medecin/Medecin9/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/3/classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=3/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex

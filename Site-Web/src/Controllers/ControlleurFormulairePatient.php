@@ -33,11 +33,11 @@ class ControlleurFormulairePatient{
         $erreurs =[];
         
         // Données de test
-        /* $prenom = "";
+       /*$prenom = "";
         $nom = "";
         $adressePostale = "";
         $email = "";
-        $motDePasse = ""; */
+        $motDePasse = "";*/
 
         // Prenom
         if (!isset($prenom) || empty($prenom)){

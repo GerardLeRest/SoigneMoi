@@ -36,24 +36,30 @@
                 </div>
                 <br>
                 <div class="col-lg-12 col-md-12 col-xs-12 md-5 text-center">
-              <button type="submit" class="btn bouton-perso">Valider</button>
-            </div>
+                    <button type="submit" class="btn bouton-perso">Valider</button>
+                </div>
             </form>  
-            <div class = "row">
-                <!-- affichage des erreurs -->
-                <?php
-                    if (isset($erreurs) && count($erreurs) > 0) {
-                        foreach ($erreurs as $valeur) {
-                            // htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
-                            echo htmlspecialchars($valeur) . '<br>';
-                        }
-                    }
-                ?>
-            </div>
-        </main> 
+      
+            <!-- endroit où vont s'afficher les erreurs -->
+            <ul id="erreur-list"></ul>
+          
+            <!-- initialisation $erreur s'il n'est pas défini -->
+            <?php $erreurs = isset($erreurs) ? $erreurs : []; ?>
         
-            <!-- piedas de page-->
-            <?php require_once('commun/footer.php'); ?>
-       
+        </main> 
+
+        <!-- pied de page -->
+        <?php require_once('commun/footer.php'); ?>
+        
+        <!-- Appel du fichier afficherErreurs.js -->
+        <script src="public/assets/js/afficherErreurs.js"></script>
+
+        <script>
+            // Injection du tableau JSON dans une variable JavaScript
+            const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+            // appel de la fonction afficherErreurs
+            afficherErreurs(erreursDeValidation);
+        </script>
+
     </body>
 </html>

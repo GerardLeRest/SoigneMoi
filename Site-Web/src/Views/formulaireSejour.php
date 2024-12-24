@@ -6,7 +6,7 @@
   <body class="d-flex flex-column min-vh-100">
     <?php require_once('commun/header.php'); ?>
    
-    <main class="container flex-grow-1">
+    <main class="container">
       <form action="/formulaireSejour" method="post">
         <br>
         <br>
@@ -17,24 +17,14 @@
               <label for="input_from">De</label>
               <input type="text" class="form-control" id="input_from" name="dateDebut" placeholder="Date de Début">
             </div>
-         
+          <!-- date de fin -->
           </div>
           <div class="col-lg-6 col-md-12 col-xs-12 mb-3">
             <div class="form-group">
               <label for="input_to">À</label>
-              <input type="text" class="form-control" id="input_to" name="dateFin" placeholder="Date de fin">
+              <input type="text" class="form-control" id="input_to" name="dateFin" placeholder="Date de fin">   
             </div>
           </div>
-        </div> 
-        <!-- checkbox Dans une rangée car éléments à droite-->
-        <div class="row justify-content-end">
-          <div class = "form-check col-auto">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="pasDateFin"> 
-            <label class="form-check-label" for="flexCheckDefault">
-              Pas de date fin
-            </label>
-          </div>
-        </div>
         <!-- motif su séjour -->
         <div class="mb-3 col-lg-12 col-md-12 col-xs-12">
           <label for="motifSejour" class="form-label">Motif du séjour</label>
@@ -52,15 +42,36 @@
           </div>
         </div> 
         <!-- bouton de validation -->
-        <div class="col-12 text-center mh-3">
+        <br>
+        <div class="col-12 text-center">
             <button type="submit" class="btn bouton-perso">Valider</button>
         </div>
       </form>
       
-    </main>
-    
-    <!-- Pied de page -->
-    <?php require_once('commun/footer.php'); ?>
+        <!-- endroit où vont s'afficher les erreurs -->
+        <ul id="erreur-list"></ul>
+      
+        <!-- initialisation $erreur s'il n'est pas défini -->
+        <?php $erreurs = isset($erreurs) ? $erreurs : []; ?>
+        
+    </main> 
+
+        <!-- pied de page -->
+        <?php require_once('commun/footer.php'); ?>
+        
+        <!-- Appel du fichier afficherErreurs.js -->
+        <script src="public/assets/js/afficherErreurs.js"></script>
+
+        <script>
+            // Injection du tableau JSON dans une variable JavaScript
+            const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+            // appel de la fonction afficherErreurs
+            afficherErreurs(erreursDeValidation);
+        </script>
+
+  </body>
+</html>
+
     <!-- Include JS files -->
     <script src="assets/js/calendriers/jquery-3.3.1.min.js"></script>
     <script src="assets/js/calendriers/popper.min.js"></script>
@@ -69,7 +80,6 @@
     <script src="assets/js/calendriers/picker.date.js"></script>
     <script src="assets/js/calendriers/main.js"></script>
   </body>
- 
 </html>
 
 

@@ -21,28 +21,33 @@
                         <input type="password" id="motDePasse" class="form-control" aria-describedby="passwordHelpBlock" name="motDePasse" required>
                     </div>    
                     <br>
-                    <div class="col-12 text-center">
+                    <div class="col-lg-10 col-md-12 col-xs-12 md-5 offse-2 text-center">
                         <button type="submit" class="btn bouton-perso">Valider</button>
-                    </div>
-            </form>  
-            <!-- affichage des erreurs -->
-            <br>
-            <div class="row">
-                 <?php
-                    if (isset($erreurs) && count($erreurs) > 0) {
-                        foreach ($erreurs as $valeur) {
-                            // htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
-                            echo htmlspecialchars($valeur)  . '<br>';
-                        }
-                    }
-                ?>
-            </div>
+                </div>
+            </form>
+            
+            <!-- endroit où vont s'afficher les erreurs -->
+            <ul id="erreur-list"></ul>
+          
+            <!-- initialisation $erreur s'il n'est pas défini -->
+            <?php $erreurs = isset($erreurs) ? $erreurs : []; ?>
+            
         </main> 
 
-            <!-- pied de page-->
-            <?php require_once('commun/footer.php'); ?>
+        <!-- pied de page -->
+        <?php require_once('commun/footer.php'); ?>
+        
+        <!-- Appel du fichier afficherErreurs.js -->
+        <script src="public/assets/js/afficherErreurs.js"></script>
 
-        </body>
+        <script>
+            // Injection du tableau JSON dans une variable JavaScript
+            const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+            // appel de la fonction afficherErreurs
+            afficherErreurs(erreursDeValidation);
+        </script>
+
+    </body>
 </html>
 
     

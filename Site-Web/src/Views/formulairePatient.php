@@ -7,7 +7,7 @@
 
         <?php require_once('commun/header.php'); ?>
         
-        <main class="container">
+        <main class="container flex-grow-1">
             <form action="/formulairePatient" method="post"> <!-- /slim-secretariat-web/formulairePatient : route -->
                 <div class ="row text-center">
                     <div class="col-12">
@@ -55,23 +55,27 @@
                     <button type="submit" class="btn bouton-perso">Valider</button>
                 </div>
             </form>
-            <div class ="row">
-            <!-- affichage des erreurs -->
-                <?php
-                    if (isset($erreurs) && count($erreurs) > 0) {
-                        foreach ($erreurs as $valeur) {
-                            // htmlspecialchars: échappement des caractères - < est converti en son équivalent HTML &lt;
-                            echo htmlspecialchars($valeur) . '<br>';
-                        }
-                    }
-                ?>
-            </div>
-            <br>
-            <br>
-        </main>
+      
+            <!-- endroit où vont s'afficher les erreurs -->
+            <ul id="erreur-list"></ul>
+          
+            <!-- initialisation $erreur s'il n'est pas défini -->
+            <?php $erreurs = isset($erreurs) ? $erreurs : []; ?>
         
-            <!-- pied de page-->
-            <?php require_once('commun/footer.php'); ?>
+        </main> 
+
+        <!-- pied de page -->
+        <?php require_once('commun/footer.php'); ?>
         
+        <!-- Appel du fichier afficherErreurs.js -->
+        <script src="public/assets/js/afficherErreurs.js"></script>
+
+        <script>
+            // Injection du tableau JSON dans une variable JavaScript
+            const erreursDeValidation = <?php echo json_encode($erreurs); ?>;
+            // appel de la fonction afficherErreurs
+            afficherErreurs(erreursDeValidation);
+        </script>
+
     </body>
 </html>

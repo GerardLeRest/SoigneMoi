@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/xml_backup_rules.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/xml_data_extraction_rules.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/layout_activite_page_principale.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/layout/activite_page_principale.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_medecin.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/medecin.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_logo_100_100.png.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/logo_100_100.png"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/xml_network_security_config.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_logoadresse.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/logoadresse.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_logo_50_50.png.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/logo_50_50.png"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_logo_75_75.png.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/logo_75_75.png"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_logo_200_200.png.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/logo_200_200.png"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/layout_activite_prescription.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/layout/activite_prescription.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/layout_activite_avis.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/layout/activite_avis.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_ic_launcher_background.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "logicielslibres.fr.medecin9.app-debug-31:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "logicielslibres.fr.medecin9.app-main-33:/drawable/ic_launcher_foreground.xml"
+    }
+]

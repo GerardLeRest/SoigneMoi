@@ -23,3 +23,21 @@ p {
 .carousel-control-prev {
     filter: invert(1);
 }
+
+/* texte des erreurs à gauche */
+#erreur-list {
+    text-align: left;
+}
+
+/* tableau liste des séjours */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2; /* Optionnel : ajoute un fond différent pour les en-têtes */
+}

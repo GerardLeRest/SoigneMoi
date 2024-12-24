@@ -39,11 +39,11 @@ class ControlleurFormulaireSejour{
  
         
         // Données de test
-        /* $dateDebut = "";
+        /*$dateDebut = "";
         $dateFin = "";
         $motifSejour = "";
         $specialite = "";
-        $medecinSouhaite = ""; */
+        $medecinSouhaite = "";*/
 
         //tests
         if (!isset($dateDebut) || empty($dateDebut)){

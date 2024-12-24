@@ -36,17 +36,17 @@ class Avis
     #[JoinColumn(name: "idPatient", referencedColumnName: "idPatient")]
     private Patient $patient;
     
-    public function getIdAvis(): ?int
+    public function getIdAvis(): int
     {
         return $this->idAvis;
     }
 
-    public function getDate(): \DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTime $date): void
+    public function setDate(DateTime $date): void
     {
         $this->date = $date;
     }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blanche">#FFFFFF</color>
+    <color name="grisClair">#E9ECEF</color>
+    <color name="grisFonce">#343A40</color>
+    <color name="jaune">#FFA500</color>
+    <color name="noire">#000000</color>
+    <color name="vert">#4F7F67</color>
+    <string name="app_name">medecin9</string>
+    <string name="avis">Avis</string>
+    <string name="date">Date</string>
+    <string name="date_de_debut">Date de début</string>
+    <string name="date_de_fin">Date de fin</string>
+    <string name="description_avis">Description de l\'avis:</string>
+    <string name="id_du_patient">Id du patient</string>
+    <string name="libelle">Libellé:</string>
+    <string name="logo">Logo</string>
+    <string name="logo_et_adresse">Logo et adresse</string>
+    <string name="medecin">Médecin</string>
+    <string name="nom_medecin">Nom du médecin:</string>
+    <string name="nom_medicament">Nom du médicament</string>
+    <string name="posologie">Posologie</string>
+    <string name="prenom_medecin">Prénom du médecin:</string>
+    <string name="prescription">Prescription</string>
+    <string name="retour">Retour </string>
+    <string name="suivant">Suivant</string>
+    <string name="validation">validation</string>
+    <style name="Base.Theme.Medecin9" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Medecin9" parent="Theme.MaterialComponents.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/grisFonce</item>
+        <item name="colorPrimaryDark">@color/grisClair</item>
+        <item name="colorAccent">@color/vert</item>
+        <item name="buttonStyle">@style/Widget.Button.Custom</item>
+    </style>
+    <style name="Widget.Button.Custom" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/jaune</item>
+        <item name="android:textColor">@color/noire</item>
+    </style>
+</resources>

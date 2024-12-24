@@ -15,8 +15,8 @@ $settings = [
             'dbname' => $_ENV['DB_NAME'],
             'user' => $_ENV['DB_USER'],
             'password' => $_ENV['DB_PASS'],
-            'host' => "91.216.107.186",
-            'port' => 3306
+            'host' => $_ENV['DB_HOST'],
+            'port' => $_ENV['DB_PORT'],
         ],
     ]
 ];
