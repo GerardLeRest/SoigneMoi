@@ -61,7 +61,7 @@ public class ActivitePrescription extends AppCompatActivity {
 
         // Initialisation de Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.10/soignemoi-web/") // Définir la base de l'URL ici
+                .baseUrl("https://www.soignemoi.net/") // Définir la base de l'URL ici
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
