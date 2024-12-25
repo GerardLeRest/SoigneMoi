@@ -18,7 +18,7 @@ Class ControlleurIdMedecin{
     }   
 
     public function acquisitionIdMedecin(Request $request, Response $response, array $arg) : Response{
-        // récupération des donnéegetBody->write("");
+        // récupération des données
         $this->donnees = $request->getParsedBody();
         // affectation du prenom et du nom
         $prenom = $this->donnees['prenom'];

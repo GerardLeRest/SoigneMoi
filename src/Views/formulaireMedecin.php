@@ -28,7 +28,7 @@
                 <div class="mb-2 col-lg-8 col-md-10 col-xs-12">
                     <label for="specialite" class="form-label">Spécialité</label>
                     <input type="text" class="form-control" id="specialite" name="specialite" required>
-                    </div>
+                </div>
                 <!--matricule-->
                 <div class="mb-2 col-lg-8 col-md-10 col-xs-12">
                     <label for="matricule" class="form-label">Matricule</label>

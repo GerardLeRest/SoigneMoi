@@ -22,10 +22,9 @@
           <div class="col-lg-6 col-md-12 col-xs-12 mb-3">
             <div class="form-group">
               <label for="input_to">À</label>
-              <input type="text" class="form-control" id="input_to" name="dateFin" placeholder="Date de fin">
-              
+              <input type="text" class="form-control" id="input_to" name="dateFin" placeholder="Date de fin">   
             </div>
-        </div> 
+          </div>
         <!-- checkbox Dans une rangée car éléments à droite-->
         <div class="row justify-content-end">
           <div class = "form-check col-auto">

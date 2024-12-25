@@ -96,9 +96,8 @@ class Medecin
         return $this->aviss;
     }
 
-    public function getPrescriptions(): Collection
+    public function getPrescription(): Collection
     {
         return $this->prescriptions;
-
     }
 }

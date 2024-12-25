@@ -9,34 +9,52 @@
             <br>
             <br>
             <row>
-                <table class="table">
-                    <thead class="thead-dark"> <!--entête du tableau-->
+                <table>
+                    <thead>
                         <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Date de début</th>
-                        <th scope="col">Date de fin</th>
-                        <th scope="col">Motif du Séjour</th>
-                        <th scope="col">Spécialité</th>
-                        <th scope="col">Médecin souhaité</th>
+                            <th scope="col">Date de début</th>
+                            <th scope="col">Date de fin</th>
+                            <th scope="col">Motif du Séjour</th>
+                            <th scope="col">Spécialité</th>
+                            <th scope="col">Médecin souhaité</th>
                         </tr>
                     </thead>
-                    <tbody> <!--corps du tabelau-->
-                    <?php for ($i = 0; $i < count($donnees); $i++): ?>
-                        <tr>
-                            <th scope="row"><?= $i + 1 ?></th>
-                            <td><?= $donnees[$i]['dateDebut']->format('d-m-Y') ?></td>
-                            <td>
-                                <?php if ($donnees[$i]['dateFin']): ?>
-                                    <?= $donnees[$i]['dateFin']->format('d-m-Y') ?>
-                                <?php else: ?>
-                                    &nbsp;          <!-- créer un espace à la place de la date de fin si elle est de type null -->
-                                <?php endif; ?>
-                            </td>
-                            <td><?= isset($donnees[$i]['motifSejour']) ? htmlspecialchars($donnees[$i]['motifSejour']) : '' ?></td>
-                            <td><?= isset($donnees[$i]['specialite']) ? htmlspecialchars($donnees[$i]['specialite']) : '' ?></td>
-                            <td><?= isset($donnees[$i]['medecinSouhaite']) ? htmlspecialchars($donnees[$i]['medecinSouhaite']) : '' ?></td>
-                        </tr>
-                    <?php endfor; ?>
+                    <tbody>
+                        <script>
+                            // Encodage du tableau PHP en JSON pour le rendre disponible en JavaScript
+                            const donneesJSON = <?php echo json_encode($donnees); ?>;
+                            console.log(donneesJSON);
+                            
+                            // Parcourir les données et écrire chaque ligne
+                            donneesJSON.forEach(function(item) {
+                                const dateDebut = new Date(item.dateDebut);
+                                const dateFin = item.dateFin ? new Date(item.dateFin) : null;
+                                const medecinSouhaite = item.medecinSouhaite || 'Non spécifié';
+
+                                // Début de la ligne
+                                document.write('<tr>');
+
+                                // Colonne pour la date de début
+                                document.write('<td>' + dateDebut.toLocaleDateString() + '</td>');
+
+                                // Colonne pour la date de fin
+                                document.write('<td>' + (dateFin ? dateFin.toLocaleDateString() : 'Non spécifiée') + '</td>');
+
+                                // Colonne pour le motif du séjour
+                                document.write('<td>' + item.motifSejour + '</td>');
+
+                                // Colonne pour la spécialité
+                                document.write('<td>' + item.specialite + '</td>');
+
+                                // Colonne pour le médecin souhaité
+                                document.write('<td>' + medecinSouhaite + '</td>');
+
+                                // Fin de la ligne
+                                document.write('</tr>');
+                            });
+
+                            // Fermeture de la table
+                        </script>
                     </tbody>
                 </table>
             </row>

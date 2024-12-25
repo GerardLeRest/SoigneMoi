@@ -78,11 +78,11 @@ class ControlleurFormulairePrescription{
         try{
             $this->entityManager->persist($prescription);
             $this->entityManager->flush();
-            $response->getBody->write(" ");
+            $response->getBody()->write(" ");
             return $response;
         }
         catch (Exception $e) {
-            $response->getBody->write('Erreur de transfert: '. $e->getMessage());
+            $response->getBody()->write('Erreur de transfert: '. $e->getMessage());
             return $response;
         }
     }

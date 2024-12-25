@@ -36,7 +36,7 @@ class Avis
     #[JoinColumn(name: "idPatient", referencedColumnName: "idPatient")]
     private Patient $patient;
     
-    public function getIdAvis(): ?int
+    public function getIdAvis(): int
     {
         return $this->idAvis;
     }

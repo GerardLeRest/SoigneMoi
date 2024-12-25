@@ -75,7 +75,7 @@ class ControlleurFormulaireAvis{
             return $response;
         }
             catch (Exception $e) {
-                $response->getBody->write('Erreur de transfert: '. $e->getMessage());
+                $response->getBody()->write('Erreur de transfert: '. $e->getMessage());
                 return $response;
         }
     }

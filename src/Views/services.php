@@ -9,7 +9,6 @@
         <main  class="container flex-grow-1">
             <p>page des services</p>
         </main>
-
         
         <!-- pied de page-->
         <?php require_once('commun/footer.php'); ?>

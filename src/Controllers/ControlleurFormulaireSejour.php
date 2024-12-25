@@ -26,18 +26,13 @@ class ControlleurFormulaireSejour{
         $erreurs = [];
         $this->donnees = $request->getParsedBody();
         $dateDebut = $this->donnees['dateDebut'];
-        $dateFin = $this->donnees['dateFin'];
+        // Si dateFin n'est pas définie, on la met à null
+        $dateFin = $this->donnees['dateFin'] ?? null; 
         $motifSejour = $this->donnees['motifSejour'];
         $specialite = $this->donnees['specialite'];
-        $medecinSouhaite = $this->donnees['medecinSouhaite'];
-        if (isset($this->donnees['pasDateFin'])){
-            $pasDateFin = $this->donnees['pasDateFin'];
-        }
-        else{
-            $pasDateFin = null;
-        }
- 
-        
+        // Si medecinSouhaite n'est pas définie, on la met à null
+        $medecinSouhaite = $this->donnees['medecinSouhaite'] ?? null;
+         
         // Données de test
         /* $dateDebut = "";
         $dateFin = "";
@@ -55,12 +50,8 @@ class ControlleurFormulaireSejour{
         if (!isset($specialite) || empty($specialite)){
             $erreurs['specialite'] = "la specialite n'a pas été saisie";
         }
-        if (!isset($medecinSouhaite) || empty($medecinSouhaite)){
-            $erreurs['smedecinSouhaite'] = "le medecin souhaité n'a pas été saisie";
-        }
-
-        if ($pasDateFin){
-            $dateFin =''; // null ne passe pas à ce niveau
+        if (!isset($dateFin)){
+            $dateFin = "";
         }
 
         // traitement des erreurs
@@ -81,15 +72,14 @@ class ControlleurFormulaireSejour{
             //affectation de $dateDebut
             $sejour->setDateDebut($dateDebut);
             // DateFin -envoyé uniquement si la valeur de fin a été renseigné
-        if (!empty($dateFin)) {
-            $dateFin = new DateTime($dateFin);
-            $sejour->setDateFin($dateFin);
-        }
-            // Remove the redundant line
+            if (!empty($dateFin)) {
+                $dateFin = new DateTime($dateFin);
+                $sejour->setDateFin($dateFin);
+            }
             // Motif du séjour
             $sejour->setMotifSejour($motifSejour);
             $sejour->setSpecialite($specialite);
-            $sejour->setMedecinSouhaite($medecinSouhaite);
+            $sejour->setMedecinSouhaite($medecinSouhaite); // peut être NULL
 
             $patient = $this->entityManager->find(Patient::class, 1); // $idPatient = 1 - simulation
             $sejour->setPatient($patient);

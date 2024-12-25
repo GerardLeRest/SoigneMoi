@@ -14,5 +14,3 @@
         <?php require_once('commun/footer.php'); ?>
     </body>
 </html>
-
-
