@@ -36,8 +36,6 @@ class Details(tk.Toplevel):
         if response.status_code == 200:
             # Transformer le format json en listes de dictionnnaires
             self.liste_donnees = response.json()
-            for x in self.liste_donnees:
-                print ("{x} + \n")
             print(self.liste_donnees)
         else:
             print(f"Erreur lors de la récupération des données: {response.status_code}")
