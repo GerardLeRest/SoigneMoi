@@ -35,7 +35,7 @@ class Tableau(tk.Toplevel):
         reponse = requests.get(url)
 
         if reponse.status_code == 200:
-            # Transformer le format json en listes
+            # Transformer le format json en listes de dictionnaires
             self.liste_patients = reponse.json()
             #print(self.liste_patients)
         else:
@@ -55,7 +55,7 @@ class Tableau(tk.Toplevel):
         s.configure("Treeview.Heading", background="#4F7F67")
 
          #definir les colonnes
-        self.tree.column('id', width=60, anchor=tk.W) # colonne de largeur 30 px et id à gauche (West)
+        self.tree.column('id', width=60, anchor=tk.W) # colonne de largeur 60 px et id à gauche (West)
         self.tree.column('prenom', width=150, anchor=tk.W)  
         self.tree.column('nom', width=150, anchor=tk.W)  
         self.tree.column('adressePostale', width=1000, anchor=tk.W)  
