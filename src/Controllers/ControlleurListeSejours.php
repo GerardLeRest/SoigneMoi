@@ -23,21 +23,26 @@ use DateTime;
                 $renderer = new PhpRenderer(__DIR__ . '/../Views'); //création de l'instance $renderer
                 $id=1; //on simule uniquement pour le patient 1               
                 try{
-                    $query = $this->entityManager->createQuery('SELECT s.dateDebut, s.dateFin, s.motifSejour, s.specialite,
-                                                                s.medecinSouhaite FROM App\Models\Patient p JOIN p.sejours s WHERE p.idPatient =:id');
+                    $query = $this->entityManager->createQuery(
+                        'SELECT s.dateDebut, s.dateFin, s.motifSejour, s.specialite, s.medecinSouhaite
+                         FROM App\Models\Sejour s 
+                         WHERE s.idPatient = :id');
                     $query->setParameter('id', $id);   
                     $this->donnees = $query->getResult(); 
-                
                     $tableau = $this->creationTableau($this->donnees);
-                    $renderer->render($response,'listeSejours.php', ['donnees' => $tableau]);
+                    return $renderer->render($response,'listeSejours.php', ['donnees' => $tableau]);
                 } catch (Exception $e) {
                     $response->getBody()->write("Erreur: " . $e->getMessage());
                 }
                 return $response;
             }
 
-            public function creationTableau (array $tab) : array{
-                $data=[];
+            public function creationTableau(array $tab): array
+            {
+                $data = [];
+                foreach ($tab as $element) {
+                    // Utilisez les getters pour accéder aux propriétés des objets Sejour
+                    $data=[];
                 foreach ($tab as $element){
                     $data[] = [
                         'dateDebut' => $element['dateDebut']->format('d/m/Y'),
@@ -50,3 +55,4 @@ use DateTime;
                 return $data;
             }
     }
+}

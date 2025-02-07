@@ -28,13 +28,13 @@ class Avis
     #[Column(type: "text")]
     private string $description;
 
-    #[ManyToOne(targetEntity: Medecin::class)]
+    #[ManyToOne(targetEntity: Medecin::class, inversedBy: "avis")]
     #[JoinColumn(name: "idMedecin", referencedColumnName: "idMedecin")]
-    private Medecin $medecin;
+    private ?Medecin $idMedecin;
 
-    #[ManyToOne(targetEntity: Patient::class)]
+    #[ManyToOne(targetEntity: Patient::class, inversedBy: "sejours")]
     #[JoinColumn(name: "idPatient", referencedColumnName: "idPatient")]
-    private Patient $patient;
+    private ?Patient $idPatient;
     
     public function getIdAvis(): int
     {
@@ -71,23 +71,23 @@ class Avis
         $this->description = $description;
     }
 
-    public function getMedecin(): Medecin
+    public function getIdMedecin(): Medecin
     {
-        return $this->medecin;
+        return $this->idMedecin;
     }
 
     public function setMedecin(Medecin $medecin): void
     {
-        $this->medecin = $medecin;
+        $this->idMedecin = $medecin;
     }
 
-    public function getPatient(): Patient
+    public function getIdPatient(): Patient
     {
-        return $this->patient;
+        return $this->idPatient;
     }
 
-    public function setPatient(Patient $patient): void
+    public function setIdPatient(?Patient $idPatient): void
     {
-        $this->patient = $patient;
+        $this->idPatient = $idPatient;
     }
 }

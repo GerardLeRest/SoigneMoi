@@ -20,7 +20,7 @@ return function (App $app) {
       //pages Web - icônes de menu
       $renderer = new PhpRenderer(__DIR__ . '/../src/Views');
 
-      $app->get('/accueil', function (Request $request, Response $response, $args) use ($renderer) {
+      $app->get('/', function (Request $request, Response $response, $args) use ($renderer) {
          return $renderer->render($response, 'accueil.php'); 
       });
 

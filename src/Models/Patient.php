@@ -35,15 +35,24 @@ class Patient
     #[Column(type: "string", length: 255)]
     private string $motDePasse;
 
-    // Relation Patients-Sejours
+    // Relation Patient-Sejour
+    /**
+     * @var Collection<int, Sejour>
+     */
     #[OneToMany(targetEntity: Sejour::class, mappedBy: 'patient')]
     private Collection $sejours;
 
-    // Relation Patients-prescriptions
+    // Relation Patient-Prescription
+    /**
+     * @var Collection<int, Prescription>
+     */
     #[OneToMany(targetEntity: Prescription::class, mappedBy: 'patient')]
     private Collection $prescriptions;
 
-    // Relation Patients-Avis
+    // Relation Patient-Avis
+    /**
+     * @var Collection<int, Avis>
+     */
     #[OneToMany(targetEntity: Avis::class, mappedBy: 'patient')]
     private Collection $aviss;
 
@@ -109,18 +118,95 @@ class Patient
         $this->motDePasse = $motDePasse;
     }
 
-    public function getSejours(): Collection
+    /**
+     * @return Collection<int, Sejour>
+     */
+    public function getSejours(): ?Collection
     {
         return $this->sejours;
     }
 
+    public function addSejour(Sejour $sejour): static
+    {
+        if (!$this->sejours->contains($sejour)) {
+            $this->sejours->add($sejour);
+            $sejour->setIdPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSejour(Sejour $sejour): static
+    {
+        if ($this->sejours->removeElement($sejour)) {
+            // set the owning side to null (unless already changed)
+            if ($sejour->getIdPatient() === $this) {
+                $sejour->setIdPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
     public function getAvis(): Collection
     {
         return $this->aviss;
     }
 
-    public function getPrescription(): Collection
+    public function addAvi(Avis $avis): static
+    {
+        if (!$this->aviss->contains($avis)) {
+            $this->aviss->add($avis);
+            $avis->setIdPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avis): static
+    {
+        if ($this->aviss->removeElement($avis)) {
+            // set the owning side to null (unless already changed)
+            if ($avis->getIdPatient() === $this) {
+                $avis->setIdPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Prescription>
+     */
+    public function getPrescriptions(): Collection
     {
         return $this->prescriptions;
     }
+
+    public function addPrescription(Prescription $prescription): static
+    {
+        if (!$this->prescriptions->contains($prescription)) {
+            $this->prescriptions->add($prescription);
+            $prescription->setIdPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrescription(Prescription $prescription): static
+    {
+        if ($this->prescriptions->removeElement($prescription)) {
+            // set the owning side to null (unless already changed)
+            if ($prescription->getIdPatient() === $this) {
+                $prescription->setIdPatient(null);
+            }
+        }
+
+        return $this;
+    }
+    
+
 }

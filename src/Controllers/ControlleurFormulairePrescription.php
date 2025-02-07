@@ -66,8 +66,8 @@ class ControlleurFormulairePrescription{
         $patient = $this->entityManager->find(Patient::class, $idPatient);
         $medecin = $this->entityManager->find(Medecin::class, $idMedecin);
 
-        $prescription->setMedecin($medecin);
-        $prescription->setPatient($patient);
+        $prescription->setIdMedecin($medecin);
+        $prescription->setIdPatient($patient);
         $prescription->setPosologie($posologie);
         // changement de la string (DD/MM/YYYY) dateDeDebut en DateTime (YYYY/MM/DD)
         $dateDeDebutObject = DateTime::createFromFormat('d/m/Y', $dateDeDebut);

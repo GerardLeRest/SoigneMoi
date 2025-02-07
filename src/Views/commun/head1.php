@@ -2,7 +2,7 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="<?= "/soignemoi-web" ?>/"/>
+    <base href="<?= "/slim-soignemoi" ?>/"/>
     <!--élimination de l'icone Favicon -->
     <link rel="icon" href="data:,">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">

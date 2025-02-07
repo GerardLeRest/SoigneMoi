@@ -8,7 +8,7 @@
             </div>
             <br>
             <br>
-            <form action="/soignemoi-web/formulaireConnexion" method="post">
+            <form action="/slim-soignemoi/formulaireConnexion" method="post">
                 <div class="row justify-content-center">
                     <!-- adresse email -->
                     <div class="mb-2 col-lg-5 col-md-8 col-xs-12 ">

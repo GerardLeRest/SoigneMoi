@@ -10,7 +10,6 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Doctrine\DBAL\Connection; // Add this line to import the Connection class
 
-
 return[
     'settings' => function () {
         $settings = require __DIR__ . '/settings.php';
@@ -52,7 +51,7 @@ return[
         $app = AppFactory::createFromContainer($container);
 
         // Configuration de le chemin de base
-	$app->setBasePath('/soignemoi-web'); //https://www.slimframework.com/docs/v4/start/web-servers.html
+	$app->setBasePath('/slim-soignemoi'); //https://www.slimframework.com/docs/v4/start/web-servers.html
         // Register routes
         (require __DIR__ . '/routes.php')($app);
 
