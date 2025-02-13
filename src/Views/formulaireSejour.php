@@ -7,7 +7,7 @@
     <?php require_once('commun/header.php'); ?>
    
     <main class="container">
-      <form action="/slim-soignemoi/formulaireSejour" method="post">
+      <form action="/soignemoi-local/formulaireSejour" method="post">
         <br>
         <br>
         <div class="row text-center">

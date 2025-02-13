@@ -37,8 +37,8 @@ class Sejour
     private string $medecinSouhaite;
 
     #[ManyToOne(targetEntity: Patient::class, inversedBy: "sejours")]
-    #[JoinColumn(name: 'idPatient', referencedColumnName: 'idPatient')]
-    private ?Patient $idPatient = null;
+    #[JoinColumn(name: "idPatient", referencedColumnName: 'idPatient')]
+    private ?Patient $patient = null;
     
     public function getDateDebut(): DateTime
     {
@@ -91,14 +91,14 @@ class Sejour
         $this->medecinSouhaite = $medecinSouhaite;
     }
 
-    public function getIdPatient(): Patient
+    public function getpatient(): Patient
     {
-        return $this->idPatient;
+        return $this->patient;
     }
 
-    public function setIdPatient(?Patient $idPatient): void 
+    public function setPatient(?Patient $patient): void 
     {
-        $this->idPatient = $idPatient;
+        $this->patient = $patient;
     }
 
     public function getIdSejour(): int

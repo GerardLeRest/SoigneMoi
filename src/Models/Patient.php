@@ -63,7 +63,7 @@ class Patient
         $this->aviss = new ArrayCollection();
     }
         
-    public function getIdPatient(): int
+    public function getPatient(): int
     {
         return $this->idPatient;
     }
@@ -130,7 +130,7 @@ class Patient
     {
         if (!$this->sejours->contains($sejour)) {
             $this->sejours->add($sejour);
-            $sejour->setIdPatient($this);
+            $sejour->setPatient($this);
         }
 
         return $this;
@@ -140,8 +140,8 @@ class Patient
     {
         if ($this->sejours->removeElement($sejour)) {
             // set the owning side to null (unless already changed)
-            if ($sejour->getIdPatient() === $this) {
-                $sejour->setIdPatient(null);
+            if ($sejour->getPatient() === $this) {
+                $sejour->setPatient(null);
             }
         }
 
@@ -160,7 +160,7 @@ class Patient
     {
         if (!$this->aviss->contains($avis)) {
             $this->aviss->add($avis);
-            $avis->setIdPatient($this);
+            $avis->setPatient($this);
         }
 
         return $this;
@@ -170,8 +170,8 @@ class Patient
     {
         if ($this->aviss->removeElement($avis)) {
             // set the owning side to null (unless already changed)
-            if ($avis->getIdPatient() === $this) {
-                $avis->setIdPatient(null);
+            if ($avis->getPatient() === $this) {
+                $avis->setPatient(null);
             }
         }
 
@@ -190,7 +190,7 @@ class Patient
     {
         if (!$this->prescriptions->contains($prescription)) {
             $this->prescriptions->add($prescription);
-            $prescription->setIdPatient($this);
+            $prescription->setPatient($this);
         }
 
         return $this;
@@ -200,8 +200,8 @@ class Patient
     {
         if ($this->prescriptions->removeElement($prescription)) {
             // set the owning side to null (unless already changed)
-            if ($prescription->getIdPatient() === $this) {
-                $prescription->setIdPatient(null);
+            if ($prescription->getPatient() === $this) {
+                $prescription->setPatient(null);
             }
         }
 

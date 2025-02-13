@@ -37,17 +37,18 @@
 
 - $app->setBasePath('/soignemoi-web'); - ne doit pas être commenté dans le fichier config/container.php
 
-- <base href="<?= "/soignemoi-web" ?>/"/> doit être présent dans src/Views/commun/head.php"
+- <base href="<?= "/soignemoi-local" ?>/"/> doit être présent dans src/Views/commun/head.php"
   
   3 - Mise en place sur le serveur
 
 ---------------------------------
 
-- déplacer le dossier slim-soignemoi dans /var/www/html
+- déplacer le dossier soignemoi-local dans /var/www/html
+- changer le nom du dossier en soignemoi-local
 - changer les propriétaires:
-    sudo chown -R $USER:www-data /var/www/html/slim-soignemoi
+    sudo chown -R $USER:www-data /var/www/html/soignemoi-local
 - changer les droits:
-    chmod -R a-rwx,u+rwX,g+rX /var/www/html/slim-soignemoi
+    chmod -R a-rwx,u+rwX,g+rX /var/www/html/soignemoi-local
 - Suivre la documentation: https://www.slimframework.com/docs/v3/start/web-servers.html
-- lancer le site en executant http://localhost/slim-soignemoi dans un navigateur internet.
-  http://localhost/sslim-soignemoi/formulaireMedecin permet de rentrer les inforation d'un medecin.
+- lancer le site en executant http://localhost/soignemoi-local dans un navigateur internet.
+  http://localhost/ssoignemoi-local/formulaireMedecin permet de rentrer les inforation d'un medecin.

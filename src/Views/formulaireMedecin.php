@@ -11,7 +11,7 @@
                     <br>
                 </div>
             </div>
-            <form action="/slim-soignemoi/formulaireMedecin" method="post">
+            <form action="/soignemoi-local/formulaireMedecin" method="post">
                 <div class="row justify-content-center">
                     <!--Prénom-->
                     <div class="mb-2 col-lg-6 col-md-12 col-xs-12">

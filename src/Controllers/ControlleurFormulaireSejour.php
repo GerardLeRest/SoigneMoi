@@ -82,7 +82,7 @@ class ControlleurFormulaireSejour{
             $sejour->setMedecinSouhaite($medecinSouhaite); // peut être NULL
 
             $idPatient = $this->entityManager->find(Patient::class, 1); // $idPatient = 1 - simulation
-            $sejour->setIdpatient($idPatient);
+            $sejour->setPatient($idPatient);
              
             try{
                 $this->entityManager->persist($sejour);

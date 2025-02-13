@@ -51,7 +51,7 @@ return[
         $app = AppFactory::createFromContainer($container);
 
         // Configuration de le chemin de base
-	$app->setBasePath('/slim-soignemoi'); //https://www.slimframework.com/docs/v4/start/web-servers.html
+	$app->setBasePath('/soignemoi-local'); //https://www.slimframework.com/docs/v4/start/web-servers.html
         // Register routes
         (require __DIR__ . '/routes.php')($app);
 

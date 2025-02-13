@@ -34,11 +34,11 @@ class Prescription
 
     #[ManyToOne (targetEntity: Medecin::class, inversedBy: "prescription")]
     #[JoinColumn(name: "idMedecin", referencedColumnName: "idMedecin")]
-    private ?Medecin $idMedecin;
+    private ?Medecin $medecin;
 
     #[ManyToOne(targetEntity: Patient::class, inversedBy: "prescription")]
     #[JoinColumn(name: "idPatient", referencedColumnName: "idPatient")]
-    private ?Patient $idPatient;
+    private ?Patient $patient;
 
     public function getIdPrescription(): int
     {
@@ -85,23 +85,23 @@ class Prescription
         $this->dateDeFin = $dateDeFin;
     }
 
-    public function getidMedecin(): Medecin
+    public function getMedecin(): Medecin
     {
-        return $this->idMedecin;
+        return $this->medecin;
     }
 
-    public function setidMedecin(Medecin $idMedecin): void
+    public function setMedecin(Medecin $medecin): void
     {
-        $this->idMedecin = $idMedecin;
+        $this->medecin = $medecin;
     }
 
-    public function getidPatient(): Patient
+    public function getPatient(): Patient
     {
-        return $this->idPatient;
+        return $this->patient;
     }
 
-    public function setidPatient(?Patient $idPatient): void
+    public function setPatient(?Patient $patient): void
     {
-        $this->idPatient = $idPatient;
+        $this->patient = $patient;
     }
 }

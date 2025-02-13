@@ -113,8 +113,8 @@ class Medecin
     {
         if ($this->aviss->removeElement($avis)) {
             // set the owning side to null (unless already changed)
-            if ($avis->getIdPatient() === $this) {
-                $avis->setIdPatient(null);
+            if ($avis->getPatient() === $this) {
+                $avis->setPatient(null);
             }
         }
 
@@ -133,7 +133,7 @@ class Medecin
     {
         if (!$this->prescriptions->contains($prescription)) {
             $this->prescriptions->add($prescription);
-            $prescription->setIdMedecin($this);
+            $prescription->setMedecin($this);
         }
 
         return $this;
@@ -143,8 +143,8 @@ class Medecin
     {
         if ($this->prescriptions->removeElement($prescription)) {
             // set the owning side to null (unless already changed)
-            if ($prescription->getIdPatient() === $this) {
-                $prescription->setIdPatient(null);
+            if ($prescription->getPatient() === $this) {
+                $prescription->setPatient(null);
             }
         }
 
