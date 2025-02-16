@@ -10,13 +10,9 @@
 
 ## 3 - Installation des dépendances
 
-```bash
-sudo apt-get install python3-tk
-```
-
-```bash
-sudo apt-get install python3-pil python3-pil.imagetk
-```
+----------------------------------
+pip pillow tk
+----------------------------------
 
 ## 4 - Configuration des adresses:
 
