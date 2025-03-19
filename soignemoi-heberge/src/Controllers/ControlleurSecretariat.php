@@ -102,8 +102,12 @@ class ControlleurSecretariat
             // !!! avec & toute modification apportée à $donnee sera directement appliquée à $this->donnees dans le tableau.
             foreach ($this->donnees as &$donnee) {
                 // Les objets DateTime retournés par Doctrine sont déjà des objets DateTime, donc pas besoin de reconversion
-                $donnee['dateDebut'] = $donnee['dateDebut']->format('Y-m-d');
-                $donnee['dateFin'] = $donnee['dateFin'] ? $donnee['dateFin']->format('Y-m-d') : null;
+                if ($donnee['dateDebut'] instanceof \DateTime) { //si  $donnee['dateDeDebut'] est un objet de la classe DateTime.
+                    $donnee['dateDebut'] = $donnee['dateDebut']->format('Y-m-d');
+                }
+                if ($donnee['dateFin'] instanceof \DateTime) {
+                    $donnee['dateFin'] = $donnee['dateFin'] ? $donnee['dateFin']->format('Y-m-d') : null;
+                }
             }
             
             $tableauSejours = $this->donnees;
@@ -112,9 +116,9 @@ class ControlleurSecretariat
             //Medecin
             $queryMedecins = $this->entityManager->createQuery('
             SELECT m.prenom, m.nom, m.matricule, m.specialite
-            FROM App\Models\Auscultation a
-            JOIN a.patient p
-            JOIN a.medecin m
+            FROM App\Models\Medecin m
+            JOIN m.aviss av
+            JOIN av.patient p
             WHERE p.idPatient = :idPatient
             ');
             $queryMedecins->setParameter('idPatient', $id);    
@@ -125,17 +129,18 @@ class ControlleurSecretariat
             //------------------------------------------------------------------------------------------  
             // Avis
             $queryAvis = $this->entityManager->createQuery('
-            SELECT m.nom, m.prenom, av.date, av.libelle, av.description
+            SELECT p.nom, p.prenom, av.date, av.libelle, av.description
             FROM App\Models\Patient p
             JOIN p.aviss av
-            JOIN av.medecin m
             WHERE p.idPatient = :idPatient
             ');
             $queryAvis->setParameter('idPatient', $id);
             $this->donnees = $queryAvis->getResult();
             // transformation des dates sur tous les enregistrements
             foreach ($this->donnees as &$donnee) {
-                $donnee['date'] = $donnee['date']->format('Y-m-d');
+                if ($donnee['date'] instanceof \DateTime) {
+                    $donnee['date'] = $donnee['date']->format('Y-m-d');
+                }
             }
             
             $tableauAvis = $this->donnees;
@@ -143,24 +148,25 @@ class ControlleurSecretariat
             //------------------------------------------------------------------------------------------      
             // Prescriptions
             $queryPrescriptions = $this->entityManager->createQuery('
-            SELECT m.prenom, m.nom, pr.nomMedicament, pr.posologie, pr.dateDeDebut, pr.dateDeFin
+            SELECT p.prenom, p.nom, pr.nomMedicament, pr.posologie, pr.dateDeDebut, pr.dateDeFin
             FROM App\Models\Patient p
             JOIN p.prescriptions pr
-            JOIN pr.medecin m
             WHERE p.idPatient = :idPatient  
             ');
             $queryPrescriptions->setParameter('idPatient', $id);    
             $this->donnees = $queryPrescriptions->getResult();
             // transformation des dates sur tous les enregistrements
             foreach ($this->donnees as &$donnee) {
-                $donnee['dateDeDebut'] = $donnee['dateDeDebut']->format('Y-m-d');
-                $donnee['dateDeFin'] = $donnee['dateDeFin'] ? $donnee['dateDeFin']->format('Y-m-d') : null;
+                if ($donnee['dateDeDebut'] instanceof \DateTime) {
+                    $donnee['dateDeDebut'] = $donnee['dateDeDebut']->format('Y-m-d');
+                }
+                if ($donnee['dateDeFin'] instanceof \DateTime) {
+                    $donnee['dateDeFin'] = $donnee['dateDeFin'] ? $donnee['dateDeFin']->format('Y-m-d') : null;
+                }
             }
                            
             $tableauPrescriptions = $this->donnees;
-
-            $tableauFinal = [$tableauSejours,$tableauMedecins, $tableauPrescriptions, $tableauPrescriptions];
-
+            $tableauFinal = [$tableauSejours, $tableauMedecins, $tableauAvis, $tableauPrescriptions];
             $donneesJSON = json_encode($tableauFinal);
             $response->getBody()->write($donneesJSON); 
             return $response->withHeader('Content-Type', 'application/json');        

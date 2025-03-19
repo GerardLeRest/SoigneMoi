@@ -1,6 +1,6 @@
 <?php 
 
-$liensURL = ['href="accueil"', 'hreF="services"', 'href="patients"', 'href="professionnels"',
+$liensURL = ['href=""', 'hreF="services"', 'href="patients"', 'href="professionnels"',
              'href="listeSejours"', 'href="formulaireSejour"','href="formulaireConnexion"'];
    
 $titres = ["Accueil", "Services", "Patients", "Professionnels", "Liste des séjours", "Créer un séjour", "Connexion"];
